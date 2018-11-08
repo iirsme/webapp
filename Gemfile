@@ -10,6 +10,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails_12factor'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+# Use JQuery
+gem 'jquery-rails'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '~> 5.0'
