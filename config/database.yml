@@ -23,7 +23,10 @@ default: &default
 
 development:
   <<: *default
-  database: iirsme_app_development
+  database: iirsme_dev
+  host: localhost
+  username: postgres
+  password: postgres
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +60,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: iirsme_app_test
+  database: iirsme_test
+  host: localhost
+  username: postgres
+  password: postgres
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +86,8 @@ test:
 #
 production:
   <<: *default
-  database: iirsme_app_production
-  username: iirsme_app
-  password: <%= ENV['IIRSME_APP_DATABASE_PASSWORD'] %>
+  database: iirsme_prod
+  host: localhost
+  username: postgres
+  password: postgres
+  #password: <%= ENV['IIRSME_APP_DATABASE_PASSWORD'] %>
