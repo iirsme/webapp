@@ -1,9 +1,14 @@
-<div class="container">
-  <%= form_for(:session, :html => {class: "form-signin", role: "form"}, url: login_path) do |f| %>
-  	<div class="form-signin-heading-logo jumbotron" align="center"></div>
-    <%= f.email_field :email, class: 'form-control', placeholder: "Usuario", autofocus: true, required: true %>
-    <%= f.password_field :password, class: 'form-control', placeholder: "Contraseña", required: true %>
-	<div class="spacer-10"></div>
-    <%= f.submit "Acceder", class: "btn btn-login btn-lg btn-primary btn-block" %>
-  <% end %>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first login-logo">
+    </div>
+    <%= form_for(:session, :html => {class: "no-class", role: "form"}, url: login_path) do |f| %>
+      <%= f.email_field :email, class: 'fadeIn second', placeholder: "Email", required: true, oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Ingrese un email válido')" %>
+      <%= f.password_field :password, class: 'fadeIn third', placeholder: "Contraseña", required: true, oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Ingrese su contraseña')" %>
+      <%= f.submit "Ingresar", class: "fadeIn fourth login-button" %>
+    <% end %>
+    <div id="formFooter">
+      <a class="underlineHover" href="#"></a>
+    </div>
+  </div>
 </div>
