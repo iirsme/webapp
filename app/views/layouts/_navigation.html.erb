@@ -14,7 +14,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"> Bienvenido Luis</a>
         <li><a href="#">Ayuda</a></li>
-        <li><%= link_to logout_path, method: :delete do %> <span class="glyphicon glyphicon-log-out"></span> Salir <% end %></li>
+        <li><%= link_to logout_path, data: {confirm: "¿Esta seguro que quiere salir del sistema?"}, 
+                                     method: :delete do %> <span class="glyphicon glyphicon-log-out"></span> Salir <% end %></li>
       </ul>
     </div>
   </div>
@@ -24,8 +25,8 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar sidebar-gradient">
       <ul class="nav nav-sidebar">
-      	<li class="active"><%= link_to root_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
-        <li><%= link_to roles_path do %> <span class="glyphicon glyphicon-ban-circle"></span> Roles <% end %></li>
+      	<li class="<%= current_view === 'home' ? 'active' : '' %>"><%= link_to root_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
+        <li class="<%= current_view === 'roles' ? 'active' : '' %>"><%= link_to roles_path do %> <span class="glyphicon glyphicon-ban-circle"></span> Roles <% end %></li>
         <li><a href="#"><span class="glyphicon glyphicon-star"></span> Usuarios </a></li>
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Candidatos </a></li>
         <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Base de Datos </a></li>
