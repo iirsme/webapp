@@ -1,10 +1,8 @@
 <% if logged_in? %>
-<div class="top-nav">
-</div>
-<nav class="navbar navbar-default">
-  <div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -12,32 +10,41 @@
       </button>
       <%= link_to "IIRSME", root_path, class: "navbar-brand" %>
     </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to root_path do %> <span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Configuración <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><%= link_to roles_path do %> <span class="glyphicon glyphicon-ban-circle"></span> Roles <% end %></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span> Usuarios </a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Candidatos </a></li>
-            </ul>
-        </li>
-        <li><a href="#"><span class="glyphicon glyphicon-file"></span> Reportes </a></li>
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Bienvenido Luis <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi cuenta </a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Ajustes </a></li>
-                <li><%= link_to logout_path, method: :delete do %> <span class="glyphicon glyphicon-log-out"></span> Salir <% end %></li>
-            </ul>
-        </li>
+        <li><a href="#"> Bienvenido Luis</a>
+        <li><a href="#">Ayuda</a></li>
+        <li><%= link_to logout_path, method: :delete do %> <span class="glyphicon glyphicon-log-out"></span> Salir <% end %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar sidebar-gradient">
+      <ul class="nav nav-sidebar">
+      	<li class="active"><%= link_to root_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
+        <li><%= link_to roles_path do %> <span class="glyphicon glyphicon-ban-circle"></span> Roles <% end %></li>
+        <li><a href="#"><span class="glyphicon glyphicon-star"></span> Usuarios </a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Candidatos </a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Base de Datos </a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+      	<h4 class="nav-sidebar-title">EEVA</h4>
+        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Configuración </a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-apple"></span> Pacientes </a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-calendar"></span> Visitas </a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-file"></span> Reporte </a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Ajustes </a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi cuenta </a></li>
       </ul>
     </div>
     
-    <div class="nav navbar-nav navbar-right">
-
-    </div>
     
-  </div>
-</nav>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<!-- CONTENT HERE -->
+
 <% end %>
