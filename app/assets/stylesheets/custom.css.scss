@@ -390,8 +390,12 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
   text-align: center;
 }
 .panel-table .btn-create {
-  margin-bottom: 5px;
   margin-right: 4px;
+  line-height: 9px;
+  height: 20px;
+}
+.btn-action {
+  height: 32px;
 }
 .panel-table .panel-body{
   padding:0;
@@ -404,12 +408,12 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
   margin: 0; 
 }
 .panel-table .panel-body .table-bordered > tbody > tr > td {
-  line-height: 34px;
+  line-height: 32px;
 }
 .panel-table .panel-header {
   position: relative;
-  height: 40px;
-  line-height: 40px;
+  height: 35px;
+  line-height: 30px;
   background: #E9E9E9;
   background: -moz-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $main-color), color-stop(100%, #e9e9e9));
@@ -434,8 +438,8 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
 }
 .panel-table .panel-footer {
   position: relative;
-  height: 40px;
-  line-height: 40px;
+  height: 35px;
+  line-height: 30px;
   background: #E9E9E9;
   background: -moz-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $main-color), color-stop(100%, #e9e9e9));
