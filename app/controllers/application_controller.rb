@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   
   def require_user
     if !logged_in?
-      flash[:danger] = "Antes debes ingresar al sistema para realizar esa acción"
+      flash[:danger] = "Ingresa al sistema para realizar esa acción"
       redirect_to '/login'
     end
   end
