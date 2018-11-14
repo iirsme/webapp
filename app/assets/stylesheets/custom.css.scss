@@ -1,16 +1,34 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$main-color: #FAFAFA;
+
+
 /* BASICS */
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
   background-color: #ecf2f9;
 }
+.screen-header {
+  text-align: center;
+  font-weight: bold;
+}
 
 
+/* NOTIFICATIONS */
+.notification {
+  text-align: center;
+  font-weight: bold;
+}
+.notification-danger {
+  text-align: center;
+  font-weight: bold;
+  color: red;
+}
 
-/* STRUCTURE */
+
+/* LOGIN */
 .wrapper {
   display: flex;
   align-items: center;
@@ -20,7 +38,6 @@ body {
   min-height: 100%;
   padding: 20px;
 }
-
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
@@ -34,16 +51,26 @@ body {
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
 }
-
 #formFooter {
-  background-color: #f5f5f5;
+  background-color: $main-color;
   border-top: 1px solid #dce8f1;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
+  background: #E9E9E9;
+  background: -moz-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $main-color), color-stop(100%, #e9e9e9));
+  background: -webkit-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  text-shadow: 0 1px 0 #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9')";
+  -webkit-background-clip: padding-box;
 }
-
 .login-logo {
   background-image: asset-url('small_logo.jpg');
   margin-left: auto;
@@ -53,11 +80,99 @@ body {
   transform: scale(.8);
   margin-bottom: 10px;
 }
-
 .login-button {
   margin-top: 10px;
   margin-bottom: 10px;
   font-weight: bold;
+}
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@-moz-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.fadeIn {
+  opacity:0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+.fadeIn.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+.fadeIn.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+/* Simple CSS3 Fade-in Animation */
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.2s;
+}
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+.underlineHover:hover:after{
+  width: 100%;
 }
 
 
@@ -83,11 +198,9 @@ input[type=button], input[type=submit] {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
 input[type=button]:hover, input[type=submit]:hover  {
   background-color: #56baed;
 }
-
 input[type=button]:active, input[type=submit]:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
@@ -95,9 +208,8 @@ input[type=button]:active, input[type=submit]:active  {
   -ms-transform: scale(0.95);
   transform: scale(0.95);
 }
-
 input[type=text], input[type=password], input[type=email] {
-  background-color: #f5f5f5;
+  background-color: #f7f7f7;
   border: none;
   color: #0d0d0d;
   padding: 15px 32px;
@@ -116,116 +228,14 @@ input[type=text], input[type=password], input[type=email] {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
-
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   background-color: #fff;
   border-bottom: 2px solid #39ace7;
 }
-
 input[type=text]:placeholder, input[type=password]:placeholder, input[type=email]:placeholder {
   color: #cccccc;
 }
 
-
-
-/* ANIMATIONS */
-/* Simple CSS3 Fade-in-down Animation */
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-/* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@-moz-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.fadeIn {
-  opacity:0;
-  -webkit-animation: fadeIn ease-in 1;
-  -moz-animation: fadeIn ease-in 1;
-  animation: fadeIn ease-in 1;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  animation-duration: 1s;
-}
-
-.fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.fadeIn.second {
-  -webkit-animation-delay: 0.6s;
-  -moz-animation-delay: 0.6s;
-  animation-delay: 0.6s;
-}
-
-.fadeIn.third {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
-  animation-delay: 0.8s;
-}
-
-.fadeIn.fourth {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  animation-delay: 1s;
-}
-
-/* Simple CSS3 Fade-in Animation */
-.underlineHover:after {
-  display: block;
-  left: 0;
-  bottom: -10px;
-  width: 0;
-  height: 2px;
-  background-color: #56baed;
-  content: "";
-  transition: width 0.2s;
-}
-
-.underlineHover:hover {
-  color: #0d0d0d;
-}
-
-.underlineHover:hover:after{
-  width: 100%;
-}
 
 /* OTHERS */
 *:focus {
@@ -239,10 +249,33 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
   color: #000;
   padding: 3px;
 }
-
 .navbar {
   min-height: 50px;
   margin-bottom: 0px;
+  background: #E9E9E9;
+  background: -moz-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $main-color), color-stop(100%, #e9e9e9));
+  background: -webkit-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  text-shadow: 0 1px 0 #fff;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
+  border-top: 1px solid #bababa;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9')";
+  border: 1px solid #D5D5D5;
+  -webkit-border-bottom-left-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-background-clip: padding-box;
+}
+.dropdown-menu {
+  background-color: $main-color;
 }
 .navbar-nav>li>a {
   font-size: 15px;
@@ -253,7 +286,6 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
   color: #39ace7;
   box-shadow: 0px 20px 0px -18px #39ace7;
 }
-
 .navbar-brand {
   color: #39ace7;
   font-size: 2.5em;
@@ -262,7 +294,102 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
   text-transform: uppercase;
   margin: 15px 0px 0px 0px; 
 }
+.spacer-10 {
+  height: 10px;
+}
+.spacer-20 {
+  height: 20px;
+}
+.spacer-30 {
+  height: 30px;
+}
+.spacer-50 {
+  height: 50px;
+}
 
-.dropdown-menu {
-  background-color: #f0f0f0;
+
+/* DATA TABLE */
+.txt-green {
+  color: green;
+}
+.txt-red {
+  color: red;
+}
+.col-header {
+  text-align: center;
+}
+.col-data-left {
+  text-align: left;
+}
+.col-data-center {
+  text-align: center;
+}
+.panel-table .btn-create {
+  margin-bottom: 5px;
+  margin-right: 4px;
+}
+.panel-table .panel-body{
+  padding:0;
+}
+.panel-table .panel-body .table-bordered {
+  border-style: none;
+  margin:0;
+}
+.panel-table .panel-footer .pagination {
+  margin: 0; 
+}
+.panel-table .panel-body .table-bordered > tbody > tr > td {
+  line-height: 34px;
+}
+.panel-table .panel-header {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  background: #E9E9E9;
+  background: -moz-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $main-color), color-stop(100%, #e9e9e9));
+  background: -webkit-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  text-shadow: 0 1px 0 #fff;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
+  border-bottom: 1px solid #bababa;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9')";
+  border: 1px solid #D5D5D5;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  -webkit-background-clip: padding-box;
+}
+.panel-table .panel-footer {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  background: #E9E9E9;
+  background: -moz-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $main-color), color-stop(100%, #e9e9e9));
+  background: -webkit-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
+  text-shadow: 0 1px 0 #fff;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
+  border-top: 1px solid #bababa;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9')";
+  border: 1px solid #D5D5D5;
+  -webkit-border-bottom-left-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-background-clip: padding-box;
 }

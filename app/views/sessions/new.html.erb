@@ -1,6 +1,14 @@
+<p class="spacer-50"></p>
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <div class="fadeIn first login-logo">
+    </div>
+    <div class="fadeIn second col-xs-10 col-xs-offset-1">
+      <% flash.each do |name, msg| %>
+	    <div class='notification-<%= "#{name}" %>'>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+	    </div>
+      <% end %>
     </div>
     <%= form_for(:session, :html => {class: "no-class", role: "form"}, url: login_path) do |f| %>
       <%= f.email_field :email, class: 'fadeIn second', placeholder: "Email", required: true, oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Ingrese un email válido')" %>
