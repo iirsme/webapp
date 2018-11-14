@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>IirsmeApp</title>
+    <title>IIRSME</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/navigation' %>
+  	<%= render 'layouts/messages' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.test? %>
   </body>
 </html>
