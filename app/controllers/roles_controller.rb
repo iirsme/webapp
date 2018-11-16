@@ -12,7 +12,18 @@ class RolesController < ApplicationController
   end
   
   def create
-    
+    # This line prints the params as plain text
+    # render plain: params[:role].inspect
+    @role = Role.new(role_params)
+    if @role.save
+      puts "*** Success!!"
+      flash[:success] = "Rol creado satisfactoriamente"
+      # redirect_to role_path(@role)
+      redirect_to roles_path
+    else
+      puts "*** Error!!"
+      render 'new'
+    end
   end
   
   def show
@@ -20,7 +31,7 @@ class RolesController < ApplicationController
   
   def destroy
     @role.destroy
-    flash[:danger] = "Rol borrado satisfactoriamente"
+    flash[:danger] = "Rol eliminado satisfactoriamente"
     redirect_to roles_path
   end
   
@@ -28,7 +39,13 @@ class RolesController < ApplicationController
   end
   
   def update
-    
+    if @role.update(role_params)
+      flash[:success] = "Rol actualizado satisfactoriamente"
+      # redirect_to role_path(@role)
+      redirect_to roles_path
+    else
+      render 'edit'
+    end
   end
   
   private
@@ -37,5 +54,8 @@ class RolesController < ApplicationController
     end
     def set_role
       @role = Role.find(params[:id])
+    end
+    def role_params
+      params.require(:role).permit(:name, :description, :can_create, :can_read, :can_update, :can_delete)
     end
 end

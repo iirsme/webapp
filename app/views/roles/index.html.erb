@@ -1,6 +1,7 @@
 <div class="">
   <h3 class="screen-header">Roles de Seguridad</h3>
-   
+  <p class="spacer-30"></p>
+
   <div class="col-md-12 col-md-offset-0">
     <div class="panel panel-default panel-table">
       <div class="panel-header">
@@ -9,7 +10,8 @@
             <h3 class="panel-title"></h3>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" class="btn btn-sm btn-primary btn-create">Nuevo</button>
+            <%= link_to "Nuevo", new_role_path, class: "btn btn-sm btn-primary btn-create" %>
+                
           </div>
         </div>
       </div>
@@ -36,8 +38,7 @@
               <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (role.can_update ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
               <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (role.can_delete ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
               <td align="center">
-                <%= link_to edit_role_path(role), class: "btn btn-default btn-action",
-                                             method: :delete do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
+                <%= link_to edit_role_path(role), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
                 <%= link_to role_path(role), data: {confirm: "¿Esta seguro que quiere eliminar este Rol?"},
                                              class: "btn btn-default btn-action",
                                              method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>

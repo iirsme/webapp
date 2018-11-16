@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-xs-7 col-xs-offset-0">
+     <%= form_for(@role, :html => {class: "form-horizontal", role: "form"}) do |el| %>
+        <div class="form-group">
+          <label class="col-xs-3 control-label" for="name">Nombre:</label>
+          <div class="col-xs-9">
+            <%= el.text_field :name, class: "form-control form-style", autofocus: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-xs-3 control-label" for="message">Descripción:</label>
+          <div class="col-xs-9">
+            <%= el.text_area :description, rows: 6, class: "form-control form-style" %>
+          </div>
+        </div>
+
+        <div class="col-xs-9 col-xs-offset-3">
+          <div class="panel panel-default">
+            <div class="panel-heading material-switch-header">Permisos</div>                
+            <ul class="list-group">
+              <li class="list-group-item">
+                <span class="material-switch-option">Crear</span>
+                <div class="material-switch pull-right">                  
+                  <%= el.check_box :can_create, id: "create", name: "create" %>
+                  <label for="create" class="label-primary"></label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <span class="material-switch-option">Ver</span>
+                <div class="material-switch pull-right">                  
+                  <%= el.check_box :can_read, id: "read", name: "read" %>
+                  <label for="read" class="label-primary"></label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <span class="material-switch-option">Editar</span>
+                <div class="material-switch pull-right">                  
+                  <%= el.check_box :can_update, id: "update", name: "update" %>
+                  <label for="update" class="label-primary"></label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <span class="material-switch-option">Eliminar</span>
+                <div class="material-switch pull-right">                  
+                  <%= el.check_box :can_delete, id: "delete", name: "delete" %>
+                  <label for="delete" class="label-primary"></label>
+                </div>
+              </li>
+            </ul>
+          </div>
+    	</div>
+        
+        <div class="form-group">
+          <div class="col-xs-offset-6 col-xs-10">
+          	 <%= el.submit "Guardar", class: "btn btn-primary btn-form" %>
+          	 <%= link_to "Atras", roles_path, class: "btn btn-primary btn-form" %>
+          </div>
+        </div>
+     <% end %>
+    </div>
+</div>

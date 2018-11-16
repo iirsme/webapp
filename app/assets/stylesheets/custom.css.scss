@@ -33,6 +33,13 @@ body {
 
 
 
+/* FORMS */
+.form-style:focus {
+  border: 1.5px solid #39ace7;
+}
+
+
+
 /* LOGIN */
 .wrapper {
   display: flex;
@@ -176,11 +183,7 @@ body {
 .underlineHover:hover:after{
   width: 100%;
 }
-
-
-
-/* FORMS */
-input[type=button], input[type=submit] {
+.wrapper input[type=button], .wrapper input[type=submit] {
   background-color: #39ace7;
   border: none;
   color: white;
@@ -201,17 +204,17 @@ input[type=button], input[type=submit] {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-input[type=button]:hover, input[type=submit]:hover  {
+.wrapper input[type=button]:hover, .wrapper input[type=submit]:hover  {
   background-color: #56baed;
 }
-input[type=button]:active, input[type=submit]:active  {
+.wrapper input[type=button]:active, .wrapper input[type=submit]:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
   -ms-transform: scale(0.95);
   transform: scale(0.95);
 }
-input[type=text], input[type=password], input[type=email] {
+.wrapper input[type=text], .wrapper input[type=password], .wrapper input[type=email] {
   background-color: #f7f7f7;
   border: none;
   color: #0d0d0d;
@@ -231,17 +234,13 @@ input[type=text], input[type=password], input[type=email] {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+.wrapper input[type=text]:focus, .wrapper input[type=password]:focus, .wrapper input[type=email]:focus {
   background-color: #fff;
   border-bottom: 2px solid #39ace7;
 }
-input[type=text]:placeholder, input[type=password]:placeholder, input[type=email]:placeholder {
+.wrapper input[type=text]:placeholder, input[type=password]:placeholder, .wrapper input[type=email]:placeholder {
   color: #cccccc;
 }
-
-
-
-/* OTHERS */
 *:focus {
   outline: none;
 } 
@@ -462,3 +461,66 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
   border-bottom-right-radius: 4px;
   -webkit-background-clip: padding-box;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.material-switch > input[type="checkbox"] {
+  display: none;   
+}
+.material-switch > label {
+  cursor: pointer;
+  height: 0px;
+  position: relative; 
+  width: 40px;  
+}
+
+.material-switch > label::before {
+  background: rgb(0, 0, 0);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  content: '';
+  height: 16px;
+  margin-top: -8px;
+  position:absolute;
+  opacity: 0.3;
+  transition: all 0.4s ease-in-out;
+  width: 40px;
+}
+.material-switch > label::after {
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  content: '';
+  height: 24px;
+  left: -4px;
+  margin-top: -8px;
+  position: absolute;
+  top: -4px;
+  transition: all 0.3s ease-in-out;
+  width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+  background: inherit;
+  opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+  background: inherit;
+  left: 20px;
+}
+.material-switch-header {
+  text-align: center;
+  font-weight: bold;
+}
+.material-switch-option {
+  font-weight: bold;
+}
+
