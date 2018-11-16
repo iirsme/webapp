@@ -23,14 +23,18 @@ body {
 /* NOTIFICATIONS */
 .notification {
   text-align: center;
-  font-weight: bold;
+  padding: 5px;
 }
 .notification-danger {
   text-align: center;
   font-weight: bold;
   color: red;
 }
-
+.notification-icon {
+  margin-right: 5px;
+  font-size: 20px;
+  font-weight: lighter;
+}
 
 
 /* FORMS */

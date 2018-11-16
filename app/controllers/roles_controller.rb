@@ -14,7 +14,7 @@ class RolesController < ApplicationController
   def create
     # This line prints the params as plain text
     # render plain: params[:role].inspect
-    @role = Role.new(role_params)
+    @role = Role.new(role_params) 
     if @role.save
       puts "*** Success!!"
       flash[:success] = "Rol creado satisfactoriamente"

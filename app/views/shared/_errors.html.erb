@@ -1,0 +1,26 @@
+<% if obj.errors.any? %>
+<div class="row">
+  <div class="col-xs-offset-2 col-xs-8">
+	<div class="alert alert-danger">
+	  <div class="panel-heading">
+	  	<a href="#" class="close" data-dismiss="alert">&#215;</a>
+       	<h2 class="panel-title">
+          Se
+          <%= pluralize_without_count(obj.errors.count, "encontró", "encontraron") %>
+          <%= pluralize(obj.errors.count, "error", "errores") %>
+          que
+          <%= pluralize_without_count(obj.errors.count, "evitó", "evitaron") %>
+          que este registro se guarde correctamente:
+        </h2>
+        <div class="panel-body">
+          <ul>
+            <% obj.errors.full_messages.each do |msg| %>
+              <li> <%= msg %> </li>
+            <% end %>
+          </ul> 
+        </div>
+      </div>
+	</div>
+  </div>
+</div>
+<% end %>

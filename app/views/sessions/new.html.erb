@@ -5,7 +5,9 @@
     <div class="fadeIn second col-xs-10 col-xs-offset-1">
       <% flash.each do |name, msg| %>
 	    <div class='notification-<%= "#{name}" %>'>
-          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+          <% if msg.is_a?(String) %>
+	        <div class="notification-content"><span class='notification-icon glyphicon glyphicon-warning-sign'></span> <%= msg %> </div>
+	      <% end %>
 	    </div>
       <% end %>
     </div>
