@@ -12,10 +12,11 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to current_user.say_hello, user_path(current_user) %></li>
-        <li><a href="#">Ayuda</a></li>
-        <li><%= link_to logout_path, data: {confirm: "¿Esta seguro que quiere salir del sistema?"}, 
-                                     method: :delete do %> <span class="glyphicon glyphicon-log-out"></span> Salir <% end %></li>
+        <li class="navbar-item"><%= link_to current_user.say_hello, user_path(current_user) %></li>
+        <li class="navbar-item"><a href="#">Ayuda</a></li>
+        <li class="navbar-item-empty"></li>
+        <li class="navbar-item"><%= link_to logout_path, data: {confirm: "¿Esta seguro que quiere salir del sistema?"}, 
+                                     method: :delete do %> <span class="fa fa-sign-out"></span> Salir <% end %></li>
       </ul>
     </div>
   </div>
@@ -25,22 +26,22 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar sidebar-gradient">
       <ul class="nav nav-sidebar">
-      	<li class="<%= current_view === 'home' ? 'active' : '' %>"><%= link_to root_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
-        <li class="<%= current_view === 'roles' ? 'active' : '' %>"><%= link_to roles_path do %> <span class="glyphicon glyphicon-ban-circle"></span> Roles <% end %></li>
-        <li class="<%= current_view === 'users' ? 'active' : '' %>"><%= link_to users_path do %> <span class="glyphicon glyphicon-star"></span> Usuarios <% end %></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Candidatos </a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Base de Datos </a></li>
+      	<li class="<%= current_view === 'home' ? 'active' : '' %> menu-item"><%= link_to root_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
+        <li class="<%= current_view === 'roles' ? 'active' : '' %> menu-item"><%= link_to roles_path do %> <span class="fa fa-ban"></span> Roles <% end %></li>
+        <li class="<%= current_view === 'users' ? 'active' : '' %> menu-item"><%= link_to users_path do %> <span class="fa fa-users"></span> Usuarios <% end %></li>
+        <li class="menu-item"><a href="#"><span class="fa fa-user"></span> Candidatos </a></li>
+        <li class="menu-item"><a href="#"><span class="fa fa-database"></span> Base de Datos </a></li>
       </ul>
       <ul class="nav nav-sidebar">
       	<h4 class="nav-sidebar-title">EEVA</h4>
-        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Configuración </a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-apple"></span> Pacientes </a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-calendar"></span> Visitas </a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-file"></span> Reporte </a></li>
+        <li class="menu-item"><a href="#"><span class="glyphicon glyphicon-cog"></span> Configuración </a></li>
+        <li class="menu-item"><a href="#"><span class="fa fa-heartbeat"></span> Pacientes </a></li>
+        <li class="menu-item"><a href="#"><span class="fa fa-calendar"></span> Visitas </a></li>
+        <li class="menu-item"><a href="#"><span class="fa fa-file"></span> Reporte </a></li>
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Ajustes </a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi cuenta </a></li>
+        <li class="menu-item"><a href="#"><span class="fa fa-wrench"></span> Ajustes </a></li>
+        <li class="menu-item"><a href="#"><span class="fa fa-user-circle"></span> Mi cuenta </a></li>
       </ul>
     </div>
     
