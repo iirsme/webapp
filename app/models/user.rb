@@ -12,5 +12,9 @@ class User < ApplicationRecord
     return "Hola #{firstname}".strip if (firstname)
     "Hola Desconocido"
   end
+  
+  def exclude_system_admin(users)
+    users.reject { |user| user.username == "system.admin" && self.id != user.id }
+  end
 
 end

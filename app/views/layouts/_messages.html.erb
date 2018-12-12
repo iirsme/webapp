@@ -6,7 +6,7 @@
 	    	    <div class='alert alert-<%= "#{name}" %> notification'>
 	    		    <a href="#" class="close" data-dismiss="alert">&#215;</a>
                     <% if msg.is_a?(String) %>
-	    		       <div class="notification-content"><span class='notification-icon glyphicon glyphicon-<%= (name == "success" ? "ok-circle" : "warning-sign") %>'></span> <%= msg %> </div>
+	    		       <div class="notification-content"><span class='notification-icon fa fa-<%= (name == "success" ? "check-circle" : "exclamation-circle") %>'></span> <%= msg %> </div>
 	    		    <% end %>
 			    </div>
 		    <% end %>

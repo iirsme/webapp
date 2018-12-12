@@ -20,5 +20,9 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+  
+   def true?(obj)
+     obj.to_s == "true"
+   end
 
 end

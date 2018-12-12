@@ -5,9 +5,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @users = current_user.exclude_system_admin(@users)
   end
 
   def show
+    @current_view = 'user-account'
   end
 
   def new
@@ -35,9 +37,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    in_user_account = true?(params[:user_account])
     if @user.update(user_params)
-      flash[:success] = "Usuario actualizado satisfactoriamente"
-      redirect_to users_path
+      flash[:success] = (in_user_account ? "Tu cuenta ha sido actualizada" : "Usuario actualizado") + " satisfactoriamente"
+      if in_user_account
+        redirect_to request.referrer
+      else
+        redirect_to users_path
+      end
     else
       render 'edit'
     end
