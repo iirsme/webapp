@@ -6,48 +6,43 @@ class RolesController < ApplicationController
   def index
     @roles = Role.all
   end
-  
+
   def new
     @role = Role.new
   end
-  
+
   def create
-    # This line prints the params as plain text
     # render plain: params[:role].inspect
     @role = Role.new(role_params) 
     if @role.save
-      puts "*** Success!!"
       flash[:success] = "Rol creado satisfactoriamente"
-      # redirect_to role_path(@role)
       redirect_to roles_path
     else
-      puts "*** Error!!"
       render 'new'
     end
   end
-  
+
   def show
   end
-  
+
   def destroy
     @role.destroy
     flash[:danger] = "Rol eliminado satisfactoriamente"
     redirect_to roles_path
   end
-  
+
   def edit
   end
-  
+
   def update
     if @role.update(role_params)
       flash[:success] = "Rol actualizado satisfactoriamente"
-      # redirect_to role_path(@role)
       redirect_to roles_path
     else
       render 'edit'
     end
   end
-  
+
   private
     def set_current_view
       @current_view = 'roles'

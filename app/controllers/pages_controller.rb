@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
   def home
     @current_view = 'home'
-    # redirect_to roles_path if logged_in?
+    if !logged_in?
+      redirect_to login_path
+      return
+    end
+    redirect_to roles_path # researches_path
   end
 end

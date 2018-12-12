@@ -7,4 +7,10 @@ class User < ApplicationRecord
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :password_digest, presence: true
+
+  def say_hello
+    return "Hola #{firstname}".strip if (firstname)
+    "Hola Desconocido"
+  end
+
 end
