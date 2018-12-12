@@ -27,7 +27,7 @@ class RolesController < ApplicationController
 
   def destroy
     @role.destroy
-    flash[:danger] = "Rol eliminado satisfactoriamente"
+    flash[:success] = "Rol eliminado satisfactoriamente"
     redirect_to roles_path
   end
 
