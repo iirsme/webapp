@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_062242) do
+ActiveRecord::Schema.define(version: 2018_12_13_071246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "researches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.boolean "is_private", default: false
+    t.string "password"
+    t.decimal "seq_no", default: -> { "nextval('research_seq'::regclass)" }
+  end
 
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
