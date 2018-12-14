@@ -280,13 +280,13 @@ body {
   display: none;
 }
 .navbar-item {
-  font-size: 16px;  
+  font-size: 15px;  
 }
 .navbar-item-empty {
   margin-left: 15px;  
 }
 .menu-item {
-  font-size: 16px;
+  font-size: 14px;
   margin-left: 0px;
 }
 @media (min-width: 768px) {
@@ -553,6 +553,7 @@ body {
 }
 section .section-title {
   text-align: center;
+  font-size: 25px;
   font-weight: bold;
   margin-bottom: 50px;
   text-transform: uppercase;
@@ -592,7 +593,7 @@ section .section-title {
 .frontside-new {
   position: relative;
   margin-bottom: 30px;
-  border:2px dashed #dadada;
+  border: 3px dashed #dadada;
 }
 .frontside {
   position: relative;
@@ -636,7 +637,7 @@ section .section-title {
   transform-style: preserve-3d;
 }
 .frontside-new .card {
-  min-height: 312px;
+  min-height: 307px;
 }
 .frontside .card {
   min-height: 312px;
@@ -651,6 +652,7 @@ section .section-title {
 .frontside-new .card .card-title,
 .frontside .card .card-title,
 .backside .card .card-title {
+  font-size: 20px;
   text-transform: uppercase;
   margin-top: 20px;
   color: $blue-color !important;
@@ -660,24 +662,29 @@ section .section-title {
 .frontside .card .card-name,
 .backside .card .card-name {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
 }
 .frontside-new .card .card-description,
 .frontside .card .card-description,
 .backside .card .card-description {
-  margin-left: 30px;
-  margin-right: 30px;
+  font-size: 13px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
-.frontside-new .card .card-body img,
-.frontside .card .card-body img {
-  margin-top: 20px;
+.frontside-image {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
   width: 130px;
   height: 130px;
-  border-radius: 50%;
+  margin-bottom: 30px;
 }
-.research-icon1 {
+.img-0 {
+  border: 2px dashed #dadada;
+  
+}
+.img-1 {
   background-image: asset-url('research-icon1.png');
 }
-
 
 
