@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "IIRSME", root_path, class: "navbar-brand" %>
+      <%= link_to "IIRSME", home_path, class: "navbar-brand" %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -26,7 +26,7 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar sidebar-gradient">
       <ul class="nav nav-sidebar">
-      	<li class="<%= current_view === 'home' ? 'active' : '' %> menu-item"><%= link_to root_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
+      	<li class="<%= current_view === 'home' ? 'active' : '' %> menu-item"><%= link_to home_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>
         <li class="<%= current_view === 'roles' ? 'active' : '' %> menu-item"><%= link_to roles_path do %> <span class="fa fa-ban"></span> Roles <% end %></li>
         <% if current_user.is_admin? %>
           <li class="<%= current_view === 'users' ? 'active' : '' %> menu-item"><%= link_to users_path do %> <span class="fa fa-users"></span> Usuarios <% end %></li>
