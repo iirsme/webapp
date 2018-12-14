@@ -1,4 +1,44 @@
-<% @researches.each do |research| %>
-	<%= research.code + " " + research.name %>
-	<br />
-<% end %>
+<% # @researches.each do |research| %>
+	<%#= research.code + " " + research.name %>
+<% # end %>
+
+<!-- Researches section -->
+<div class="">
+<section id="researches" class="pb-5">
+  <div class="">
+    <h5 class="section-title h1">Protocolos</h5>
+    <div class="row">
+
+    <!-- Research card -->
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+        <div class="mainflip">
+          <div class="frontside">
+            <div class="card">
+              <div class="card-body text-center">
+                <p><img class="img-fluid research-icon1"></p>
+                <h4 class="card-title">EEVA</h4>
+                <p class="card-name">Estudio de la rigidez arterial evolutiva</p>
+                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="backside">
+            <div class="card">
+              <div class="card-body text-center mt-4">
+                <h4 class="card-title">EEVA</h4>
+                <p class="card-name">Estudio de la rigidez arterial evolutiva</p>
+                <p class="card-description">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Research card -->
+
+  </div>
+</div>
+</section>
+</div>
+<!-- Team -->
