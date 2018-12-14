@@ -539,18 +539,6 @@ body {
 
 
 /* RESEARCH CARD */
-.btn-primary-card:hover,
-.btn-primary-card:focus {
-  background-color: #108d6f;
-  border-color: #108d6f;
-  box-shadow: none;
-  outline: none;
-}
-.btn-primary-card {
-  color: #fff;
-  background-color: #007b5e;
-  border-color: #007b5e;
-}
 section .section-title {
   text-align: center;
   font-size: 25px;
@@ -643,11 +631,9 @@ section .section-title {
   min-height: 312px;
 }
 .backside .card {
-  min-height: 282px;
-}
-.backside .card a {
-  font-size: 18px;
-  color: $blue-color !important;
+  min-height: 292px;
+  max-height: 292px;
+
 }
 .frontside-new .card .card-title,
 .frontside .card .card-title,
@@ -680,6 +666,12 @@ section .section-title {
   width: 130px;
   height: 130px;
   margin-bottom: 30px;
+}
+.card-form {
+  margin-top: 10px;
+}
+.btn-card {
+  margin-top: 20px;
 }
 .img-0 {
   border: 2px dashed #dadada;

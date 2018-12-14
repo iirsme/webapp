@@ -15,7 +15,7 @@
                     <div class="frontside-image img-0"></div>
 	                <h4 class="card-title">&nbsp;</h4>
 	                <p class="card-name">Crear nuevo Protocolo</p>
-   	                <a href="#" class="btn btn-primary btn-md"><i class="fa fa-plus"></i></a>
+   	                <%= link_to new_research_path, class: "btn btn-primary btn-md" do %> <i class="fa fa-plus"></i> <% end %>
 	              </div>
 	            </div>
 	          </div>
@@ -49,6 +49,29 @@
                      <% else %>
                        <p class="card-description"><%= research.description %></p>
                      <% end %>
+
+                     <% if research.is_private %>
+                       <%= form_tag '#', method: :post, class: "card-form" do %>
+                         <div class="form-group col-md-12">
+			               <div class="col-xs-8 col-xs-offset-2">
+				             <%= password_field_tag ('password_'+ research.seq_no.to_i.to_s), nil, placeholder: "Ingrese la contraseña", class: "form-control input-md" =%>
+			               </div>
+			               <%= hidden_field_tag ('research_' + research.seq_no.to_i.to_s), research.id %>
+  			               <div class="col-xs-offset-0">
+				             <%= button_tag(type: :submit, class: "btn btn-md btn-primary") do %>
+				               <i class="fa fa-sign-in"></i> Ingresar
+				             <% end %>
+			               </div>
+                         </div>
+                       <% end %>
+                     <% else %>
+                       <div class="col-xs-offset-0">
+                         <%= link_to research_path(research), class: "btn btn-md btn-primary btn-card" do %>
+                           <i class="fa fa-sign-in"></i> Ingresar
+                         <% end %>
+                       </div>
+                     <% end %>
+
                    </div>
                  </div>
                </div>
