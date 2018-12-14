@@ -1,61 +1,65 @@
-<% # @researches.each do |research| %>
-	<%#= research.code + " " + research.name %>
-<% # end %>
-
 <!-- Researches section -->
 <div class="">
-<section id="researches" class="pb-5">
-  <div class="">
-    <h5 class="section-title h1">Protocolos</h5>
-    <div class="row">
+  <section id="researches" class="pb-5">
+    <div class="">
+      <h5 class="section-title h1">Protocolos</h5>
+      <div class="row">
 
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="image-no-flip">
-        <div class="mainflip">
-          <div class="frontside-new">
-            <div class="card">
-              <div class="card-body text-center">
-                <div class="frontside-image img-0"></div>
-                <h4 class="card-title">&nbsp;</h4>
-                <p class="card-name">Crear nuevo Protocolo</p>
-                <a href="#" class="btn btn-primary btn-md"><i class="fa fa-plus"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- New Research card -->
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="image-no-flip">
+            <div class="mainflip">
+              <div class="frontside-new">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="frontside-image img-0"></div>
+	                <h4 class="card-title">&nbsp;</h4>
+	                <p class="card-name">Crear nuevo Protocolo</p>
+   	                <a href="#" class="btn btn-primary btn-md"><i class="fa fa-plus"></i></a>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	    <!-- -->
+
+       <!--Research card -->
+       <% @researches.each do |research| %>
+         <div class="col-xs-12 col-sm-6 col-md-4">
+           <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+             <div class="mainflip">
+               <div class="frontside">
+                 <div class="card">
+                   <div class="card-body text-center">
+                     <div class="frontside-image img-1"></div>
+                     <h4 class="card-title"><%= research.code %></h4>
+                     <p class="card-name"><%= research.name %></p>
+                     <div class="btn btn-primary btn-md"><i class='fa fa-<%= (research.is_private ? "lock" : "unlock") %>'></i></div>
+                   </div>
+                 </div>
+               </div>
+               <div class="backside">
+                 <div class="card">
+                   <div class="card-body text-center mt-4">
+                     <h4 class="card-title"><%= research.code %></h4>
+                     <p class="card-name"><%= research.name %></p>
+                     <% if research.description.nil? || research.description.blank? || research.description == " " %>
+                       <p class="card-description" style="min-width:20em;"><%= research.description %></p>
+                     <% else %>
+                       <p class="card-description"><%= research.description %></p>
+                     <% end %>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       <% end %>
+       <!-- -->
+
       </div>
     </div>
-    
-    <!-- Research card -->
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-        <div class="mainflip">
-          <div class="frontside">
-            <div class="card">
-              <div class="card-body text-center">
-                <div class="frontside-image img-1"></div>
-                <h4 class="card-title">EEVA</h4>
-                <p class="card-name">Estudio de la rigidez arterial evolutiva</p>
-                <div class="btn btn-primary btn-md"><i class="fa fa-lock"></i></div>
-              </div>
-            </div>
-          </div>
-          <div class="backside">
-            <div class="card">
-              <div class="card-body text-center mt-4">
-                <h4 class="card-title">EEVA</h4>
-                <p class="card-name">Estudio de la rigidez arterial evolutiva</p>
-                <p class="card-description">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Research card -->
-
-  </div>
-</div>
 </section>
 </div>
 <!-- Team -->

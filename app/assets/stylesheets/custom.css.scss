@@ -637,7 +637,7 @@ section .section-title {
   transform-style: preserve-3d;
 }
 .frontside-new .card {
-  min-height: 307px;
+  min-height: 305px;
 }
 .frontside .card {
   min-height: 312px;
@@ -657,6 +657,8 @@ section .section-title {
   margin-top: 20px;
   color: $blue-color !important;
   font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .frontside-new .card .card-name,
 .frontside .card .card-name,
