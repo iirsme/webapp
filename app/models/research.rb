@@ -1,5 +1,9 @@
 class Research < ApplicationRecord
 
+  validates :name, presence: true
+  validates :code, presence: true, uniqueness: { case_sensitive: false }
+  validates :password, presence: true, if: -> { is_private == true }
+
   before_save do
     if !password.blank?
       self.password = Digest::SHA2.hexdigest(get_salt + password)
