@@ -50,27 +50,23 @@
                        <p class="card-description"><%= research.description %></p>
                      <% end %>
 
-                     <% if research.is_private %>
-                       <%= form_tag '#', method: :post, class: "card-form" do %>
-                         <div class="form-group col-md-12">
-			               <div class="col-xs-8 col-xs-offset-2">
-				             <%= password_field_tag ('password_'+ research.seq_no.to_i.to_s), nil, placeholder: "Ingrese la contraseña", class: "form-control input-md" =%>
+                       <%= form_tag 'enter_research', method: :post, class: "card-form" do %>
+                         <% seq_no = "#{research.seq_no.to_i}" %>
+                         <%= hidden_field_tag ('id_' + seq_no), research.id %>
+                         <%= hidden_field_tag ('seqno_' + seq_no), seq_no %>
+                         <% if research.is_private %>
+                           <div class="form-group col-md-12">
+			                 <div class="col-xs-8 col-xs-offset-2">
+				               <%= password_field_tag ('password_' + seq_no), nil, placeholder: "Ingrese la contraseña", class: "form-control input-md" =%>
+			                 </div>
 			               </div>
-			               <%= hidden_field_tag ('research_' + research.seq_no.to_i.to_s), research.id %>
-  			               <div class="col-xs-offset-0">
-				             <%= button_tag(type: :submit, class: "btn btn-md btn-primary") do %>
-				               <i class="fa fa-sign-in"></i> Ingresar
-				             <% end %>
-			               </div>
-                         </div>
+			             <% end %>
+  			             <div class="col-xs-offset-0">
+				           <%= button_tag(type: :submit, class: "btn btn-md btn-primary") do %>
+				             <i class="fa fa-sign-in"></i> Ingresar
+				           <% end %>
+			             </div>
                        <% end %>
-                     <% else %>
-                       <div class="col-xs-offset-0">
-                         <%= link_to research_path(research), class: "btn btn-md btn-primary btn-card" do %>
-                           <i class="fa fa-sign-in"></i> Ingresar
-                         <% end %>
-                       </div>
-                     <% end %>
 
                    </div>
                  </div>

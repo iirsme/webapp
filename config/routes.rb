@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#logout'
 
   resources :roles
+
   resources :users
+
   resources :researches, except: [:index]
+  post 'enter_research', to: 'researches#enter_research'
 end

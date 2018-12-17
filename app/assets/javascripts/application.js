@@ -17,3 +17,8 @@
 //= require turbolinks
 //= require_tree .
 
+// DO NOT REMOVE!!
+// This line fixes the InvalidAuthenticityToken error
+$(document).on("turbolinks:load",function () {
+  $.rails.refreshCSRFTokens();  
+})

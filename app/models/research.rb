@@ -10,8 +10,12 @@ class Research < ApplicationRecord
     end
   end
 
-  def password_correct?(passw)
+  def correct_password?(passw)
     password == Digest::SHA2.hexdigest(get_salt + passw)
+  end
+
+  def authorized_user?(user)
+    true
   end
 
   def get_salt
