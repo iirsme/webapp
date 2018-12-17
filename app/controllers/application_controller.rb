@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_view, :logged_in?
+  helper_method :current_user, :current_view, :current_research, :logged_in?
 
   def current_view
     @current_view
+  end
+
+  def current_research
+    @current_research
   end
 
   def current_user

@@ -34,13 +34,19 @@
         <li class="menu-item"><a href="#"><span class="fa fa-user"></span> Candidatos </a></li>
         <li class="menu-item"><a href="#"><span class="fa fa-database"></span> Base de Datos </a></li>
       </ul>
-      <ul class="nav nav-sidebar">
-      	<h4 class="nav-sidebar-title">EEVA</h4>
-        <li class="menu-item"><a href="#"><span class="glyphicon glyphicon-cog"></span> Configuración </a></li>
-        <li class="menu-item"><a href="#"><span class="fa fa-heartbeat"></span> Pacientes </a></li>
-        <li class="menu-item"><a href="#"><span class="fa fa-calendar"></span> Visitas </a></li>
-        <li class="menu-item"><a href="#"><span class="fa fa-file"></span> Reporte </a></li>
-      </ul>
+
+      <% if @current_research %>
+        <ul class="nav nav-sidebar">
+          <%= link_to research_path(@current_research), class: "nav-sidebar-title" do %><%= @current_research.code %><% end %>
+          <% if @current_research.owner?(current_user) %>
+            <li class="<%= current_view === 'research-setup' ? 'active' : '' %> menu-item"><%= link_to edit_research_path(@current_research) do %> <span class="glyphicon glyphicon-cog"></span> Configuración <% end %></li>
+          <% end %>
+          <li class="menu-item"><a href="#"><span class="fa fa-heartbeat"></span> Pacientes </a></li>
+          <li class="menu-item"><a href="#"><span class="fa fa-calendar"></span> Visitas </a></li>
+          <li class="menu-item"><a href="#"><span class="fa fa-file"></span> Reporte </a></li>
+        </ul>
+      <% end %>
+
       <ul class="nav nav-sidebar">
       	<% if current_user.is_admin? %>
           <li class="menu-item"><a href="#"><span class="fa fa-wrench"></span> Ajustes </a></li>

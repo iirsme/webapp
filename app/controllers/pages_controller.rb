@@ -5,7 +5,6 @@ class PagesController < ApplicationController
       redirect_to login_path
       return
     end
-    # redirect_to researches_path
     @researches = Research.all
   end
 end
