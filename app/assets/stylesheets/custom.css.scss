@@ -569,14 +569,14 @@ section .section-title {
   transform: rotateY(180deg);
 }
 .mainflip {
-  -webkit-transition: 1.5s;
+  -webkit-transition: 1.3s;
   -webkit-transform-style: preserve-3d;
-  -ms-transition: 1.5s;
-  -moz-transition: 1.5s;
+  -ms-transition: 1.3s;
+  -moz-transition: 1.3s;
   -moz-transform: perspective(1000px);
   -moz-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
-  transition: 1.5s;
+  transition: 1.3s;
   transform-style: preserve-3d;
   position: relative;
 }
@@ -615,15 +615,15 @@ section .section-title {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transition: 1.5s;
+  -webkit-transition: 1.3s;
   -webkit-transform-style: preserve-3d;
-  -moz-transition: 1.5s;
+  -moz-transition: 1.3s;
   -moz-transform-style: preserve-3d;
-  -o-transition: 1.5s;
+  -o-transition: 1.3s;
   -o-transform-style: preserve-3d;
-  -ms-transition: 1.5s;
+  -ms-transition: 1.3s;
   -ms-transform-style: preserve-3d;
-  transition: 1.5s;
+  transition: 1.3s;
   transform-style: preserve-3d;
 }
 .frontside-new .card {
