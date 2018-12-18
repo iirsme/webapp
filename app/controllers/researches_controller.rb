@@ -1,7 +1,21 @@
 class ResearchesController < ApplicationController
   before_action :set_research, only: [:edit, :update, :show, :destroy]
-  before_action :set_current_research
+  before_action :set_current_research, except: [:back]
   before_action :require_user
+
+  def new
+    @research = Research.new
+  end
+
+  def create
+    @research = Research.new(research_params) 
+    if @research.save
+      # flash[:success] = "Protocolo creado satisfactoriamente"
+      redirect_to edit_research_path(@research)
+    else
+      render 'new'
+    end
+  end
 
   def enter_research
     # render plain: params.inspect
@@ -28,11 +42,29 @@ class ResearchesController < ApplicationController
   end
 
   def show
-    @current_research = @research
   end
 
   def edit
     @current_view = 'research-setup'
+  end
+  
+  def update
+    if @research.update(research_params)
+      redirect_to edit_research_path(@research)
+    else
+      render 'edit'
+    end
+  end
+  
+  def back
+    research = params[:research]
+    go_home = true?(params[:go_home])
+    if go_home
+      redirect_to home_path
+    else
+      @current_research = Research.find(research)
+      redirect_to research_path(@current_research)
+    end
   end
 
   private
@@ -43,7 +75,7 @@ class ResearchesController < ApplicationController
     @current_research = @research
     end
   def research_params
-    # params.require(:research).permit(:username, :email, :firstname, :lastname, :password, :is_admin)
+    params.require(:research).permit(:code, :name, :description, :is_private, :password)
   end
 
 end

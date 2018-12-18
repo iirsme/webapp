@@ -4,16 +4,16 @@
   <div class="col-xs-7 col-xs-offset-0">
      <%= form_for(@role, :html => {class: "form-horizontal", role: "form"}) do |el| %>
         <div class="form-group">
-          <label class="col-xs-3 control-label" for="name">Nombre:</label>
+          <label class="col-xs-3 control-label" for="name">Nombre</label>
           <div class="col-xs-9">
             <%= el.text_field :name, class: "form-control form-style", autofocus: true %>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-xs-3 control-label" for="description">Descripción:</label>
+          <label class="col-xs-3 control-label" for="description">Descripción</label>
           <div class="col-xs-9">
-            <%= el.text_area :description, rows: 6, class: "form-control form-style" %>
+            <%= el.text_area :description, rows: 5, class: "form-control form-style" %>
           </div>
         </div>
 
