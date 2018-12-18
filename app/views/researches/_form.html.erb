@@ -44,8 +44,7 @@
 		     	<div class="form-group">
 		          <label class="col-xs-3 control-label" for="name">Privado</label>
 		          <div class="col-xs-9 material-switch pull-right label-padding">
-		            <%= el.check_box :is_private, id: :is_private, class: 'form-control form-style',
-		                                                           onchange: 'researchFormLogic();' %>
+		            <%= el.check_box :is_private, id: :is_private, class: 'form-control form-style research-is-private-field' %>
 		            <label for="is_private" class="label-primary"></label>
 		          </div>
 				</div>
@@ -53,7 +52,7 @@
 		        <div class="form-group">
 		       	  <label class="col-xs-3 control-label" for="name">Contraseña</label>
 		          <div class="col-xs-5">
-		            <%= el.password_field :password, id: :research_password, class: 'form-control form-style',
+		            <%= el.password_field :password, class: 'form-control form-style research-password-field',
 		                                             placeholder: "#{(!@research.new_record? && @research.is_private?) ? '**********' : ''}" %>
 		          </div>
 		        </div>
@@ -61,7 +60,7 @@
 		        <div class="form-group">
 		          <label class="col-xs-3 control-label" for="name">Código</label>
 		          <div class="col-xs-3">
-		            <%= el.text_field :code, class: "form-control form-style", autofocus: true, onfocus: 'researchFormLogic();' %>
+		            <%= el.text_field :code, class: "form-control form-style research-code-field", autofocus: true, onfocus: 'researchFormLogic();' %>
 		          </div>
 		        </div>
 		
