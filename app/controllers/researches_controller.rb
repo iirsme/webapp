@@ -3,20 +3,6 @@ class ResearchesController < ApplicationController
   before_action :set_current_research, except: [:back]
   before_action :require_user
 
-  def new
-    @research = Research.new
-  end
-
-  def create
-    @research = Research.new(research_params) 
-    if @research.save
-      # flash[:success] = "Protocolo creado satisfactoriamente"
-      redirect_to edit_research_path(@research)
-    else
-      render 'new'
-    end
-  end
-
   def enter_research
     # render plain: params.inspect
     seq_no = ""
@@ -42,6 +28,20 @@ class ResearchesController < ApplicationController
   end
 
   def show
+  end
+
+  def new
+    @research = Research.new
+  end
+
+  def create
+    @research = Research.new(research_params) 
+    if @research.save
+      # flash[:success] = "Protocolo creado satisfactoriamente"
+      redirect_to edit_research_path(@research)
+    else
+      render 'new'
+    end
   end
 
   def edit
