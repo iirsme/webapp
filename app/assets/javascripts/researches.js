@@ -1,7 +1,5 @@
+$(document).on('ready turbolinks:load', function () { 
 
-
-
-$(document).on('ready turbolinks:load', function () {
   // Show Tooltips
   $('.nav-tabs > li a[title]').tooltip();
   
