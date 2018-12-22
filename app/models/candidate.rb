@@ -11,5 +11,9 @@ class Candidate < ApplicationRecord
   def get_seqno
     self.seq_no.to_i
   end
+  
+  def get_last_name
+    lastname = self.last_name1 + ' ' + self.last_name2 unless self.last_name2.blank?
+  end
 
 end

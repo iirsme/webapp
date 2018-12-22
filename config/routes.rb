@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   resources :researches, except: [:index]
   post 'enter_research', to: 'researches#enter_research'
   get 'go_back_research', to: 'researches#back'
+  
+  resources :candidates
+
 end
