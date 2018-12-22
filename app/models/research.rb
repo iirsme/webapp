@@ -14,6 +14,10 @@ class Research < ApplicationRecord
     password == Digest::SHA2.hexdigest(get_salt + passw)
   end
 
+  def get_seqno
+    self.seq_no.to_i
+  end
+
   # TODO
   def authorized_user?(user)
     true
