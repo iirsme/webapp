@@ -31,7 +31,8 @@
       	<label class="col-xs-3 control-label">Fecha de Nacimiento</label>
       	<div class="col-xs-3">
           <div class='input-group date' id='datepicker'>
-            <%= el.text_field :birth_date, class: "form-control" %>
+            <%= el.text_field :birth_date, class: "form-control", 
+                value: (@candidate.birth_date.strftime("%d/%m/%Y") unless @candidate.birth_date.blank?) %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>

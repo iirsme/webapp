@@ -51,6 +51,6 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.find(params[:id])
   end
   def candidate_params
-    # params.require(:candidate).permit(:username, :email, :firstname, :lastname, :password, :is_admin)
+    params.require(:candidate).permit(:curp, :name, :last_name1, :last_name2, :birth_date)
   end
 end
