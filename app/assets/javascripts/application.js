@@ -15,6 +15,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require bootstrap-datepicker
 //= require_tree .
 
 // DO NOT REMOVE!!
