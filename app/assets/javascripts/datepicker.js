@@ -1,6 +1,6 @@
 $(document).on('ready turbolinks:load', function () { 
   $(function() {
-  	$('#datepicker').datepicker({
+  	$('#datepicker1, #datepicker2, #datepicker3').datepicker({
       format: 'dd/mm/yyyy',
       language: 'es',
       clearBtn: true,

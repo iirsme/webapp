@@ -30,13 +30,179 @@
       <div class="form-group">
       	<label class="col-xs-3 control-label">Fecha de Nacimiento</label>
       	<div class="col-xs-3">
-          <div class='input-group date' id='datepicker'>
-            <%= el.text_field :birth_date, class: "form-control", 
+          <div class='input-group date' id='datepicker1'>
+            <%= el.text_field :birth_date, class: "form-control form-style", 
                 value: (@candidate.birth_date.strftime("%d/%m/%Y") unless @candidate.birth_date.blank?) %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
           </div>
+        </div>
+        <label class="col-xs-1 control-label">Edad</label>
+        <div class="col-xs-2">
+          <%= el.number_field :age, class: "form-control form-style" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+      	<label class="col-xs-3 control-label">Fecha de Evaluación</label>
+      	<div class="col-xs-3">
+          <div class='input-group date' id='datepicker2'>
+            <%= el.text_field :evaluation_date, class: "form-control form-style", 
+                value: (@candidate.evaluation_date.strftime("%d/%m/%Y") unless @candidate.evaluation_date.blank?) %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Teléfono</label>
+        <div class="col-xs-3">
+          <%= el.text_field :phone, class: "form-control form-style" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Celular</label>
+        <div class="col-xs-3">
+          <%= el.text_field :cell_phone, class: "form-control form-style" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Email</label>
+        <div class="col-xs-4">
+          <%= el.email_field :email, class: "form-control form-style" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Sexo</label>
+        <div class="col-xs-3">
+          <%= el.select :gender, ['Hombre', 'Mujer'], {:include_blank => true}, {:class =>'form-control form-style'} %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Estado Civil</label>
+        <div class="col-xs-3">
+          <%= el.select :marital_status, ['Soltero', 'Casado', 'Viudo', 'Divorciado'], 
+                                         {:include_blank => true}, {:class =>'form-control form-style'} %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Ocupación</label>
+        <div class="col-xs-3">
+          <%= el.select :occupation, ['Empleado', 'Otro'], 
+                                     {:include_blank => true}, {:class =>'form-control form-style'} %>
+        </div>
+        <div class="col-xs-4">
+          <%= el.text_field :occupation_other, class: "form-control form-style", placeholder: "Especifique" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Escolaridad</label>
+        <div class="col-xs-3">
+          <%= el.select :scolarship, ['Ninguna', 'Primaria', 'Secundaria', 'Preparatoria', 'Licenciatura', 'Maestria', 'Doctorado'], 
+                                     {:include_blank => true}, {:class =>'form-control form-style'} %>
+        </div>
+      </div>
+
+
+      <!-- -->
+      <div class="form-group">
+  	    <div class="col-xs-offset-1 col-xs-3">
+            <label class="control-label">País</label>
+          <%= el.text_field :birth_country, class: 'form-control' %>
+        </div>
+        <div class="col-xs-3">
+          <label class="control-label">Estado</label>
+          <%= el.text_field :birth_state, class: 'form-control' %>
+        </div>
+        <div class="col-xs-3">
+          <label class="control-label">Ciudad</label>
+          <%= el.text_field :birth_city, class: 'form-control' %>
+        </div>
+      </div>
+      <!-- -->
+      
+
+      <!-- -->
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Calle</label>
+        <div class="col-xs-8">
+          <%= el.text_field :address_main_street, class: "form-control form-style" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">No. Interior</label>
+        <div class="col-xs-2">
+          <%= el.text_field :address_street_no1, class: "form-control form-style" %>
+        </div>
+        <label class="col-xs-2 control-label">No. Exterior</label>
+        <div class="col-xs-2">
+          <%= el.text_field :address_street_no2, class: "form-control form-style" %>
+        </div>
+      </div>
+      
+     <div class="form-group">
+        <label class="col-xs-2 control-label">Cruza con</label>
+        <div class="col-xs-4">
+          <%= el.text_field :address_street1, class: "form-control form-style" %>
+        </div>
+        <div class="col-xs-4">
+          <%= el.text_field :address_street2, class: "form-control form-style" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Colonia</label>
+        <div class="col-xs-3">
+          <%= el.text_field :address_region, class: "form-control form-style" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+  	    <div class="col-xs-offset-1 col-xs-3">
+            <label class="control-label">País</label>
+          <%= el.text_field :address_country, class: 'form-control' %>
+        </div>
+        <div class="col-xs-3">
+          <label class="control-label">Estado</label>
+          <%= el.text_field :address_state, class: 'form-control' %>
+        </div>
+        <div class="col-xs-3">
+          <label class="control-label">Ciudad</label>
+          <%= el.text_field :address_city, class: 'form-control' %>
+        </div>
+      </div>
+      <!-- -->
+      
+      
+
+      
+      <div class="form-group">
+      	<label class="col-xs-2 control-label">Fecha de Diagnóstico</label>
+      	<div class="col-xs-3">
+          <div class='input-group date' id='datepicker3'>
+            <%= el.text_field :diagnosis_date, class: "form-control form-style", 
+                value: (@candidate.diagnosis_date.strftime("%d/%m/%Y") unless @candidate.diagnosis_date.blank?) %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Diagnóstico</label>
+        <div class="col-xs-8">
+          <%= el.text_field :diagnosis, class: "form-control form-style" %>
         </div>
       </div>
 
