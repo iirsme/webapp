@@ -14,8 +14,8 @@
         </h2>
         <div class="panel-body">
           <ul>
-            <% obj.errors.full_messages.each do |msg| %>
-              <li> <%= msg %> </li>
+            <% obj.errors.messages.values.each do |msg| %>
+              <li> <%= msg[0].to_s unless msg.blank? %> </li>
             <% end %>
           </ul> 
         </div>

@@ -48,4 +48,18 @@ $(document).on('ready turbolinks:load', function () {
     }
   });
 
+  // Validations
+  $('.candidate-occupation-field').change(function () {
+    candidateFormLogic();
+  });
+
 });
+
+var candidateFormLogic = function () {
+  var occupation = $('.candidate-occupation-field').val();
+  if (occupation === 'Otro') {
+    $('.candidate-other-occupation-field').show();
+  } else {
+    $('.candidate-other-occupation-field').hide();
+  }
+};

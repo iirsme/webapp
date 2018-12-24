@@ -6,22 +6,24 @@
       <div class="row">
 
         <!-- New Research card -->
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="image-no-flip">
-            <div class="mainflip">
-              <div class="frontside-new">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="frontside-image img-0"></div>
-	                <h4 class="card-title">&nbsp;</h4>
-	                <p class="card-name">Crear nuevo Protocolo</p>
-   	                <%= link_to new_research_path, class: "btn btn-primary btn-md" do %> <i class="fa fa-plus"></i> <% end %>
+        <% if current_user.admin? %>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="image-no-flip">
+              <div class="mainflip">
+                <div class="frontside-new">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <div class="frontside-image img-0"></div>
+	                  <h4 class="card-title">&nbsp;</h4>
+	                  <p class="card-name">Crear nuevo Protocolo</p>
+   	                  <%= link_to new_research_path, class: "btn btn-primary btn-md" do %> <i class="fa fa-plus"></i> <% end %>
+  	                </div>
 	              </div>
-	            </div>
+  	            </div>
 	          </div>
 	        </div>
 	      </div>
-	    </div>
+        <% end %>
 	    <!-- -->
 
        <!--Research card -->
