@@ -49,12 +49,12 @@ $(document).on('ready turbolinks:load', function () {
   });
 
   // Validations
-  // $('.candidate-occupation-field').change(function () {
-    // candidateFormLogic();
-  // });
   $('.candidate-occupation-field').change(function () {
-    getCountries(true);
-  });  
+    candidateFormLogic();
+  });
+  // $('#accordion').ready(function () { debugger;
+    // getCombosData();
+  // });  
   $('.candidate-bcountry-field').change(function () {
   	// TODO: Clean states field
     getStates(true);
@@ -63,14 +63,9 @@ $(document).on('ready turbolinks:load', function () {
   	// TODO: Clean cities field
     getCities(true);
   });
-
-  // Loading Combos from WS
-  getCountries();
-  getStates();
-  getCities();
 });
 
-candidateFormLogic = function () { console.log("ejecutandome...");
+candidateFormLogic = function () {
   var occupation = $('.candidate-occupation-field').val();
   if (occupation === 'Otro') {
     $('.candidate-other-occupation-field').show();
@@ -79,7 +74,13 @@ candidateFormLogic = function () { console.log("ejecutandome...");
   }
 };
 
-function getCountries(showLoading) { console.log("Calling AJAX 1...");
+function getCombosData () {
+  getCountries();
+  getStates();
+  getCities();
+};
+
+function getCountries (showLoading) { console.log("Calling AJAX 1...");
   if (showLoading) {
     $('.birth-country-loading').show();
   }
