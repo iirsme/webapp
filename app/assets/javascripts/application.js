@@ -22,4 +22,4 @@
 // This line fixes the InvalidAuthenticityToken error
 $(document).on("turbolinks:load",function () {
   $.rails.refreshCSRFTokens();  
-})
+});

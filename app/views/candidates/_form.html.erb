@@ -99,15 +99,24 @@
             <div class="row">
               <div class="col-xs-3 col-md-3">
               	<label>País</label>
-                <%= el.text_field :birth_country, class: 'form-control' %>
+              	<em class="fa fa-spinner fa-spin loading-indicator birth-country-loading" style="display:none" ></em> 
+                <%= hidden_field_tag 'birth-country', @candidate.birth_country %>
+                <%= el.select :birth_country, [], {:include_blank => true},
+                                                  class: 'form-control candidate-bcountry-field' %>
               </div>
               <div class="col-xs-3 col-md-3">
               	<label>Estado</label>
-                <%= el.text_field :birth_state, class: 'form-control' %>              	
+              	<em class="fa fa-spinner fa-spin loading-indicator birth-state-loading" style="display:none" ></em>
+              	<%= hidden_field_tag 'birth-state', @candidate.birth_state %>
+                <%= el.select :birth_state, [], {:include_blank => true},
+                                                class: 'form-control candidate-bstate-field' %>            	
               </div>
               <div class="col-xs-3 col-md-3">
               	<label>Ciudad</label>
-                <%= el.text_field :birth_city, class: 'form-control' %>              	
+              	<em class="fa fa-spinner fa-spin loading-indicator birth-city-loading" style="display:none" ></em>
+              	<%= hidden_field_tag 'birth-city', @candidate.birth_city %>
+                <%= el.select :birth_city, [], {:include_blank => true},
+                                               class: 'form-control candidate-bcity-field' %>            	
               </div>
             </div>
             <div class="spacer-30"></div>

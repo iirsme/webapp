@@ -52,14 +52,101 @@ $(document).on('ready turbolinks:load', function () {
   $('.candidate-occupation-field').change(function () {
     candidateFormLogic();
   });
+  // $('.candidate-occupation-field').change(function () {
+    // getCountries(true);
+  // });  
+  $('.candidate-bcountry-field').change(function () {
+  	// TODO: Clean states field
+    getStates(true);
+  });
+  $('.candidate-bstate-field').change(function () {
+  	// TODO: Clean cities field
+    getCities(true);
+  });
 
+  // Loading Combos from WS
+  // getCountries();
+  // getStates();
+  // getCities();
 });
 
-var candidateFormLogic = function () {
+candidateFormLogic = function () { console.log("ejecutandome...");
   var occupation = $('.candidate-occupation-field').val();
   if (occupation === 'Otro') {
     $('.candidate-other-occupation-field').show();
   } else {
     $('.candidate-other-occupation-field').hide();
   }
+};
+
+function getCountries(showLoading) { console.log("Calling AJAX 1...");
+  if (showLoading) {
+    $('.birth-country-loading').show();
+  }
+  $.ajax({
+    type: "GET",
+    url: "http://api.geonames.org/countryInfoJSON?formatted=true&lang=es&style=full&username=sanjish",
+    contentType: "application/json; charset=utf-8",
+    dataType: "jsonp",
+    success: function (data) {
+      $(data.geonames).each(function (index, item) {
+        $(".candidate-bcountry-field").append($('<option />', { value: item.geonameId, text: item.countryName }));
+      });
+      var currentValue = $('#birth-country').val();
+      $(".candidate-bcountry-field").val(currentValue);
+      $(".candidate-bcountry-field").slideDown();
+      if (showLoading) {
+        $('.birth-country-loading').hide();
+      }
+    },
+    error: function (data) { debugger;
+      if (showLoading) {
+        $('.birth-country-loading').hide();
+      }
+      alert("Error al obtener lista de paises");
+    }
+  });
+}
+
+function getStates (showLoading) { console.log("Calling AJAX 2...");
+  var country = $('.candidate-bcountry-field').val();
+  if (country) {
+    getChildren(country, $('.candidate-bstate-field'), $('#birth-state'), showLoading, $('.birth-state-loading'));
+  }
+}
+
+function getCities (showLoading) { console.log("Calling AJAX 3...");
+  var state = $('.candidate-bstate-field').val();
+  if (state) {
+    getChildren(state, $('.candidate-bcity-field'), $('#birth-city'), showLoading, $('.birth-city-loading'));
+  }
+};
+
+function getChildren (parent, field, hiddenField, showLoading, indicator) {
+  if (showLoading) {
+    $(indicator).show();
+  }	
+  $.ajax({
+    type: "GET",
+    url: "http://api.geonames.org/childrenJSON?geonameId=" + parent + "&username=sanjish&formatted=true&lang=es",
+    contentType: "application/json; charset=utf-8",
+    dataType: "jsonp",
+    success: function (data) {
+      $(field).empty();
+      $(data.geonames).each(function (index, item) {
+        $(field).append($('<option />', { value: item.geonameId, text: item.name }));
+      });
+      var currentValue = $(hiddenField).val();
+      $(field).val(currentValue);
+      if (showLoading) {
+        $(indicator).hide();
+      }
+    },
+    error: function (data) { debugger;
+      if (showLoading) {
+        $(indicator).hide();
+      }
+      alert("Error al obtener lista de estados/ciudades");
+    }
+  });
 };
