@@ -49,12 +49,12 @@ $(document).on('ready turbolinks:load', function () {
   });
 
   // Validations
-  $('.candidate-occupation-field').change(function () {
-    candidateFormLogic();
-  });
   // $('.candidate-occupation-field').change(function () {
-    // getCountries(true);
-  // });  
+    // candidateFormLogic();
+  // });
+  $('.candidate-occupation-field').change(function () {
+    getCountries(true);
+  });  
   $('.candidate-bcountry-field').change(function () {
   	// TODO: Clean states field
     getStates(true);
@@ -65,9 +65,9 @@ $(document).on('ready turbolinks:load', function () {
   });
 
   // Loading Combos from WS
-  // getCountries();
-  // getStates();
-  // getCities();
+  getCountries();
+  getStates();
+  getCities();
 });
 
 candidateFormLogic = function () { console.log("ejecutandome...");
@@ -109,14 +109,14 @@ function getCountries(showLoading) { console.log("Calling AJAX 1...");
 }
 
 function getStates (showLoading) { console.log("Calling AJAX 2...");
-  var country = $('.candidate-bcountry-field').val();
+  var country = $('#birth-country').val();
   if (country) {
     getChildren(country, $('.candidate-bstate-field'), $('#birth-state'), showLoading, $('.birth-state-loading'));
   }
 }
 
 function getCities (showLoading) { console.log("Calling AJAX 3...");
-  var state = $('.candidate-bstate-field').val();
+  var state = $('#birth-state').val();
   if (state) {
     getChildren(state, $('.candidate-bcity-field'), $('#birth-city'), showLoading, $('.birth-city-loading'));
   }
