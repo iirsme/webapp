@@ -85,7 +85,7 @@ function getCountries(showLoading) { console.log("Calling AJAX 1...");
   }
   $.ajax({
     type: "GET",
-    url: "http://api.geonames.org/countryInfoJSON?formatted=true&lang=es&style=full&username=sanjish",
+    url: "http://api.geonames.org/countryInfoJSON?lang=es&username=sanjish",
     contentType: "application/json; charset=utf-8",
     dataType: "jsonp",
     success: function (data) {
@@ -109,14 +109,14 @@ function getCountries(showLoading) { console.log("Calling AJAX 1...");
 }
 
 function getStates (showLoading) { console.log("Calling AJAX 2...");
-  var country = $('#birth-country').val();
+  var country = $(".candidate-bcountry-field").val() || $('#birth-country').val();
   if (country) {
     getChildren(country, $('.candidate-bstate-field'), $('#birth-state'), showLoading, $('.birth-state-loading'));
   }
 }
 
 function getCities (showLoading) { console.log("Calling AJAX 3...");
-  var state = $('#birth-state').val();
+  var state = $(".candidate-bstate-field").val() || $('#birth-state').val();
   if (state) {
     getChildren(state, $('.candidate-bcity-field'), $('#birth-city'), showLoading, $('.birth-city-loading'));
   }
@@ -128,7 +128,7 @@ function getChildren (parent, field, hiddenField, showLoading, indicator) {
   }	
   $.ajax({
     type: "GET",
-    url: "http://api.geonames.org/childrenJSON?geonameId=" + parent + "&username=sanjish&formatted=true&lang=es",
+    url: "http://api.geonames.org/childrenJSON?geonameId=" + parent + "&username=sanjish&lang=es",
     contentType: "application/json; charset=utf-8",
     dataType: "jsonp",
     success: function (data) {
