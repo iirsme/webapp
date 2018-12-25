@@ -4,7 +4,8 @@
   <div class="col-xs-12 col-md-12">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <%= form_for(@candidate, :html => {role: "form"}) do |el| %>
-      
+      <%= hidden_field_tag 'is-new-candidate', @candidate.new_record? %>
+
       <div class="panel panel-default">
         <div class="panel-heading" role="tab">
           <h4 class="panel-title">
@@ -25,7 +26,7 @@
              <div class="col-xs-4 col-md-4">
                 <label class="col-md-4">CURP</label>
                 <div class="form-group">
-                  <%= el.text_field :curp, class: "form-control form-style", autofocus: true, onfocus: 'candidateFormLogic();' %>
+                  <%= el.text_field :curp, class: "form-control form-style", autofocus: true, onfocus: 'candidateFormLogic(); getCombosData();' %>
                 </div>
               </div>
             </div>

@@ -52,9 +52,6 @@ $(document).on('ready turbolinks:load', function () {
   $('.candidate-occupation-field').change(function () {
     candidateFormLogic();
   });
-  // $('#accordion').ready(function () { debugger;
-    // getCombosData();
-  // });  
   $('.candidate-bcountry-field').change(function () {
   	// TODO: Clean states field
     getStates(true);
@@ -75,9 +72,13 @@ candidateFormLogic = function () {
 };
 
 function getCombosData () {
-  getCountries();
-  getStates();
-  getCities();
+  if ($('#is-new-candidate').val() === "true") {
+    getCountries();
+  } else {
+  	getCountries();
+    getStates();
+    getCities();
+  }
 };
 
 function getCountries (showLoading) { console.log("Calling AJAX 1...");
@@ -86,7 +87,7 @@ function getCountries (showLoading) { console.log("Calling AJAX 1...");
   }
   $.ajax({
     type: "GET",
-    url: "http://api.geonames.org/countryInfoJSON?lang=es&username=sanjish",
+    url: "http://api.geonames.org/countryInfoJSON?lang=es&formatted=true&style=full&username=sanjish",
     contentType: "application/json; charset=utf-8",
     dataType: "jsonp",
     success: function (data) {
