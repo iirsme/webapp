@@ -1,7 +1,7 @@
 class ResearchesController < ApplicationController
+  before_action :require_user
   before_action :set_research, only: [:edit, :update, :show, :destroy]
   before_action :set_current_research, except: [:back]
-  before_action :require_user
 
   def enter_research
     # render plain: params.inspect
