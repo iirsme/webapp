@@ -6,7 +6,7 @@ $(document).on('ready turbolinks:load', function () {
     retrieve: true,
     ordering: true,
     searching: true,
-    scrollY: 250,
+    scrollY: '40vh',
     select: {
       style: "single",
       blurable: true
