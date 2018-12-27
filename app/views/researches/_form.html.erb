@@ -39,8 +39,15 @@
       <div class="tab-content">
         <div class="tab-pane active" role="tabpanel" id="step1">
 
-		  <div class="col-xs-7 col-xs-offset-2">
+		  <div class="col-xs-10 col-xs-offset-0">
 		     <%= form_for(@research, :html => { class: "form-horizontal", role: "form", id: "basic-data-form" }) do |el| %>
+		        <div class="form-group">
+		          <label class="col-xs-3 control-label" for="name">No.</label>
+		          <div class="col-xs-1">
+		          	<%= el.text_field :seq_no, value: (@research.get_seqno unless @research.get_seqno == 0), class: "form-control form-style", disabled: true %>
+		          </div>
+		        </div>
+		     
 		     	<div class="form-group">
 		          <label class="col-xs-3 control-label" for="name">Privado</label>
 		          <div class="col-xs-9 material-switch pull-right label-padding">
@@ -51,7 +58,7 @@
 		
 		        <div class="form-group">
 		       	  <label class="col-xs-3 control-label" for="name">Contraseña</label>
-		          <div class="col-xs-5">
+		          <div class="col-xs-3">
 		            <%= el.password_field :password, class: 'form-control form-style research-password-field',
 		                                             placeholder: "#{(!@research.new_record? && @research.is_private?) ? '**********' : ''}" %>
 		          </div>
@@ -63,17 +70,17 @@
 		            <%= el.text_field :code, class: "form-control form-style research-code-field", autofocus: true, onfocus: 'researchFormLogic();' %>
 		          </div>
 		        </div>
-		
+
 			    <div class="form-group">
 		          <label class="col-xs-3 control-label" for="name">Nombre</label>
-			  	  <div class="col-xs-9">
+			  	  <div class="col-xs-8">
 			        <%= el.text_field :name, class: 'form-control form-style' %>
 			      </div>
 			    </div>
 		
 		        <div class="form-group">
 		          <label class="col-xs-3 control-label" for="description">Descripción</label>
-		          <div class="col-xs-9">
+		          <div class="col-xs-8">
 		            <%= el.text_area :description, rows: 5, class: "form-control form-style" %>
 		          </div>
 		        </div>

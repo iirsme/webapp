@@ -14,6 +14,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 
+# UNCOMMENTED FOR NOW (This causes more than one JQuery call execution)
+# Rails.application.config.assets.precompile += %w( roles.js )
 # Rails.application.config.assets.precompile += %w( researches.js )
 # Rails.application.config.assets.precompile += %w( users.js )
 # Rails.application.config.assets.precompile += %w( candidates.js )

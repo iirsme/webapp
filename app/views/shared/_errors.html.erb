@@ -7,15 +7,22 @@
        	<h2 class="panel-title">
           Se
           <%= pluralize_without_count(obj.errors.count, "encontró", "encontraron") %>
-          <%= pluralize(obj.errors.count, "error", "errores") %>
+          <% if true %> <!-- FIXME: Some entities (like User) can throw more errors than messages -->
+            <%= pluralize_without_count(obj.errors.count, "un error", "algunos errores") %>
+          <% else %>
+            <%= pluralize(obj.errors.count, "error", "errores") %>
+          <% end %>
           que
           <%= pluralize_without_count(obj.errors.count, "evitó", "evitaron") %>
           que este registro se guarde correctamente:
         </h2>
         <div class="panel-body">
           <ul>
-            <% obj.errors.messages.values.each do |msg| %>
-              <li> <%= msg[0].to_s unless msg.blank? %> </li>
+            <% obj.errors.messages.values.each do |message| %>
+              <% msg = message[0] %>
+              <% if !msg.include?("blank") %>
+                <li> <%= msg.to_s unless msg.blank? %> </li>
+              <% end %>
             <% end %>
           </ul> 
         </div>

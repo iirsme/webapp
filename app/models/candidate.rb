@@ -6,8 +6,7 @@ class Candidate < ApplicationRecord
   validates :name, presence: { message: "Nombre no puede ir vacio" }
   validates :last_name1, presence: { message: "Al menos un Apellido debe de registrarse" }
   validates :occupation_other, if: :requires_occupation?, presence: { message: "Especifique otra ocupación" } 
-  validates :email, format: { with: VALID_EMAIL_REGEX,
-                              message: "Email es invalido" },
+  validates :email, format: { with: VALID_EMAIL_REGEX, message: "Email es invalido" },
                      unless: Proc.new { |f| f.email.blank? }
 
   def get_seqno

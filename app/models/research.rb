@@ -1,15 +1,22 @@
 class Research < ApplicationRecord
 
-  validates :name, presence: true
-  validates :code, presence: true, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, if: -> { is_private == true }
+  validates :name, presence: { message: "Nombre no puede ir vacio" }
+  validates :code, presence: { message: "Codigo no puede ir vacio" }, 
+                   uniqueness: { case_sensitive: false, message: "Ya hay otro protocolo con el mismo codigo" }
+  validates :password, if: :requires_password?, presence: { message: "Especifique una contraseña para el protocolo" }
 
   before_save do
-    if !password.blank?
+    if !password.blank? && is_private
       self.password = Digest::SHA2.hexdigest(get_salt + password)
+    elsif !password.blank? && !is_private
+      self.password = nil
     end
   end
-
+  
+  def requires_password?
+    is_private == true
+  end
+  
   def correct_password?(passw)
     password == Digest::SHA2.hexdigest(get_salt + passw)
   end
