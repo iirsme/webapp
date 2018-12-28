@@ -10,12 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_194546) do
+ActiveRecord::Schema.define(version: 2018_12_28_182408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "audits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "record_id", null: false
+    t.string "entity", null: false
+    t.string "action", null: false
+    t.uuid "user_id", null: false
+    t.datetime "done_at", null: false
+    t.jsonb "log", default: "{}", null: false
+    t.index ["record_id"], name: "index_audits_on_record_id"
+    t.index ["user_id"], name: "index_audits_on_user_id"
+  end
 
   create_table "candidates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.decimal "seq_no", default: -> { "nextval('candidate_seq'::regclass)" }
@@ -85,4 +96,5 @@ ActiveRecord::Schema.define(version: 2018_12_22_194546) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "audits", "users"
 end

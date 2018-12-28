@@ -16,7 +16,8 @@ class CandidatesController < ApplicationController
   
   def create
     # render plain: params[:candidate].inspect
-    @candidate = Candidate.new(candidate_params) 
+    @candidate = Candidate.new(candidate_params)
+    @candidate.current_user = current_user
     if @candidate.save
       flash[:success] = "Candidato creado satisfactoriamente"
       redirect_to candidates_path
@@ -26,6 +27,7 @@ class CandidatesController < ApplicationController
   end
 
   def destroy
+    @candidate.current_user = current_user
     @candidate.destroy
     flash[:success] = "Candidato eliminado satisfactoriamente"
     redirect_to candidates_path
@@ -33,8 +35,9 @@ class CandidatesController < ApplicationController
 
   def edit
   end
-  
+
   def update
+    @candidate.current_user = current_user
     if @candidate.update(candidate_params)
       flash[:success] = "Candidato actualizado satisfactoriamente"
       redirect_to candidates_path
