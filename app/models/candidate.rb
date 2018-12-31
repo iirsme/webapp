@@ -17,25 +17,36 @@ class Candidate < ApplicationRecord
 
   def insert_log
     puts "****** INSERT AUDIT..."
-    Audit.track_change(self.id, self.class.name.downcase, 'I', current_user.id, '{}')
+    log = []
+    Audit.track_change(self.id, self.class.name.downcase, 'I', current_user.id, log.to_json)
   end
 
   def delete_log
     puts "****** DELETE AUDIT..."
-    Audit.track_change(self.id, self.class.name.downcase, 'D', current_user.id, '{}')
+    log = []
+    Audit.track_change(self.id, self.class.name.downcase, 'D', current_user.id, log.to_json)
   end  
 
   def update_log
     puts "****** UPDATE AUDIT..."
+    log = []
     Candidate.columns.each do |columns|
       att = columns.name
-      if self.attribute_changed?(att)
-        puts "*** #{att}"
-        puts "** OLD VALUE: #{self.attribute_was(att)}"
-        puts "** NEW VALUE: #{self[att]}"
+      if self.attribute_changed?(att) &&  att.to_s != 'updated_at'
+        old_value = self.attribute_was(att)
+        new_value = self[att]
+        log << { :column => att, :old_value => old_value, :new_value => new_value }
       end
     end
-    Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, '{}')
+    Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, log.to_json)
+
+    # parsed_log = JSON.parse(log)
+    # parsed_log.each do |item|
+    #   puts item['column']
+    #   puts item['old_value']
+    #   puts item['new_value']
+    #   puts '***************'
+    # end
   end
 
   def get_seqno
