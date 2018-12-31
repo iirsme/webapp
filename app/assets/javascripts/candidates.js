@@ -113,6 +113,8 @@ function getCountries () { console.log("Loading countries...");
     contentType: "application/json; charset=utf-8",
     dataType: "jsonp",
     success: function (data) {
+      $(bCountry).append($('<option />', { value: null, text: '' }));
+      $(aCountry).append($('<option />', { value: null, text: '' }));
       $(data.geonames).each(function (index, item) {
       	values = { value: item.geonameId, text: item.countryName };
         $(bCountry).append($('<option />', values));
@@ -180,6 +182,7 @@ function getChildren (parentId, field, hiddenField, showLoading, indicator) {
     dataType: "jsonp",
     success: function (data) {
       $(field).empty();
+      $(field).append($('<option />', { value: null, text: '' }));
       $(data.geonames).each(function (index, item) {
         $(field).append($('<option />', { value: item.geonameId, text: item.name }));
       });
