@@ -1,0 +1,51 @@
+<% if !@audit.nil? %>
+  <div class="col-xs-offset-1 col-xs-10 col-md-offset-1 col-md-10">
+    <section class="panel panel-special">
+      <div class="panel-body">
+        <div class="menuacco">
+          <div class="accordion">
+            <div class="accordion-group" >
+              <div class="row rowlistheader">
+                <div class="col-xs-1 col-md-1">&nbsp;</div>
+                <div class="col-xs-2 col-md-2 text-left">Campo</div>
+                <div class="col-xs-4 col-md-4 text-left">Valor Actual</div>
+                <div class="col-xs-4 col-md-4 text-left">Valor Antiguo</div>
+              </div>
+              <% @audit.each do |audit| %>
+                <div class="accordion-heading" id="menubody">
+                  <div class="rowlist">
+                    <div class="row">
+                      <div class="col-xs-1 col-md-1 text-center">
+                      	<a class="btn btn-warning btn-xs accordion-toggle fa fa-angle-double-down" data-original-title="Submenu" data-placement="top" data-toggle="collapse" data-parent="#allmenu" href="#<%= audit.id %>" onclick="changeAuditIcon(this);"></a>
+                      </div>
+                      <div class="col-xs-10 col-md-10 text-left"><%= "#{audit.get_action} por #{audit.user.full_name} - #{audit.done_at}" %></div>
+                    </div>
+                    <% parsed_log = JSON.parse(audit.log) %>                    
+                    <div class="accordion-body collapse" id="<%= audit.id %>">  	
+                      <div class="accordion-heading">
+                        <div class="accordion-body">
+                          <div class="accordion-heading">
+                          	<% parsed_log.each do |row| %>
+                              <div class="rowlist">
+                                <div class="row">
+                                  <div class="col-xs-1 col-md-1 text-center">&nbsp;</div>
+                                  <div class="col-xs-2 col-md-2 text-left"><%= row['column'] %></div>
+                                  <div class="col-xs-4 col-md-4 text-left"><%= row['new_value'] %></div>
+                                  <div class="col-xs-4 col-md-4 text-left"><%= row['old_value'] %></div>
+                                </div>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+		      <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+<% end %>

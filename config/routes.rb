@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get 'go_back_research', to: 'researches#back'
   
   resources :candidates
+  get 'get_audit', to: 'candidates#get_audit'
 
 end

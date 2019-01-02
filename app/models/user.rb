@@ -16,6 +16,10 @@ class User < ApplicationRecord
     "Hola Desconocido"
   end
   
+  def full_name
+    return "#{firstname}".strip + " " + "#{lastname}".strip
+  end
+
   def exclude_system_admin(users)
     users.reject { |user| user.username == "system.admin" && self.id != user.id }
   end

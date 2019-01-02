@@ -39,14 +39,6 @@ class Candidate < ApplicationRecord
       end
     end
     Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, log.to_json)
-
-    # parsed_log = JSON.parse(log)
-    # parsed_log.each do |item|
-    #   puts item['column']
-    #   puts item['old_value']
-    #   puts item['new_value']
-    #   puts '***************'
-    # end
   end
 
   def get_seqno

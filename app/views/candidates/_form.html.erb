@@ -244,8 +244,10 @@
           </div>
         </div>
       </div>
+      <% end %>
 
       <% if current_user.admin? && !@candidate.new_record? %>
+        <div class="spacer-5"></div>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab">
             <h4 class="panel-title">
@@ -256,13 +258,41 @@
           </div>
           <div id="collapseThree" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body">
-              <%= render 'shared/audit', obj: @candidate %>
+              <div class="spacer-10"></div>
+              <%= form_tag get_audit_path, remote: true, method: :get, id: 'candidate-audit-form' do %>
+                <div class="form-group row no-padding text-center col-xs-offset-1 col-xs-9 col-md-offset-1 col-md-9">
+                  <%= hidden_field_tag 'record_id', @candidate.id %>
+                  <div class="col-xs-3 col-md-3">
+                    <div class='input-group date' id='datepicker1'>
+                      <%= text_field_tag :from, params[:from], class: "form-control form-style" %>
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+			      </div>
+			      <div class="col-xs-3 col-md-3">
+                    <div class='input-group date' id='datepicker1'>
+                      <%= text_field_tag :to, params[:to], class: "form-control form-style" %>
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+			      </div>
+			      <div class="col-xs-2 col-md-2">
+				    <%= button_tag(type: :submit, class: "btn btn-primary btn-sm") do %>
+				      <i class="fa fa-search"></i> Buscar
+				    <% end %>
+			      </div>
+                </div>
+              <% end %>
+              <div id='audit-log'>
+                <%= render 'shared/audit' %>
+              </div>
             </div>
           </div>
         </div>
       <% end %>
 
-      <% end %>
     </div>
   </div>
 </div>
