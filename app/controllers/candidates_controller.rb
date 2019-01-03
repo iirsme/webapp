@@ -4,10 +4,6 @@ class CandidatesController < ApplicationController
   before_action :require_user
 
   def get_audit
-    puts "** RECORD: " + params[:record_id]
-    puts "** FROM: " + params[:from]
-    puts "** TO: " + params[:to]
-
     @audit = Audit.get_audit(params[:record_id], params[:from], params[:to])
     respond_to do |format|
       format.js { render partial: 'log' }

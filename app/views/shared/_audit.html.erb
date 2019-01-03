@@ -7,18 +7,20 @@
             <div class="accordion-group" >
               <div class="row rowlistheader">
                 <div class="col-xs-1 col-md-1">&nbsp;</div>
-                <div class="col-xs-2 col-md-2 text-left">Campo</div>
-                <div class="col-xs-4 col-md-4 text-left">Valor Actual</div>
-                <div class="col-xs-4 col-md-4 text-left">Valor Antiguo</div>
+                <div class="col-xs-2 col-md-2 text-left audit-title">Campo</div>
+                <div class="col-xs-4 col-md-4 text-left audit-title">Valor Actual</div>
+                <div class="col-xs-4 col-md-4 text-left audit-title">Valor Antiguo</div>
               </div>
               <% @audit.each do |audit| %>
                 <div class="accordion-heading" id="menubody">
                   <div class="rowlist">
                     <div class="row">
                       <div class="col-xs-1 col-md-1 text-center">
-                      	<a class="btn btn-warning btn-xs accordion-toggle fa fa-angle-double-down" data-original-title="Submenu" data-placement="top" data-toggle="collapse" data-parent="#allmenu" href="#<%= audit.id %>" onclick="changeAuditIcon(this);"></a>
+                      	<% if audit.action == 'U' %>
+                      	  <a class="btn btn-warning btn-xs accordion-toggle fa fa-angle-double-down" data-original-title="Submenu" data-placement="top" data-toggle="collapse" data-parent="#allmenu" href="#<%= audit.id %>" onclick="changeAuditIcon(this);"></a>
+                      	<% end %>
                       </div>
-                      <div class="col-xs-10 col-md-10 text-left"><%= "#{audit.get_action} por #{audit.user.full_name} - #{audit.done_at}" %></div>
+                      <div class="col-xs-10 col-md-10 text-left audit-heading"><%= "#{audit.get_action} por #{audit.user.full_name} - #{audit.done_at}" %></div>
                     </div>
                     <% parsed_log = JSON.parse(audit.log) %>                    
                     <div class="accordion-body collapse" id="<%= audit.id %>">  	
@@ -29,9 +31,9 @@
                               <div class="rowlist">
                                 <div class="row">
                                   <div class="col-xs-1 col-md-1 text-center">&nbsp;</div>
-                                  <div class="col-xs-2 col-md-2 text-left"><%= row['column'] %></div>
-                                  <div class="col-xs-4 col-md-4 text-left"><%= row['new_value'] %></div>
-                                  <div class="col-xs-4 col-md-4 text-left"><%= row['old_value'] %></div>
+                                  <div class="col-xs-2 col-md-2 text-left audit-content"><%= t('candidate.' + row["column"]) %></div>
+                                  <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['new_value'] %></div>
+                                  <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['old_value'] %></div>
                                 </div>
                               </div>
                             <% end %>

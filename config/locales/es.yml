@@ -1,4 +1,33 @@
 es:
-  candidates:
-    email: "Correo"
-    occupation_other: "Otra ocupación"
+  candidate:
+    seq_no: 'Folio'
+    name: 'Nombre'
+    curp: 'CURP'
+    last_name1: 'Appellido Materno'
+    last_name2: 'Appellido Paterno'
+    birth_date: 'Fecha de Nacimiento'
+    evaluation_date: 'Fecha de Evaluación'
+    age: 'Edad'
+    phone: 'Telefono'
+    cell_phone: 'Celular'
+    email: 'Correo'
+    gender: 'Sexo'
+    marital_status: 'Estado Civil'
+    occupation: 'Ocupación'
+    occupation_other: 'Otra Ocupación'
+    scolarship: 'Escolaridad'
+    birth_city: 'Ciudad de Nacimiento'
+    birth_state: 'Estado de Nacimiento'
+    birth_country: 'País de Nacimiento'
+    address_main_street: 'Calle'
+    address_street_no1: 'No. Interior'
+    address_street_no2: 'No. Exterior'
+    address_street1: 'Cruza con calle 1'
+    address_street2: 'Cruza con calle 2'
+    address_region: 'Colonia'
+    address_city: 'Cidudad de Residencia'
+    address_state: 'Estado de Residencia'
+    address_country: 'País de Residencia'
+    diagnosis: 'Diagnóstico'
+    diagnosis_date: 'Fecha de Diagnóstico'
+
