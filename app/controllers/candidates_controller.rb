@@ -43,8 +43,6 @@ class CandidatesController < ApplicationController
   end
 
   def update
-    # render plain: params[:candidate].inspect 
-    # return
     @candidate.current_user = current_user
     if @candidate.update(candidate_params)
       flash[:success] = "Candidato actualizado satisfactoriamente"
@@ -66,9 +64,5 @@ class CandidatesController < ApplicationController
     :gender, :marital_status, :occupation, :occupation_other, :scolarship, :birth_city, :birth_state, :birth_country, :address_main_street, 
     :address_street_no1, :address_street_no2, :address_street1, :address_street2, :address_region, :address_city, :address_state, :address_country, 
     :diagnosis, :diagnosis_date)
-  end
-  def geonames_params
-    params.require(:candidate).permit(:birth_city_name, :birth_state_name, :birth_country_name, 
-    :address_city_name, :address_state_name, :address_country_name)
   end
 end

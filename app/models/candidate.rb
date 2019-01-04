@@ -3,7 +3,7 @@ class Candidate < ApplicationRecord
 
   before_save :clear_other_occupation
   after_create :insert_log
-  # before_update :update_log
+  before_update :update_log
   before_destroy :delete_log
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -39,7 +39,7 @@ class Candidate < ApplicationRecord
         log << { :column => att, :old_value => old_value, :new_value => new_value }
       end
     end
-    Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, log.to_json)
+    # Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, log.to_json)
   end
 
   def get_seqno
@@ -56,7 +56,6 @@ class Candidate < ApplicationRecord
   
   protected
   def clear_other_occupation
-    puts "****** Ejecutando cambio de ocupacion..."
     self.occupation_other = nil if occupation != 'Otro'
   end
 
