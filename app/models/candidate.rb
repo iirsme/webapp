@@ -39,7 +39,7 @@ class Candidate < ApplicationRecord
         log << { :column => att, :old_value => old_value, :new_value => new_value }
       end
     end
-    # Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, log.to_json)
+    Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, log.to_json)
   end
 
   def get_seqno

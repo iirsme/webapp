@@ -26,8 +26,12 @@ gem 'font-awesome-rails'
 # Use Datepicker from Bootstrap
 gem 'bootstrap-datepicker-rails'
 
-# User Moment.js
+# Use moment.js
 gem 'momentjs-rails'
+
+# Use HTTParty
+gem 'multi_xml', '~> 0.5.5'
+gem 'httparty', '~> 0.13.7'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
