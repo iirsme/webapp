@@ -10,7 +10,7 @@
         <div class="panel-heading" role="tab">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <span class="fa fa-file panel-form-icon"></span>Datos de Registro
+              <span class="fa fa-id-card panel-form-icon"></span>Datos de Registro
             </a>
           </h4>
         </div>
@@ -54,16 +54,46 @@
           </div>
         </div>
       </div>
-
+      
       <div class="panel panel-default">
         <div class="panel-heading" role="tab">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-              <span class="fa fa-globe panel-form-icon"></span>Datos Demográficos
+              <span class="fa fa-medkit panel-form-icon"></span>Datos de Evaluación
             </a>
           </h4>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-3 col-md-3">
+    	        <label>Fecha de Diagnóstico</label>
+                <div class='input-group date' id='datepicker3'>
+                  <%= el.text_field :diagnosis_date, class: "form-control form-style", 
+                                                     value: (@candidate.diagnosis_date.strftime("%d/%m/%Y") unless @candidate.diagnosis_date.blank?) %>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="col-xs-8 col-md-8">
+                <label>Diagnóstico</label>
+                <%= el.text_field :diagnosis, class: "form-control form-style" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+              <span class="fa fa-globe panel-form-icon"></span>Datos Demográficos
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel">
           <div class="panel-body">
             <div class="row">
               <div class="col-xs-2 col-md-2">
@@ -209,23 +239,7 @@
                                                class: 'form-control candidate-acity-field' %>     
               </div>
             </div>
-            <div class="spacer-30"></div>
-            <div class="row">
-              <div class="col-xs-3 col-md-3">
-    	        <label>Fecha de Diagnóstico</label>
-                <div class='input-group date' id='datepicker3'>
-                  <%= el.text_field :diagnosis_date, class: "form-control form-style", 
-                                                     value: (@candidate.diagnosis_date.strftime("%d/%m/%Y") unless @candidate.diagnosis_date.blank?) %>
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-                </div>
-              </div>
-              <div class="col-xs-8 col-md-8">
-                <label>Diagnóstico</label>
-                <%= el.text_field :diagnosis, class: "form-control form-style" %>
-              </div>
-            </div>       
+                 
             <div class="spacer-50"></div>
             <div class="row">
               <div class="col-xs-12 col-md-12 col-lg-12">
@@ -251,12 +265,12 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseAudit" aria-expanded="true" aria-controls="collapseAudit">
                 <span class="fa fa-eye panel-form-icon"></span> Auditoría
               </a>
             </h4>
           </div>
-          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel">
+          <div id="collapseAudit" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body">
               <div class="spacer-10"></div>
               <%= form_tag get_audit_path, remote: true, method: :get, id: 'candidate-audit-form' do %>
