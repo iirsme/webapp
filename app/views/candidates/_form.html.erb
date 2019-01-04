@@ -76,7 +76,7 @@
               </div>
               <div class="col-xs-3 col-md-3">
                 <label>Fecha de Evaluación</label>
-                <div class='input-group date' id='datepicker2'>
+                <div class='input-group date' id='datepicker1'>
                   <%= el.text_field :evaluation_date, class: "form-control form-style", 
                                                       value: (@candidate.evaluation_date.strftime("%d/%m/%Y") unless @candidate.evaluation_date.blank?) %>
                   <span class="input-group-addon">
@@ -89,7 +89,7 @@
             <div class="row">
               <div class="col-xs-3 col-md-3">
                 <label>Fecha de Nacimiento</label>
-                <div class='input-group date' id='datepicker1'>
+                <div class='input-group date' id='datepicker2'>
                   <%= el.text_field :birth_date, class: "form-control form-style", 
                                                  value: (@candidate.birth_date.strftime("%d/%m/%Y") unless @candidate.birth_date.blank?) %>
                   <span class="input-group-addon">
@@ -264,15 +264,15 @@
                   <%= hidden_field_tag 'record_id', @candidate.id %>
                   <div class="col-xs-3 col-md-3">
                     <div class='input-group date' id='datepicker1'>
-                      <%= text_field_tag :from, params[:from], class: "form-control form-style" %>
+                      <%= text_field_tag :from, params[:from], class: "form-control form-style", value: ((Date.current - 1.month).strftime("%d/%m/%Y")) %>
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </span>
                     </div>
 			      </div>
 			      <div class="col-xs-3 col-md-3">
-                    <div class='input-group date' id='datepicker1'>
-                      <%= text_field_tag :to, params[:to], class: "form-control form-style" %>
+                    <div class='input-group date' id='datepicker2'>
+                      <%= text_field_tag :to, params[:to], class: "form-control form-style", value: (Date.current.strftime("%d/%m/%Y")) %>
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </span>
