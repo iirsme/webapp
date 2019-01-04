@@ -3,7 +3,7 @@ class Candidate < ApplicationRecord
 
   before_save :clear_other_occupation
   after_create :insert_log
-  before_update :update_log
+  # before_update :update_log
   before_destroy :delete_log
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -14,27 +14,28 @@ class Candidate < ApplicationRecord
   validates :email, format: { with: VALID_EMAIL_REGEX, message: "Email es invalido" },
                      unless: Proc.new { |f| f.email.blank? }
 
-
   def insert_log
-    puts "****** INSERT AUDIT..."
     log = []
     Audit.track_change(self.id, self.class.name.downcase, 'I', current_user.id, log.to_json)
   end
 
   def delete_log
-    puts "****** DELETE AUDIT..."
     log = []
     Audit.track_change(self.id, self.class.name.downcase, 'D', current_user.id, log.to_json)
-  end  
+  end
 
   def update_log
-    puts "****** UPDATE AUDIT..."
     log = []
-    Candidate.columns.each do |columns|
-      att = columns.name
-      if self.attribute_changed?(att) &&  att.to_s != 'updated_at'
-        old_value = self.attribute_was(att)
-        new_value = self[att]
+    Candidate.columns.each do |c|
+      att = c.name
+      if self.attribute_changed?(att) && att != 'updated_at'
+        if Geoname.include?(att)
+          old_value = Geoname.get_name(self.attribute_was(att))
+          new_value = Geoname.get_name(self[att])
+        else
+          old_value = self.attribute_was(att)
+          new_value = self[att]          
+        end
         log << { :column => att, :old_value => old_value, :new_value => new_value }
       end
     end

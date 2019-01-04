@@ -131,23 +131,23 @@
             <div class="row">
               <div class="col-xs-3 col-md-3">
               	<label>País</label>
-                <%= hidden_field_tag 'candidate-bcountry-field', @candidate.birth_country %>
-                <%= el.select :birth_country, [], {:include_blank => true},
-                                                  class: 'form-control candidate-bcountry-field' %>
+                <%= hidden_field_tag :candidate_birth_country_id, @candidate.birth_country %>
+              	<%= hidden_field_tag :candidate_birth_country_name %>
+                <%= el.select :birth_country, [], {:include_blank => true}, class: 'form-control' %>
               </div>
               <div class="col-xs-3 col-md-3">
               	<label>Estado</label>
               	<em class="fa fa-spinner fa-spin loading-indicator candidate-bstate-loading" style="display:none" ></em>
-              	<%= hidden_field_tag 'candidate-bstate-field', @candidate.birth_state %>
-                <%= el.select :birth_state, [], {:include_blank => true},
-                                                class: 'form-control candidate-bstate-field' %>            	
+                <%= hidden_field_tag :candidate_birth_state_id, @candidate.birth_state %>
+              	<%= hidden_field_tag :candidate_birth_state_name %>
+                <%= el.select :birth_state, [], {:include_blank => true}, class: 'form-control' %>
               </div>
               <div class="col-xs-3 col-md-3">
               	<label>Ciudad</label>
               	<em class="fa fa-spinner fa-spin loading-indicator candidate-bcity-loading" style="display:none" ></em>
-              	<%= hidden_field_tag 'candidate-bcity-field', @candidate.birth_city %>
-                <%= el.select :birth_city, [], {:include_blank => true},
-                                               class: 'form-control candidate-bcity-field' %>            	
+              	<%= hidden_field_tag :candidate_birth_city_id, @candidate.birth_city %>
+              	<%= hidden_field_tag :candidate_birth_city_name %>
+                <%= el.select :birth_city, [], {:include_blank => true}, class: 'form-control' %>
               </div>
             </div>
             <div class="spacer-30"></div>
@@ -220,23 +220,23 @@
             <div class="row">
               <div class="col-xs-3 col-md-3">
               	<label>País</label>
-                <%= hidden_field_tag 'candidate-acountry-field', @candidate.address_country %>
-                <%= el.select :address_country, [], {:include_blank => true},
-                                                  class: 'form-control candidate-acountry-field' %>
+              	<%= hidden_field_tag :candidate_address_country_id, @candidate.address_country %>
+              	<%= hidden_field_tag :candidate_address_country_name %>
+                <%= el.select :address_country, [], {:include_blank => true}, class: 'form-control' %>
               </div>
               <div class="col-xs-3 col-md-3">
               	<label>Estado</label>
               	<em class="fa fa-spinner fa-spin loading-indicator candidate-astate-loading" style="display:none" ></em>
-              	<%= hidden_field_tag 'candidate-astate-field', @candidate.address_state %>
-                <%= el.select :address_state, [], {:include_blank => true},
-                                                class: 'form-control candidate-astate-field' %>    
+                <%= hidden_field_tag :candidate_address_state_id, @candidate.address_state %>
+              	<%= hidden_field_tag :candidate_address_state_name %>
+                <%= el.select :address_state, [], {:include_blank => true}, class: 'form-control' %>
               </div>
               <div class="col-xs-3 col-md-3">
               	<label>Ciudad</label>
                 <em class="fa fa-spinner fa-spin loading-indicator candidate-acity-loading" style="display:none" ></em>
-              	<%= hidden_field_tag 'candidate-acity-field', @candidate.address_city %>
-                <%= el.select :address_city, [], {:include_blank => true},
-                                               class: 'form-control candidate-acity-field' %>     
+                <%= hidden_field_tag :candidate_address_city_id, @candidate.address_city %>
+              	<%= hidden_field_tag :candidate_address_city_name %>
+                <%= el.select :address_city, [], {:include_blank => true}, class: 'form-control' %>
               </div>
             </div>
                  

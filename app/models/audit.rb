@@ -17,8 +17,6 @@ class Audit < ApplicationRecord
   end
 
   def self.get_audit(record_id, from, to)
-    # from_date = Date.strptime(from, '%d-%m-%Y')
-    # to_date = Date.strptime(to, '%d-%m-%Y')
     from_date = (from + ' 00:00:00') unless from.blank?
     to_date = (to + ' 23:59:59') unless to.blank?
     Audit.where(record_id: record_id, done_at: from_date..to_date).order(done_at: :asc)

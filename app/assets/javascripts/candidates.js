@@ -50,30 +50,41 @@ $(document).on('ready turbolinks:load', function () {
   $('.candidate-occupation-field').change(function () {
     candidateFormLogic();
   });
-  $('.candidate-bcountry-field').change(function () {
-  	$('.candidate-bstate-field').val("");
-  	$('.candidate-bstate-field').empty();
-  	$('.candidate-bcity-field').val("");
-  	$('.candidate-bcity-field').empty();
+
+  $('#candidate_birth_country').change(function () {
+  	setValues('#candidate_birth_country');
+    resetValues('#candidate_birth_state');
+    resetValues('#candidate_birth_city');
     getBirthdayStates(true);
   });
-  $('.candidate-bstate-field').change(function () {
-  	$('.candidate-bcity-field').val("");
-  	$('.candidate-bcity-field').empty();  	
+
+  $('#candidate_birth_state').change(function () {
+  	setValues('#candidate_birth_state');
+    resetValues('#candidate_birth_city');
     getBirthdayCities(true);
   });
-  $('.candidate-acountry-field').change(function () {
-  	$('.candidate-astate-field').val("");
-    $('.candidate-astate-field').empty();
-    $('.candidate-acity-field').val("");
-  	$('.candidate-acity-field').empty();
+
+  $('#candidate_birth_city').change(function () {
+  	setValues('#candidate_birth_city');
+  });
+
+  $('#candidate_address_country').change(function () {
+    setValues('#candidate_address_country');
+    resetValues('#candidate_address_state');
+    resetValues('#candidate_address_city');
     getAddressStates(true);
   });
-  $('.candidate-astate-field').change(function () {
-    $('.candidate-acity-field').val("");
-  	$('.candidate-acity-field').empty();
+
+  $('#candidate_address_state').change(function () {
+    setValues('#candidate_address_state');
+    resetValues('#candidate_address_city');
     getAddressCities(true);
   });
+
+  $('#candidate_address_city').change(function () {
+  	setValues('#candidate_address_city');
+  });
+
 });
 
 function candidateFormLogic () {
@@ -100,10 +111,10 @@ function getInitialCombosData () {
 
 function getCountries () { console.log("Loading countries...");
   var values = {};
-  var aCountry = $(".candidate-acountry-field");
-  var ahCountry = $("#candidate-acountry-field");
-  var bCountry = $(".candidate-bcountry-field");
-  var bhCountry = $('#candidate-bcountry-field');
+  var aCountry = $("#candidate_address_country");
+  var ahCountry = $("#candidate_address_country_id");
+  var bCountry = $("#candidate_birth_country");
+  var bhCountry = $("#candidate_birth_country_id");
 
   aCountry.empty();
   bCountry.empty();
@@ -130,34 +141,34 @@ function getCountries () { console.log("Loading countries...");
 }
 
 function getBirthdayStates (showLoading) {
-  var country = $(".candidate-bcountry-field").val() || $('#candidate-bcountry-field').val();
+  var country = $('#candidate_birth_country_id').val();
   if (country && country !== "") {
   	console.log("Loading birthday states...");
-    getChildren(country, $('.candidate-bstate-field'), $('#candidate-bstate-field'), showLoading, $('.candidate-bstate-loading'));
+    getChildren(country, $('#candidate_birth_state'), $('#candidate_birth_state_id'), showLoading, $('.candidate-bstate-loading'));
   }
 }
 
 function getBirthdayCities (showLoading) {
-  var state = $(".candidate-bstate-field").val() || $('#candidate-bstate-field').val();
+  var state = $('#candidate_birth_state_id').val();
   if (state && state !== "") { 
   	console.log("Loading birthday cities...");
-    getChildren(state, $('.candidate-bcity-field'), $('#candidate-bcity-field'), showLoading, $('.candidate-bcity-loading'));
+    getChildren(state, $('#candidate_birth_city'), $('#candidate_birth_city_id'), showLoading, $('.candidate-bcity-loading'));
   }
 };
 
 function getAddressStates (showLoading) {
-  var country = $(".candidate-acountry-field").val() || $('#candidate-acountry-field').val();
+  var country = $('#candidate_address_country_id').val();
   if (country && country !== "") {
   	console.log("Loading address states...");
-    getChildren(country, $('.candidate-astate-field'), $('#candidate-astate-field'), showLoading, $('.candidate-astate-loading'));
+    getChildren(country, $('#candidate_address_state'), $('#candidate_address_state_id'), showLoading, $('.candidate-astate-loading'));
   }
 }
 
 function getAddressCities (showLoading) {
-  var state = $(".candidate-astate-field").val() || $('#candidate-astate-field').val();
+  var state = $('#candidate_address_state_id').val();
   if (state && state !== "") {
     console.log("Loading address cities...");
-    getChildren(state, $('.candidate-acity-field'), $('#candidate-acity-field'), showLoading, $('.candidate-acity-loading'));
+    getChildren(state, $('#candidate_address_city'), $('#candidate_address_city_id'), showLoading, $('.candidate-acity-loading'));
   }
 };
 
@@ -200,3 +211,17 @@ function getChildren (parentId, field, hiddenField, showLoading, indicator) {
     }
   });
 };
+
+function setValues (strField) {
+  var id = $(strField + " option:selected").val();
+  var name = $(strField + " option:selected").text();
+  $(strField + '_id').val(id);
+  $(strField + '_name').val(name);
+}
+
+function resetValues (strField) {
+  $(strField).val('');
+  $(strField).empty();
+  $(strField + '_id').val('');
+  $(strField + '_name').val('');
+}
