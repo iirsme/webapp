@@ -91,7 +91,6 @@ body {
   background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
-  text-shadow: 0 1px 0 #fff;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9');
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#E9E9E9')";
@@ -305,8 +304,8 @@ body {
 .menu-item {
   margin: 0;
   line-height: 30px;
-  font-size: 17px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 500;
   margin-left: 0px;
   font-family: "Muli";
   -webkit-font-smoothing: antialiased;
@@ -382,7 +381,6 @@ body {
   background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
-  text-shadow: 0 1px 0 #fff;
   border-radius: 0 0 5px 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
   border-top: 1px solid #bababa;
@@ -464,7 +462,6 @@ body {
   background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
-  text-shadow: 0 1px 0 #fff;
   border-radius: 5px 5px 0 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
   border-bottom: 1px solid #bababa;
@@ -490,7 +487,6 @@ body {
   background: -o-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: -ms-linear-gradient(top, $main-color 0%, #e9e9e9 100%);
   background: linear-gradient(top, $main-color 0%, #e9e9e9 100%);
-  text-shadow: 0 1px 0 #fff;
   border-radius: 0 0 5px 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
   border-top: 1px solid #bababa;
