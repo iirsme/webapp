@@ -1,22 +1,22 @@
 <% if logged_in? %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header ">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
       </button>
-      <%= link_to "IIRSME", home_path, class: "navbar-brand" %>
+      <%= link_to "IIRSME", home_path, class: "navbar-brand-title" %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-item"><%= link_to current_user.say_hello, user_path(current_user) %></li>
-        <li class="navbar-item"><a href="#">Ayuda</a></li>
+        <li class="navbar-item-title"><%= link_to user_path(current_user) do %>
+          <span class="fa fa-user"></span> <%= current_user.say_hello %> <% end %>
+        </li>
+        <li class="navbar-item-title"><%= link_to '#' do %><span class="fa fa-question-circle"></span> Ayuda <% end %></li>
         <li class="navbar-item-empty"></li>
-        <li class="navbar-item"><%= link_to logout_path, data: {confirm: "¿Esta seguro que quiere salir del sistema?"}, 
-                                     method: :delete do %> <span class="fa fa-sign-out"></span> Salir <% end %></li>
+        <li class="navbar-item-title"><%= link_to logout_path, data: {confirm: "¿Esta seguro que quiere salir del sistema?"}, 
+                                     method: :delete do %><span class="fa fa-sign-out"></span> Salir <% end %></li>
       </ul>
     </div>
   </div>
