@@ -8,15 +8,39 @@
       </button>
       <%= link_to "IIRSME", home_path, class: "navbar-brand-title" %>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-item-title"><%= link_to user_path(current_user) do %>
-          <span class="fa fa-user"></span> <%= current_user.say_hello %> <% end %>
+      	<li class="dropdown">
+          <a href="#" class="dropdown-toggle navbar-item-title" data-toggle="dropdown"> Crear nuevo &nbsp; <b class="fa fa-angle-down"></b></a>
+          <ul class="dropdown-menu">
+            <li class="navbar-item-title"><%= link_to '#' do %>
+              <span class="fa fa-shield"></span> Rol <% end %>
+            </li>
+            <li class="navbar-item-title"><%= link_to '#' do %>
+              <span class="fa fa-male"></span> Usuario <% end %>
+            </li>
+            <li class="navbar-item-title"><%= link_to '#' do %>
+              <span class="fa fa-users"></span> Candidato <% end %>
+            </li>
+          </ul>
         </li>
         <li class="navbar-item-title"><%= link_to '#' do %><span class="fa fa-question-circle"></span> Ayuda <% end %></li>
         <li class="navbar-item-empty"></li>
-        <li class="navbar-item-title"><%= link_to logout_path, data: {confirm: "¿Esta seguro que quiere salir del sistema?"}, 
-                                     method: :delete do %><span class="fa fa-sign-out"></span> Salir <% end %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle navbar-item-title" data-toggle="dropdown"> <span class="fa fa-user"></span> <%= current_user.say_hello %> <b class="fa fa-angle-down"></b></a>
+          <ul class="dropdown-menu">
+            <li class="navbar-item-title"><%= link_to user_path(current_user) do %>
+              <span class="fa fa-user"></span> Mi cuenta <% end %>
+            </li>
+            <li class="navbar-item-title"><%= link_to '#' do %>
+              <span class="fa fa-cog"></span> Configuración <% end %>
+            </li>
+            <li><i class="dropdown-divider"></i></li>
+            <li class="navbar-item-title"><%= link_to logout_path, data: {confirm: "¿Esta seguro que quiere salir del sistema?"}, 
+                                                                   method: :delete do %><span class="fa fa-sign-out"></span> Salir <% end %></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
