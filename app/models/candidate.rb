@@ -10,9 +10,29 @@ class Candidate < ApplicationRecord
   validates :curp, presence: { message: "CURP no puede ir vacio" }
   validates :name, presence: { message: "Nombre no puede ir vacio" }
   validates :last_name1, presence: { message: "Al menos un Apellido debe de registrarse" }
-  validates :occupation_other, if: :requires_occupation?, presence: { message: "Especifique otra ocupación" } 
+  validates :birth_date, presence: { message: "Fecha de Nacimiento no puede ir vacio" }
+  validates :evaluation_date, presence: { message: "Fecha de Evaluación no puede ir vacio" }
+  validates :age, presence: { message: "Edad no puede ir vacio" }
+  validates :phone, presence: { message: "Telefono no puede ir vacio" }
+  validates :cell_phone, presence: { message: "Celular no puede ir vacio" }
+  validates :email, presence: { message: "Email no puede ir vacio" }
   validates :email, format: { with: VALID_EMAIL_REGEX, message: "Email es invalido" },
-                     unless: Proc.new { |f| f.email.blank? }
+                    unless: Proc.new { |f| f.email.blank? }
+  validates :gender, presence: { message: "Sexo no puede ir vacio" }
+  validates :marital_status, presence: { message: "Estado Civil no puede ir vacio" }
+  validates :occupation, presence: { message: "Ocupación no puede ir vacio" }
+  validates :occupation_other, if: :requires_occupation?, presence: { message: "Especifique otra ocupación" }
+  validates :scolarship, presence: { message: "Escolaridad no puede ir vacio" }
+  validates :birth_city, presence: { message: "Ciudad de Nacimiento no puede ir vacio" }
+  validates :birth_state, presence: { message: "Estado de Nacimiento no puede ir vacio" }
+  validates :birth_country, presence: { message: "País de Nacimiento no puede ir vacio" }
+  validates :address_main_street, presence: { message: "Calle no puede ir vacio" }
+  validates :address_street_no2, presence: { message: "No. Exterior no puede ir vacio" }
+  validates :address_city, presence: { message: "Ciudad de Residencia no puede ir vacio" }
+  validates :address_state, presence: { message: "Estado de Residencia no puede ir vacio" }
+  validates :address_country, presence: { message: "País de Residencia no puede ir vacio" }
+  validates :diagnosis_date, presence: { message: "Fecha de Diagnóstico no puede ir vacio" }
+  validates :diagnosis, presence: { message: "Diagnóstico no puede ir vacio" }
 
   def insert_log
     log = []
