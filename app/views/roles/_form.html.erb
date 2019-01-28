@@ -43,6 +43,13 @@
                 </div>
               </li>
               <li class="list-group-item">
+                <span class="material-switch-option">Auditar</span>
+                <div class="material-switch pull-right">                  
+                  <%= el.check_box :can_audit, id: :can_audit %>
+                  <label for="can_audit" class="label-primary"></label>
+                </div>
+              </li>
+              <li class="list-group-item">
                 <span class="material-switch-option">Eliminar</span>
                 <div class="material-switch pull-right">                  
                   <%= el.check_box :can_delete, id: :can_delete %>

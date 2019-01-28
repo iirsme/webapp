@@ -24,6 +24,7 @@
               <th class="col col-xs-1 col-header">Crear</th>
               <th class="col col-xs-1 col-header">Ver</th>
               <th class="col col-xs-1 col-header">Editar</th>
+              <th class="col col-xs-1 col-header">Auditar</th>
               <th class="col col-xs-1 col-header">Eliminar</th>
               <th class="col col-xs-2 col-header"></th>
             </tr> 
@@ -36,6 +37,7 @@
                 <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (role.can_create ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
                 <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (role.can_read ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
                 <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (role.can_update ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
+                <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (role.can_audit ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
                 <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (role.can_delete ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
                 <td align="center">
                   <%= link_to edit_role_path(role), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>

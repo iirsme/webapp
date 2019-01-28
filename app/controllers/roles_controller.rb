@@ -51,6 +51,6 @@ class RolesController < ApplicationController
       @role = Role.find(params[:id])
     end
     def role_params
-      params.require(:role).permit(:name, :description, :can_create, :can_read, :can_update, :can_delete)
+      params.require(:role).permit(:name, :description, :can_create, :can_read, :can_update, :can_audit, :can_delete)
     end
 end
