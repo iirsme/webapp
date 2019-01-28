@@ -72,12 +72,19 @@
 		        </div>
 
 			    <div class="form-group">
+		          <label class="col-xs-3 control-label" for="name">No. de registro de Investigación y Etica</label>
+			  	  <div class="col-xs-5">
+			        <%= el.text_field :registration_code, class: 'form-control form-style' %>
+			      </div>
+			    </div>
+
+			    <div class="form-group">
 		          <label class="col-xs-3 control-label" for="name">Nombre</label>
 			  	  <div class="col-xs-8">
 			        <%= el.text_field :name, class: 'form-control form-style' %>
 			      </div>
 			    </div>
-		
+
 		        <div class="form-group">
 		          <label class="col-xs-3 control-label" for="description">Descripción</label>
 		          <div class="col-xs-8">

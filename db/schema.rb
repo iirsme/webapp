@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_200754) do
+ActiveRecord::Schema.define(version: 2019_01_28_220150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_01_28_200754) do
     t.decimal "seq_no", default: -> { "nextval('research_seq'::regclass)" }
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "registration_code"
   end
 
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
