@@ -95,15 +95,7 @@
         </div>
         <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel">
           <div class="panel-body">
-            <div class="row">
-              <div class="col-xs-2 col-md-2">
-                <label>Edad</label>
-                <%= el.number_field :age, class: "form-control form-style" %>
-              </div>
-              <div class="col-xs-2 col-md-2">
-                <label>Sexo</label>
-                <%= el.select :gender, ['Hombre', 'Mujer'], {:include_blank => true}, {:class =>'form-control form-style'} %>
-              </div>
+          	<div class="row">
               <div class="col-xs-3 col-md-3">
                 <label>Fecha de Evaluación</label>
                 <div class='input-group date' id='datepicker1'>
@@ -114,8 +106,7 @@
                   </span>
                 </div>
               </div>
-            </div>
-            <div class="spacer-30"></div>
+          	</div>
             <div class="row">
               <div class="col-xs-3 col-md-3">
                 <label>Fecha de Nacimiento</label>
@@ -127,30 +118,16 @@
                   </span>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-3 col-md-3">
-              	<label>País</label>
-                <%= hidden_field_tag :candidate_birth_country_id, @candidate.birth_country %>
-              	<%= hidden_field_tag :candidate_birth_country_name %>
-                <%= el.select :birth_country, [], {:include_blank => true}, class: 'form-control' %>
+              <div class="col-xs-2 col-md-2">
+                <label>Edad</label>
+                <%= el.number_field :age, class: "form-control form-style" %>
               </div>
-              <div class="col-xs-3 col-md-3">
-              	<label>Estado</label>
-              	<em class="fa fa-spinner fa-spin loading-indicator candidate-bstate-loading" style="display:none" ></em>
-                <%= hidden_field_tag :candidate_birth_state_id, @candidate.birth_state %>
-              	<%= hidden_field_tag :candidate_birth_state_name %>
-                <%= el.select :birth_state, [], {:include_blank => true}, class: 'form-control' %>
-              </div>
-              <div class="col-xs-3 col-md-3">
-              	<label>Ciudad</label>
-              	<em class="fa fa-spinner fa-spin loading-indicator candidate-bcity-loading" style="display:none" ></em>
-              	<%= hidden_field_tag :candidate_birth_city_id, @candidate.birth_city %>
-              	<%= hidden_field_tag :candidate_birth_city_name %>
-                <%= el.select :birth_city, [], {:include_blank => true}, class: 'form-control' %>
+              <div class="col-xs-2 col-md-2">
+                <label>Sexo</label>
+                <%= el.select :gender, ['Hombre', 'Mujer'], {:include_blank => true}, {:class =>'form-control form-style'} %>
               </div>
             </div>
-            <div class="spacer-30"></div>
+
             <div class="row">
               <div class="col-xs-3 col-md-3">
                 <label>Teléfono</label>
@@ -188,7 +165,34 @@
                                            {:include_blank => true}, {:class =>'form-control form-style'} %>
               </div>
             </div>
+
             <div class="spacer-30"></div>
+            <h4 class="" style="font-weight: bold">Lugar de Nacimiento</h4>
+            <div class="row">
+              <div class="col-xs-3 col-md-3">
+              	<label>País</label>
+                <%= hidden_field_tag :candidate_birth_country_id, @candidate.birth_country %>
+              	<%= hidden_field_tag :candidate_birth_country_name %>
+                <%= el.select :birth_country, [], {:include_blank => true}, class: 'form-control' %>
+              </div>
+              <div class="col-xs-3 col-md-3">
+              	<label>Estado</label>
+              	<em class="fa fa-spinner fa-spin loading-indicator candidate-bstate-loading" style="display:none" ></em>
+                <%= hidden_field_tag :candidate_birth_state_id, @candidate.birth_state %>
+              	<%= hidden_field_tag :candidate_birth_state_name %>
+                <%= el.select :birth_state, [], {:include_blank => true}, class: 'form-control' %>
+              </div>
+              <div class="col-xs-3 col-md-3">
+              	<label>Ciudad</label>
+              	<em class="fa fa-spinner fa-spin loading-indicator candidate-bcity-loading" style="display:none" ></em>
+              	<%= hidden_field_tag :candidate_birth_city_id, @candidate.birth_city %>
+              	<%= hidden_field_tag :candidate_birth_city_name %>
+                <%= el.select :birth_city, [], {:include_blank => true}, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="spacer-30"></div>
+            <h4 class="" style="font-weight: bold">Lugar de Residencia</h4>
             <div class="row">
               <div class="col-xs-5 col-md-5">
                 <label>Calle</label>
