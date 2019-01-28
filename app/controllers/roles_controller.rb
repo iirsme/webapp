@@ -2,6 +2,7 @@ class RolesController < ApplicationController
   before_action :set_current_view
   before_action :set_role, only: [:edit, :update, :show, :destroy]
   before_action :require_user
+  before_action :require_admin
 
   def index
     @roles = Role.all

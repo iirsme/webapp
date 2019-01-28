@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_view, :current_research, :logged_in?
+  helper_method :current_user, :current_view, :current_research, :logged_in?, :is_admin?
 
   def current_view
     @current_view
@@ -17,14 +17,25 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
+  
+  def is_admin?
+    current_user.is_admin
+  end
 
   def require_user
     if !logged_in?
-      flash[:danger] = "Ingresa al sistema para realizar esa acción"
+      flash[:danger] = "Ingrese al sistema para realizar esa acción"
       redirect_to login_path
     end
   end
-  
+
+  def require_admin
+    if !is_admin?
+      flash[:danger] = "Acción restringida con su rol actual"
+      redirect_to root_path
+    end
+  end
+
    def true?(obj)
      obj.to_s == "true"
    end

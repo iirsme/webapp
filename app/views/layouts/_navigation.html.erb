@@ -51,7 +51,7 @@
     <div class="col-sm-3 col-md-2 sidebar sidebar-gradient">
       <ul class="nav nav-sidebar">
         <li class="<%= current_view === 'home' ? 'active' : '' %> menu-item"><%= link_to home_path do %><span class="glyphicon glyphicon-home"></span> Inicio <% end %></li>      
-        <% if current_user.admin? %>
+        <% if is_admin? %>
           <li class="<%= current_view === 'roles' ? 'active' : '' %> menu-item"><%= link_to roles_path do %> <span class="fa fa-shield"></span> Roles <% end %></li>
           <li class="<%= current_view === 'users' ? 'active' : '' %> menu-item"><%= link_to users_path do %> <span class="fa fa-male"></span> Usuarios <% end %></li>
         <% end %>
@@ -72,7 +72,7 @@
       <% end %>
 
       <ul class="nav nav-sidebar">
-      	<% if current_user.admin? %>
+      	<% if is_admin? %>
           <li class="menu-item"><a href="#"><span class="fa fa-wrench"></span> Ajustes </a></li>
         <% end %>
         <li class="<%= current_view === 'user-account' ? 'active' : '' %> menu-item"><%= link_to user_path(current_user) do %> <span class="fa fa-user-circle"></span> Mi cuenta <% end %></li>

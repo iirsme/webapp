@@ -39,9 +39,11 @@
                 <td class="col col-xs-1 col-data-left"> <%= candidate.cell_phone %> </td>
                 <td align="center">
                   <%= link_to edit_candidate_path(candidate), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
-                  <%= link_to candidate_path(candidate), data: {confirm: "¿Esta seguro que quiere eliminar este Candidato?"},
-                                                         class: "btn btn-default btn-action",
-                                                         method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+                  <% if is_admin? %>
+                    <%= link_to candidate_path(candidate), data: {confirm: "¿Esta seguro que quiere eliminar este Candidato?"},
+                                                           class: "btn btn-default btn-action",
+                                                           method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

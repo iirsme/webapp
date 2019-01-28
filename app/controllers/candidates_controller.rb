@@ -2,6 +2,7 @@ class CandidatesController < ApplicationController
   before_action :set_current_view
   before_action :set_candidate, only: [:edit, :update, :show, :destroy]
   before_action :require_user
+  before_action :require_admin, only: [:destroy]
 
   def get_audit
     @audit = Audit.get_audit(params[:record_id], params[:from], params[:to])
