@@ -1,4 +1,5 @@
 class Research < ApplicationRecord
+  belongs_to :owner, :class_name => 'User'
 
   validates :name, presence: { message: "Nombre no puede ir vacio" }
   validates :code, presence: { message: "Codigo no puede ir vacio" }, 

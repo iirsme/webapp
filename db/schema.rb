@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_220150) do
+ActiveRecord::Schema.define(version: 2019_01_29_175651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 2019_01_28_220150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "registration_code"
+    t.uuid "owner_id"
+    t.index ["owner_id"], name: "index_researches_on_owner_id"
   end
 
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -105,4 +107,5 @@ ActiveRecord::Schema.define(version: 2019_01_28_220150) do
   end
 
   add_foreign_key "audits", "users"
+  add_foreign_key "researches", "users", column: "owner_id"
 end
