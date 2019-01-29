@@ -1,5 +1,7 @@
 class Research < ApplicationRecord
   belongs_to :owner, :class_name => 'User'
+  has_many :research_users
+  has_many :users, through: :research_users
 
   validates :owner, presence: true # See es.yml for error message
   validates :name, presence: { message: "Nombre no puede ir vacio" }

@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
+  has_many :research_users
+  has_many :researches, through: :research_users
 
   validates :username, presence: { message: "Usuario no puede ir vacio" }, 
                        uniqueness: { case_sensitive: false, message: "Ya hay otro usuario con el mismo username" }
