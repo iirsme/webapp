@@ -1,5 +1,6 @@
 es:
   candidate:
+    # For Audit purposes
     seq_no: 'Folio'
     name: 'Nombre'
     curp: 'CURP'
@@ -30,4 +31,12 @@ es:
     address_country: 'País de Residencia'
     diagnosis: 'Diagnóstico'
     diagnosis_date: 'Fecha de Diagnóstico'
+
+  activerecord:
+    errors:
+      models: 
+        research:
+          attributes:
+            owner:
+              required: "El Propietario del Protocolo no puede ir vacio"
 

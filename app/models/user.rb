@@ -24,6 +24,11 @@ class User < ApplicationRecord
     users.reject { |user| user.username == "system.admin" && self.id != user.id }
   end
 
+  def self.all_users
+    users = self.all
+    users.reject { |user| user.username == "system.admin" }
+  end
+
   def admin?
     self.is_admin
   end

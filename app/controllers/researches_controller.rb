@@ -75,7 +75,7 @@ class ResearchesController < ApplicationController
     @current_research = @research
     end
   def research_params
-    params.require(:research).permit(:code, :name, :description, :is_private, :password, :registration_code)
+    params.require(:research).permit(:code, :name, :description, :is_private, :password, :registration_code, :owner_id)
   end
 
 end
