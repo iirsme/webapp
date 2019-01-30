@@ -3,6 +3,9 @@ class ResearchUser < ApplicationRecord
   belongs_to :research
   belongs_to :role
 
+  validates :user, uniqueness: { scope: :research, 
+                                 message: "Este Usuario ya es parte de este Protocolo" }
+
   def self.new_record(user, research, role, is_owner)
     new(user: user, research: research, role: role, is_owner: is_owner)
   end
