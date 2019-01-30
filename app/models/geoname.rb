@@ -39,12 +39,14 @@ class Geoname < ApplicationRecord
   end
 
   def self.go_to_webservice(id)
-    puts "*** Buscando en Webservice..."
+    puts "*** Buscando: '#{id}' en Webservice..."
     response = HTTParty.get("http://api.geonames.org/get?geonameId=#{id}&lang=es&username=sanjish")
     if response
       xml = REXML::Document.new response.body
       if xml
-        # puts xml.to_s
+        puts "*******************************"
+        puts xml.to_s
+        puts "*******************************"
         return xml.root.elements['name'].text()
       end
     end
