@@ -57,6 +57,16 @@
                 </div>
               </li>
             </ul>
+            <div class="panel-heading material-switch-header">Configuración</div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <span class="material-switch-option">Rol predeterminado</span>
+                <div class="material-switch pull-right">
+                  <%= el.check_box :is_default, id: :is_default %>
+                  <label for="is_default" class="label-primary"></label>
+                </div>
+              </li>
+            </ul>
           </div>
     	</div>
         
