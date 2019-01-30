@@ -1,5 +1,4 @@
-$(document).on('ready turbolinks:load', function () { 
-
+$(document).ready(function () {
   // Show Tooltips
   $('.nav-tabs > li a[title]').tooltip();
   
@@ -17,10 +16,11 @@ $(document).on('ready turbolinks:load', function () {
   });
 
   // ------------- Pending to use -----------------------
-  $(".next-step").click(function (e) {
+  $(".next-step").click(function (e) { debugger;
     var $active = $('.wizard .nav-tabs li.active');
     $active.next().removeClass('disabled');
     nextTab($active);
+    e.preventDefault();
   });
   $(".prev-step").click(function (e) {
     var $active = $('.wizard .nav-tabs li.active');

@@ -1,7 +1,7 @@
 $(document).on('ready turbolinks:load', function () {
   var entity = 'rol(es)';
 
-  // Users table
+  // Roles table
   $('.roles-table').DataTable({
     retrieve: true,
     ordering: true,
@@ -17,6 +17,7 @@ $(document).on('ready turbolinks:load', function () {
     columns: [
       null,
       null,
+      { orderable: false },
       { orderable: false },
       { orderable: false },
       { orderable: false },

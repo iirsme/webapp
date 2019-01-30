@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require rails-ujs
 //= require bootstrap-sprockets
-//#= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-datepicker
@@ -22,6 +22,6 @@
 
 // DO NOT REMOVE!!
 // This line fixes the InvalidAuthenticityToken error
-$(document).on("turbolinks:load",function () {
-  $.rails.refreshCSRFTokens();  
-});
+// $(document).on("turbolinks:load",function () {
+  // $.rails.refreshCSRFTokens();  
+// });
