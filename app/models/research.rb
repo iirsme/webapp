@@ -30,9 +30,8 @@ class Research < ApplicationRecord
     true
   end
 
-  # TODO
-  def owner?(user)
-    user.username == "carlos.reyes"
+  def owner?(research, user)
+    research.owner == user
   end
 
   def get_salt
