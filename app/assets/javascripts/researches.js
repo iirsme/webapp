@@ -1,7 +1,7 @@
-$(document).ready(function () {
+$(document).on('ready turbolinks:load', function () {
   // Show Tooltips
   $('.nav-tabs > li a[title]').tooltip();
-  
+
   // Disable Password field onChange
   $('.research-is-private-field').on('change', function () {
     researchFormLogic();
@@ -15,8 +15,9 @@ $(document).ready(function () {
     }
   });
 
-  // ------------- Pending to use -----------------------
-  $(".next-step").click(function (e) { debugger;
+// ------------- Pending to use -----------------------
+/*
+  $(".next-step").click(function (e) {
     var $active = $('.wizard .nav-tabs li.active');
     $active.next().removeClass('disabled');
     nextTab($active);
@@ -26,7 +27,8 @@ $(document).ready(function () {
     var $active = $('.wizard .nav-tabs li.active');
     prevTab($active);
   });
-  // ----------------------------------------------------
+*/
+// ----------------------------------------------------
 
 });
 
@@ -38,8 +40,16 @@ function prevTab (elem) {
   $(elem).prev().find('a[data-toggle="tab"]').click();
 }
 
-function researchFormLogic () {
+function researchFormLogic () { debugger;
   var isPrivate = $('.research-is-private-field');
   var password = $('.research-password-field'); 
   password.prop("disabled", !isPrivate.is(':checked'));
+
+  var isNewResearch = $('#is-new-research').val();
+  if (isNewResearch === 'false') {
+    var $tabs = $('.wizard .nav-tabs li.disabled');
+    $tabs.each(function (tab) {
+      $(this).removeClass('disabled');
+    });
+  }
 }

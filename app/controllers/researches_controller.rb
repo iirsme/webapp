@@ -31,10 +31,12 @@ class ResearchesController < ApplicationController
   end
 
   def new
+    @current_step = 1
     @research = Research.new
   end
 
   def create
+    @current_step = 1
     @research = Research.new(research_params) 
     if @research.save
       # flash[:success] = "Protocolo creado satisfactoriamente"
@@ -45,10 +47,12 @@ class ResearchesController < ApplicationController
   end
 
   def edit
+    @current_step = 1
     @current_view = 'research-setup'
   end
-  
+
   def update
+    @current_step = 1
     if @research.update(research_params)
       redirect_to edit_research_path(@research)
     else

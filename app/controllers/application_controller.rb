@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_view, :current_research, :logged_in?, :is_admin?
+  helper_method :current_user, :current_view, :current_research, :logged_in?, :is_admin?, 
+                :current_step, :active_research_tab?
 
   def current_view
     @current_view
@@ -38,6 +39,14 @@ class ApplicationController < ActionController::Base
 
    def true?(obj)
      obj.to_s == "true"
+   end
+
+   def active_research_tab?(research, step, tab)
+     if (research.new_record?)
+       return tab == 1 ? 'active' : 'disabled'
+     else 
+       return tab == step ? 'active' : ''
+     end
    end
 
 end
