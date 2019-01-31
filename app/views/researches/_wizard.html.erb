@@ -1,0 +1,191 @@
+<%= render 'shared/errors', obj: @research %>
+
+<div class="row">
+  <div class="wizard">
+    <div class="wizard-inner">
+      <div class="connecting-line"></div>
+        <ul class="nav nav-tabs" role="tablist">
+          	<li role="presentation" class="<%= active_research_tab?(@research, @current_step, 1) %>">
+              <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos Generales">
+              <span class="round-tab">
+                <i class="fa fa-book"></i>
+              </span>
+            </a>
+          </li>
+          <li role="presentation" class="  <%= active_research_tab?(@research, @current_step, 2) %>">
+            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Configuración de Solapas y Campos">
+              <span class="round-tab">
+                <i class="fa fa-wpforms"></i>
+              </span>
+            </a>
+          </li>
+          <li role="presentation" class="<%= active_research_tab?(@research, @current_step, 3) %>">
+            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Usuarios con Acceso">
+              <span class="round-tab">
+                <i class="fa fa-user"></i>
+              </span>
+            </a>
+          </li>
+          <li role="presentation" class="<%= active_research_tab?(@research, @current_step, 4) %>">
+            <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Finalizar">
+              <span class="round-tab">
+                <i class="fa fa-check"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <%= hidden_field_tag "is-new-research", @research.new_record? %>
+
+      <div class="tab-content">
+        <div role="tabpanel" id="step1" class="tab-pane <%= active_research_tab?(@research, @current_step, 1) %>">
+          <%= render 'form', obj: @research %>
+        </div>
+
+        <div role="tabpanel" id="step2" class="tab-pane <%= active_research_tab?(@research, @current_step, 2) %>">
+          <h1>PASO 2</h1>
+        </div>
+
+        <div role="tabpanel" id="step2" class="tab-pane <%= active_research_tab?(@research, @current_step, 3) %>">
+          <h1>PASO 3</h1>
+        </div>
+
+        <div role="tabpanel" id="step2" class="tab-pane <%= active_research_tab?(@research, @current_step, 4) %>">
+          <h1>PASO 4</h1>
+        </div>
+
+      </div>
+<!--
+            <form role="form">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                        <h3>Firma Bilgileri</h3>
+                        <div class="col-md-5">
+                        
+                        
+                        <form>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Firma Adı</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Firma Adı">
+                        <small id="emailHelp" class="form-text text-muted">Lütfen tam ünvanı yazınız.</small>
+                        </div>
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Firma Adresi</label>
+                       
+                        <textarea class="form-control" id="exampleInputPassword1" rows="4" cols="50">Firma Adresi</textarea>
+                        
+                        </div>
+                        </form>
+                        
+                        </div>
+                        <div class="col-md-7">
+                            
+                            <form>
+                        
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Servis/Proje Referanslarınız ve Tecrübeleriniz</label>
+                       
+                        <textarea class="form-control" id="exampleInputPassword1" rows="9" cols="50">Servis/Proje Referanslarınız ve Tecrübeleriniz</textarea>
+                        
+                        </div>
+                        </form>
+                            
+                            </div>
+
+
+                        <div class="col-md-4">
+                        <form>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Firma Web Sitesi</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="http://www...">
+                        </div>
+                        </form>
+                        </div>
+
+                         
+                        <div class="col-md-4">
+                        <form>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Firma Telefon Numarası</label>
+                        <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="0 (___) ___ __ __">
+                        </div>
+                        </form>
+                        </div>
+                         
+
+                        <div class="col-md-4">
+                        <form>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Başvuru Sahibinin Adı</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Başvuru Sahibinin Adı">
+                        </div>
+                        </form>
+                        </div>
+
+                         
+                        <div class="col-md-4">
+                        <form>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Firma E-posta Adresi</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Firma E-posta Adresi">
+                        </div>
+                        </form>
+                        </div>
+                         
+
+                        <div class="col-md-4">
+                        <form>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Firma Fax Numarası</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  placeholder="0 (___) ___ __ __">
+                        </div>
+                        </form>                        
+                        </div>
+                         
+                         
+                        <form>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Başvuru Sahibinin E-posta Adresi</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Firma E-posta Adresi">
+                        </div>
+                        </form>
+                        </div>
+                                                 
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step">Kaydet ve Devam et</button></li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                        <h3>Servis Bilgileri</h3>
+                        <p>This is step 2</p>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    
+
+                    <div class="tab-pane" role="tabpanel" id="step3">
+                        <h3>Onay ve Gönderim</h3>
+                        <p>This is step 3</p>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    
+
+                    <div class="tab-pane" role="tabpanel" id="complete">
+                        <h3>Tamamlandı</h3>
+                        <p>You have successfully completed all steps.</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+ </div>
+-->
