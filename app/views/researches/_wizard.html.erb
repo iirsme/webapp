@@ -47,11 +47,11 @@
           <h1>PASO 2</h1>
         </div>
 
-        <div role="tabpanel" id="step2" class="tab-pane <%= active_research_tab?(@research, @current_step, 3) %>">
-          <h1>PASO 3</h1>
+        <div role="tabpanel" id="step3" class="tab-pane <%= active_research_tab?(@research, @current_step, 3) %>">
+          <%= render 'research_users/form', obj: @research %>
         </div>
 
-        <div role="tabpanel" id="step2" class="tab-pane <%= active_research_tab?(@research, @current_step, 4) %>">
+        <div role="tabpanel" id="step4" class="tab-pane <%= active_research_tab?(@research, @current_step, 4) %>">
           <h1>PASO 4</h1>
         </div>
 
