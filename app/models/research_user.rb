@@ -11,7 +11,7 @@ class ResearchUser < ApplicationRecord
   end
 
   def self.get_record(user, research)
-    where(user: user, research: research)
+    where(user: user, research: research).first
   end
 
   def self.delete_record(research)
@@ -22,7 +22,11 @@ class ResearchUser < ApplicationRecord
   def self.update_role(record, role, is_owner)
     record.role = role
     record.is_owner = is_owner
-    self.save
+    record.save
+  end
+
+  def self.all_research_users(research_id)
+    users = self.where(research: research_id).order(is_owner: :desc)
   end
 
 end

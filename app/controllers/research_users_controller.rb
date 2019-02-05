@@ -1,7 +1,8 @@
 class ResearchUsersController < ApplicationController
 
   def get_research_users
-    @users = ResearchUser.where(research: params[:research_id])
+    research_id = params[:research_id]
+    @users = ResearchUser.all_research_users(research_id)
     respond_to do |format|
       format.js { render partial: 'research_users/get_users', users: @users }
     end
@@ -13,7 +14,7 @@ class ResearchUsersController < ApplicationController
     research_id = params[:research_id]
     @ru = ResearchUser.new(user_id: user_id, role_id: role_id, research_id: research_id)
     if @ru.save
-      @users = ResearchUser.where(research: research_id)
+      @users = ResearchUser.all_research_users(research_id)
       respond_to do |format|
         format.js { render partial: 'research_users/refresh_users', users: @users }
       end
@@ -27,7 +28,7 @@ class ResearchUsersController < ApplicationController
     ru = ResearchUser.where(id: record).first
     ru.destroy
     respond_to do |format|
-      @users = ResearchUser.where(research: research_id)
+      @users = ResearchUser.all_research_users(research_id)
       format.js { render partial: 'research_users/refresh_users', users: @users }
     end
   end
