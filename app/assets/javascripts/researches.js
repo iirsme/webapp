@@ -40,7 +40,7 @@ function prevTab (elem) {
   $(elem).prev().find('a[data-toggle="tab"]').click();
 }
 
-function researchFormLogic () { debugger;
+function researchFormLogic () {
   var isPrivate = $('.research-is-private-field');
   var password = $('.research-password-field'); 
   password.prop("disabled", !isPrivate.is(':checked'));

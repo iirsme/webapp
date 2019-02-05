@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :candidates
   get 'get_audit', to: 'candidates#get_audit'
 
+  get 'get_research_users', to: 'research_users#get_research_users'
+
 end
