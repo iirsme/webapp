@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   get 'get_audit', to: 'candidates#get_audit'
 
   get 'get_research_users', to: 'research_users#get_research_users'
+  get 'add_research_user', to: 'research_users#add_research_user'
+  get 'delete_research_user', to: 'research_users#delete_research_user'
 
 end

@@ -8,4 +8,8 @@ class Role < ApplicationRecord
     where(is_default: true).first
   end
 
+  def self.all_roles
+    roles = self.all.order(name: :asc)
+  end
+
 end

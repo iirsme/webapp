@@ -18,7 +18,7 @@ class User < ApplicationRecord
     return "Hola #{firstname}".strip if (firstname)
     "Hola Desconocido"
   end
-  
+
   def full_name
     return "#{firstname}".strip + " " + "#{lastname}".strip
   end
@@ -28,17 +28,12 @@ class User < ApplicationRecord
   end
 
   def self.all_users
-    users = self.all
+    users = self.all.order(firstname: :asc)
     users.reject { |user| user.username == "system.admin" }
   end
 
   def admin?
     self.is_admin
-  end
-  
-  # TODO
-  def research_admin?
-    admin = false
   end
 
 end

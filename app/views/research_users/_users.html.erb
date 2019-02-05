@@ -1,50 +1,40 @@
-<div class="col-xs-12 col-xs-offset-0 col-md-12 col-md-offset-0">
-  <div class="row setup-content">
-    <div class="col-xs-12 col-md-12">
-      <div class="col-xs-12 col-md-12 panel panel-default" id="step">
-      	<div class="spacer-10"></div>
-      	<h4 class="text-center"> Usuarios con acceso al Protocolo </h4>
-        <div class="spacer-20"></div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr style="width:100%">
+        <th class="text-center" style="width:20%"> Usuario </th>
+        <th class="text-center" style="width:30%"> Nombre </th>
+	    <th class="text-center" style="width:25%"> Rol </th>
+	    <th class="text-center" style="width:15%"> Propietario </th>
+	    <th class="text-center" style="width:10%"> </th>
+      </tr>
+	</thead>
+    <tbody>
+<!--  TODO: When adding in line edition
+      <tr id='course0'>
+	    <td> 1 </td>
+		<td> <input type="text" name='courseCode0'  placeholder='Course Code' class="form-control"/> </td>
+		<td> <input type="text" name='courseName0' placeholder='Course Name' class="form-control"/> </td>
+	  </tr>
+      <tr id='course1'>
+      </tr>
+-->
+      <% if !@users.nil? %>
+        <% @users.each do |ru| %>
+          <tr>
+      	    <td><%= ru.user.username %></td>
+      	    <td><%= "#{ru.user.full_name}" %></td>
+      	    <td class="col-data-center"><%= ru.role.name %></td>
+      	    <td class="col-data-center"><i class='glyphicon glyphicon-<%= (ru.is_owner ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
+      	    <td align="center">
+              <% if !ru.is_owner %>
+                <%= link_to delete_research_user_path(record: ru, research_id: ru.research.id), data: {confirm: "¿Esta seguro que quiere eliminar este Usuario de este Protocolo?"},
+                                                           class: "btn btn-default btn-action",
+                                                           remote: true do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
 
-        <div class="container col-xs-12">
-          <div class="row clearfix">
-            <div class="col-md-12 column">
-
-              <a id="add_row" class="btn btn-success pull-left">Add Row</a>
-              <a id='delete_row' class="btn btn-danger pull-right">Delete Row</a>
-
-		      <table class="table table-bordered table-hover" id="tab_logic">
-		        <thead>
-			      <tr style="width:100%">
-                    <th class="text-center" style="width:10%"> # </th>
-                    <th class="text-center" style="width:30%"> Course Code </th>
-				    <th class="text-center" style="width:70%"> Course Name </th>
-			      </tr>
-				</thead>
-			    <tbody>
-                  <tr id='course0'>
-				    <td> 1 </td>
-					<td> <input type="text" name='courseCode0'  placeholder='Course Code' class="form-control"/> </td>
-					<td> <input type="text" name='courseName0' placeholder='Course Name' class="form-control"/> </td>
-				  </tr>
-                  <tr id='course1'>
-                  </tr>
-                  <% if !@users.nil? %>
-                    <% @users.each do |ru| %>
-                      <tr>
-                  	    <td><%= ru.user.username %></td>
-                  	    <td><%= "#{ru.user.firstname} #{ru.user.lastname}" %></td>
-                  	    <td><%= ru.role.name %></td>
-                      </tr>
-                    <% end %>
-                  <% end %>
-				</tbody>
-		      </table>
-		    </div>
-	      </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
+	</tbody>
+  </table>
