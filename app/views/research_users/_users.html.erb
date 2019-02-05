@@ -32,9 +32,9 @@
                   <% if !@users.nil? %>
                     <% @users.each do |ru| %>
                       <tr>
-                  	    <td><%= ru.user.firstname %></td>
-                  	    <td><%= ru.user.lastname %></td>
                   	    <td><%= ru.user.username %></td>
+                  	    <td><%= "#{ru.user.firstname} #{ru.user.lastname}" %></td>
+                  	    <td><%= ru.role.name %></td>
                       </tr>
                     <% end %>
                   <% end %>
