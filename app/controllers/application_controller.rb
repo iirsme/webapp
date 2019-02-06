@@ -37,6 +37,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_owner(research)
+    if current_user.id != research.owner.id
+      puts "***** NO ES OWNER"
+      flash[:danger] = "Acción permitida solo para el propietario del Protocolo"
+      redirect_to root_path
+    end
+    puts "***** SI ES OWNER"
+  end
+
    def true?(obj)
      obj.to_s == "true"
    end
