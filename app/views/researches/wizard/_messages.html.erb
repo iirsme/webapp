@@ -1,0 +1,21 @@
+<% if !@title.blank? %>
+  <div class="row">
+    <div class="col-xs-offset-2 col-md-offset-2 col-xs-8 col-md-8">
+	  <div class="alert alert-<%= @is_error ? 'danger': 'success' %>">
+	    <div class="panel-heading">
+	  	  <a href="#" class="close" data-dismiss="alert">&#215;</a>
+          <%= @title %>
+          <% if !@details.blank? %>
+            <div class="panel-body">
+              <ul>
+                <% @details.each do |detail| %>
+                  <li> <%= detail[0].to_s unless msg.blank? %> </li>
+                <% end %>
+              </ul> 
+            </div>
+          <% end %>
+        </div>
+	  </div>
+    </div>
+  </div>
+<% end %>
