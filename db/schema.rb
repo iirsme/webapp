@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_30_051643) do
+ActiveRecord::Schema.define(version: 2019_02_09_210752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -107,6 +107,13 @@ ActiveRecord::Schema.define(version: 2019_01_30_051643) do
     t.boolean "is_default", default: false, null: false
   end
 
+  create_table "tabs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.uuid "research_id", null: false
+    t.decimal "seq_no"
+    t.index ["research_id"], name: "index_tabs_on_research_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
@@ -123,4 +130,5 @@ ActiveRecord::Schema.define(version: 2019_01_30_051643) do
   add_foreign_key "research_users", "roles"
   add_foreign_key "research_users", "users"
   add_foreign_key "researches", "users", column: "owner_id"
+  add_foreign_key "tabs", "researches"
 end
