@@ -1,0 +1,13 @@
+$('.step2').on ('ajax:success', function (event, data) {
+  $('.wizard-step').each(function(index, item) {
+    $(item).removeClass('active');
+  });
+  $('.step2').addClass('active');
+
+  $('.wizard-pane').each(function(index, item) {
+    $(item).removeClass('active');
+  });
+  $('#step2').addClass('active');
+
+  $('#research-tabs').html("<%= j (render 'research_tabs/tabs.html') %>");
+});

@@ -767,7 +767,7 @@ section .section-title {
   top: 50%;
   z-index: 1;
 }
-.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+.wizard .nav-tabs > li.wizard-step.active > a, .wizard .nav-tabs > li.wizard-step.active > a:hover, .wizard .nav-tabs > li.wizard-step.active > a:focus {
   color: #555555;
   cursor: default;
   border: 0;
@@ -790,21 +790,21 @@ span.round-tab {
 span.round-tab i {
   color: #555555;
 }
-.wizard li.active span.round-tab {
+.wizard li.wizard-step.active span.round-tab {
   background: #fff;
   border: 2px solid $blue-color;  
 }
-.wizard li.active span.round-tab i {
+.wizard li.wizard-step.active span.round-tab i {
   color: $blue-color;
 }
 span.round-tab:hover {
   color: #333;
   border: 2px solid #333;
 }
-.wizard .nav-tabs > li {
+.wizard .nav-tabs > li.wizard-step {
   width: 25%;
 }
-.wizard li:after {
+.wizard li.wizard-step:after {
   content: " ";
   position: absolute;
   left: 46%;
@@ -815,7 +815,7 @@ span.round-tab:hover {
   border-bottom-color: $blue-color;
   transition: 0.1s ease-in-out;
 }
-.wizard li.active:after {
+.wizard li.wizard-step.active:after {
   content: " ";
   position: absolute;
   left: 46%;
@@ -825,14 +825,14 @@ span.round-tab:hover {
   border: 10px solid transparent;
   border-bottom-color: $blue-color;
 }
-.wizard .nav-tabs > li a {
+.wizard .nav-tabs > li.wizard-step a {
   width: 70px;
   height: 70px;
   margin: 20px auto;
   border-radius: 100%;
   padding: 0;
 }
-.wizard .nav-tabs > li a:hover {
+.wizard .nav-tabs > li.wizard-step a:hover {
   background: transparent;
 }
 .wizard .tab-pane {

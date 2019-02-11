@@ -4,7 +4,7 @@
   <div class="wizard">
     <div class="wizard-inner">
       <div class="connecting-line"></div>
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs test" role="tablist">
           	<li role="presentation" class="wizard-step step1 <%= active_research_tab?(@research, @current_step, 1) %>">
               <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos Generales">
               <span class="round-tab">
@@ -13,14 +13,14 @@
             </a>
           </li>
           <li role="presentation" class="wizard-step step2 <%= active_research_tab?(@research, @current_step, 2) %>">
-            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Configuración de Solapas y Campos">
+            <%= link_to get_research_tabs_path(research_id: @research.id), remote: true, title: "Configuración de Solapas y Campos" do %>
               <span class="round-tab">
                 <i class="fa fa-wpforms"></i>
               </span>
-            </a>
+            <% end %>
           </li>
           <li role="presentation" class="wizard-step step3 <%= active_research_tab?(@research, @current_step, 3) %>">
-            <%= link_to get_research_users_path(research_id: @research.id), remote: true do %>
+            <%= link_to get_research_users_path(research_id: @research.id), remote: true, title: "Configuración de Usuarios" do %>
               <span class="round-tab">
                 <i class="fa fa-user"></i>
               </span>
@@ -44,7 +44,7 @@
         </div>
 
         <div role="tabpanel" id="step2" class="wizard-pane tab-pane <%= active_research_tab?(@research, @current_step, 2) %>">
-          <h1>PASO 2</h1>
+          <%= render 'research_tabs/form', obj: @research %>
         </div>
 
         <div role="tabpanel" id="step3" class="wizard-pane tab-pane <%= active_research_tab?(@research, @current_step, 3) %>">

@@ -21,4 +21,9 @@ Rails.application.routes.draw do
   get 'add_research_user', to: 'research_users#add_research_user'
   get 'delete_research_user', to: 'research_users#delete_research_user'
 
+  get 'get_research_tabs', to: 'tabs#get_research_tabs'
+  get 'add_research_tab', to: 'tabs#add_research_tab'
+  get 'update_research_tab', to: 'tabs#update_research_tab'
+  get 'delete_research_tab', to: 'tabs#delete_research_tab'
+
 end

@@ -1,0 +1,41 @@
+<div id="wizard-messages">
+ <%= render 'researches/wizard/messages' %>
+</div>
+
+<div class="col-xs-12 col-xs-offset-0 col-md-12 col-md-offset-0">
+  <div class="row setup-content">
+    <div class="col-xs-12 col-md-12">
+      <div class="col-xs-12 col-md-12 panel panel-default" id="step">
+      	<div class="spacer-10"></div>
+      	<h4 class="text-center"> Configuración de Solapas y Campos del Protocolo </h4>
+        <div class="spacer-20"></div>
+        <div class="container col-xs-12">
+          <div class="row clearfix">
+            <div class="col-md-12 column">
+
+			  <%= form_tag add_research_tab_path, remote: true, method: :get, class: "form-horizontal" do %>
+			    <%= hidden_field_tag :research_id, @research.id %>
+			    <div class="form-group">
+			      <label class="col-xs-offset-1 col-xs-1 control-label" for="name">Nombre</label>
+			      <div class="col-xs-2">
+			      	<%= text_field_tag("name", nil, class: "form-control form-style input-md") %> 
+			      </div>
+			      <div class="col-xs-2">
+			        <%= button_tag(type: :submit, class: "btn btn-md btn-primary") do %>
+			          <i class="fa fa-plus"></i> Agregar Solapa
+			        <% end %>
+			      </div>
+			    </div>
+			  <% end %>
+
+              <div id="research-tabs">
+                <%= render 'research_tabs/tabs' %>
+              </div>
+
+			</div>
+		    </div>
+	      </div>
+        </div>
+      </div>
+    </div>
+  </div>

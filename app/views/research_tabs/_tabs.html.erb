@@ -1,0 +1,19 @@
+<div class="container col-xs-12">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel with-nav-tabs panel-default">
+	    <div class="panel-heading">
+	      <ul class="nav nav-tabs">
+	        <% if !@tabs.nil? %>
+	          <% @tabs.each_with_index do |tab, idx| %>
+	            <li class="<%= idx == 0 ? 'active' : '' %>"><a href="#tab1default" data-toggle="tab"> <%= tab.name %> </a></li>
+              <% end %>
+            <% end %>
+	      </ul>
+	    </div>
+	  </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+</div>
