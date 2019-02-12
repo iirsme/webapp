@@ -18,7 +18,29 @@
                 <div class="tab-pane fade <%= idx == 0 ? 'in active' : '' %>" id="tab<%= idx.to_s %>">
                   <div class= "panel-heading">
                   	<h4 class=="panel-title">
-                      <div style="position: relative; top: -80px; right: -25px">
+                      <div style="position: relative; top: -95px; right: -25px">
+
+                        <div class='row hidden_actions_<%= "#{idx}" %>' style="display: none">
+                        <%= link_to "Deshacer", title: "Deshacer cambios", id: "undo_#{idx}" do %>
+                          <i class="btn btn-default btn-action pull-right">
+                            <i class="glyphicon glyphicon-repeat"></i>
+                          </i>
+                        <% end %>
+                        <%= link_to update_research_tab_path(research_id: tab.research.id, tab_id: tab.id), remote: true, title: "Guardar cambios" do %>
+                          <i class="btn btn-default btn-action pull-right">
+                            <i class="glyphicon glyphicon-ok"></i>
+                          </i>
+                        <% end %>
+ 						<%= form_tag update_research_tab_path, remote: true, method: :get, class: "form-horizontal pull-right" do %>
+ 						  <div class="row">
+                            <div class="col-xs-12">
+                              <%= text_field_tag("name", nil, class: "form-control form-style input-sm") %>
+                            </div>
+                          </div>
+			                <%#= button_tag(type: :submit, class: "btn btn-md btn-primary") %>
+			           <% end %>
+			           </div>
+                       <div class='row visible_actions_<%= "#{idx}" %>' style="display: inline">
                         <%= link_to delete_research_tab_path(research_id: tab.research.id, tab_id: tab.id), 
                                     remote: true,
                                     data: {confirm: "¿Esta seguro que quiere eliminar esta solapa? Tambien se eliminarán todos los campos contenidos en ella."},
@@ -27,15 +49,17 @@
                             <i class="glyphicon glyphicon-trash"></i>
                           </i>
                         <% end %>
-                        <%= link_to update_research_tab_path(research_id: tab.research.id, tab_id: tab.id), remote: true, title: "Editar Solapa" do %>
+                        <%= link_to "Editar", title: "Editar Solapa", id: "edit_#{idx}" do %>
                           <i class="btn btn-default btn-action pull-right">
                             <i class="glyphicon glyphicon-pencil"></i>
                           </i>
                         <% end %>
+                        </div>
+
                   	  </div>
                   	</h4>
                   </div>
-                  <div class="container col-xs-12" style="position: relative; top: -80px;">
+                  <div class="container col-xs-12" style="position: relative; top: -120px;">
                     <div class="row">
                       <div class="col-xs-12">
                         <%= "Campos de la Solapa #{idx} - #{tab.name}" %>

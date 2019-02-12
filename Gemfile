@@ -21,6 +21,9 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# Use for getting better confirm dialogs
+gem 'twitter-bootstrap-rails-confirm'
+
 # Use Font-Awesome
 gem 'font-awesome-rails'
 # Use Datepicker from Bootstrap
