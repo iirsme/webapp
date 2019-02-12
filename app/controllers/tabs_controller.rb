@@ -29,7 +29,7 @@ class TabsController < ApplicationController
       end
       return
     else
-      @title = @tab.errors.messages
+      @title = @tab.errors.messages[:name][0]
       @is_error = true
       respond_to do |format|
         format.js { render partial: 'researches/wizard/messages'}

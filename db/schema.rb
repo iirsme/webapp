@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_09_211659) do
+ActiveRecord::Schema.define(version: 2019_02_12_140917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 2019_02_09_211659) do
     t.string "name", null: false
     t.uuid "research_id", null: false
     t.decimal "seq_no"
+    t.index ["name", "research_id"], name: "index_tabs_on_name_and_research_id", unique: true
     t.index ["research_id"], name: "index_tabs_on_research_id"
   end
 
