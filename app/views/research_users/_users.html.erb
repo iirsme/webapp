@@ -27,7 +27,8 @@
       	    <td class="col-data-center"><i class='glyphicon glyphicon-<%= (ru.is_owner ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
       	    <td align="center">
               <% if !ru.is_owner %>
-                <%= link_to delete_research_user_path(record: ru, research_id: ru.research.id), data: {confirm: "¿Esta seguro que quiere eliminar este Usuario de este Protocolo?"},
+                <%= link_to delete_research_user_path(record: ru, research_id: ru.research.id), 
+                                                           data: {confirm: "¿Esta seguro que quiere eliminar este Usuario de este Protocolo?"},
                                                            class: "btn btn-default btn-action",
                                                            remote: true do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
               <% end %>

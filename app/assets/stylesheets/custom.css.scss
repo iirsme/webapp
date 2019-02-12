@@ -756,7 +756,7 @@ section .section-title {
 .wizard > div.wizard-inner {
   position: relative;
 }
-.connecting-line {
+.wizard-connecting-line {
   height: 2px;
   background: #ddd;
   position: absolute;
@@ -787,7 +787,7 @@ span.round-tab {
   text-align: center;
   font-size: 25px;
 }
-span.round-tab i {
+.wizard-step span.round-tab i {
   color: #555555;
 }
 .wizard li.wizard-step.active span.round-tab {

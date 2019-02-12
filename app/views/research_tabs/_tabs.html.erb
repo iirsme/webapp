@@ -6,11 +6,59 @@
 	      <ul class="nav nav-tabs">
 	        <% if !@tabs.nil? %>
 	          <% @tabs.each_with_index do |tab, idx| %>
-	            <li class="<%= idx == 0 ? 'active' : '' %>"><a href="#tab1default" data-toggle="tab"> <%= tab.name %> </a></li>
+	            <li class="<%= idx == 0 ? 'active' : '' %>"><a href="#tab<%= idx.to_s %>" data-toggle="tab"> <%= tab.name %></a></li>
               <% end %>
             <% end %>
 	      </ul>
 	    </div>
+	    <div class="panel-body">
+          <div class="tab-content">
+            <% if !@tabs.nil? %>
+	          <% @tabs.each_with_index do |tab, idx| %>
+                <div class="tab-pane fade <%= idx == 0 ? 'in active' : '' %>" id="tab<%= idx.to_s %>">
+                  <div class= "panel-heading">
+                  	<h4 class=="panel-title">
+                      <div style="position: relative; top: -80px; right: -25px">
+                        <%= link_to delete_research_tab_path(research_id: tab.research.id, tab_id: tab.id), 
+                                    remote: true,
+                                    data: {confirm: "¿Esta seguro que quiere eliminar esta solapa? Tambien se eliminarán todos los campos contenidos en ella."},
+                                    title: "Eliminar Solapa" do %>
+                          <i class="btn btn-default btn-action pull-right">
+                            <i class="glyphicon glyphicon-trash"></i>
+                          </i>
+                        <% end %>
+                        <%= link_to update_research_tab_path(research_id: tab.research.id, tab_id: tab.id), remote: true, title: "Editar Solapa" do %>
+                          <i class="btn btn-default btn-action pull-right">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                          </i>
+                        <% end %>
+                  	  </div>
+                  	</h4>
+                  </div>
+                  <div class="container col-xs-12" style="position: relative; top: -80px;">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <%= "Campos de la Solapa #{idx} - #{tab.name}" %>
+                        <!-- FIELDS CONTENT HERE -->
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <%= "CAMPO 1" %>
+                      </div>
+                      <div class="col-xs-4">
+                        <%= "CAMPO 2" %>
+                      </div>
+                      <div class="col-xs-4">
+                        <%= "CAMPO 3" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+	          <% end %>
+	        <% end %>
+          </div>
+        </div>
 	  </div>
     </div>
     <div class="col-md-3">
