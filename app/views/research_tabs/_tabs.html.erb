@@ -20,43 +20,43 @@
                   	<h4 class=="panel-title">
                       <div style="position: relative; top: -95px; right: -25px">
 
-                        <div class='row hidden_actions_<%= "#{idx}" %>' style="display: none">
-                        <%= link_to "Deshacer", title: "Deshacer cambios", id: "undo_#{idx}" do %>
-                          <i class="btn btn-default btn-action pull-right">
-                            <i class="glyphicon glyphicon-repeat"></i>
-                          </i>
-                        <% end %>
-                        <%= link_to update_research_tab_path(research_id: tab.research.id, tab_id: tab.id), remote: true, title: "Guardar cambios" do %>
-                          <i class="btn btn-default btn-action pull-right">
-                            <i class="glyphicon glyphicon-ok"></i>
-                          </i>
-                        <% end %>
- 						<%= form_tag update_research_tab_path, remote: true, method: :get, class: "form-horizontal pull-right" do %>
- 						  <div class="row">
+                        <div class="row tab-hidden-actions tab_hidden_actions_<%= "#{idx}" %> ">
+                          <%= form_tag update_research_tab_path, method: :get, remote: true, class: "form-horizontal pull-right", id: "tab_form_#{idx}" do %>
                             <div class="col-xs-12">
-                              <%= text_field_tag("name", nil, class: "form-control form-style input-sm") %>
+                              <%= link_to "javascript: tabActionsLogic(#{idx}, false)", title: "Deshacer cambios", id: "tab_undo_#{idx}" do %>
+                                <i class="btn btn-default btn-action pull-right">
+                                  <i class="glyphicon glyphicon-repeat"></i>
+                                </i>
+                              <% end %>                            	
+                              <%= button_tag(type: :submit, class: "btn btn-default btn-action pull-right", title: 'Guardar Cambios') do %>
+  			                    <i class="glyphicon glyphicon-ok"></i>
+			                  <% end %>
+                              <%= hidden_field_tag "tab_#{idx}", tab.id %>
+                              <%= hidden_field_tag "tab_research_#{idx}", tab.research.id %>
+                              <%= text_field_tag("tab_name_#{idx}", nil, class: "form-control form-style input-sm") %>
                             </div>
-                          </div>
-			                <%#= button_tag(type: :submit, class: "btn btn-md btn-primary") %>
-			           <% end %>
-			           </div>
-                       <div class='row visible_actions_<%= "#{idx}" %>' style="display: inline">
-                        <%= link_to delete_research_tab_path(research_id: tab.research.id, tab_id: tab.id), 
-                                    remote: true,
-                                    data: {confirm: "¿Esta seguro que quiere eliminar esta solapa? Tambien se eliminarán todos los campos contenidos en ella."},
-                                    title: "Eliminar Solapa" do %>
-                          <i class="btn btn-default btn-action pull-right">
-                            <i class="glyphicon glyphicon-trash"></i>
-                          </i>
-                        <% end %>
-                        <%= link_to "Editar", title: "Editar Solapa", id: "edit_#{idx}" do %>
-                          <i class="btn btn-default btn-action pull-right">
-                            <i class="glyphicon glyphicon-pencil"></i>
-                          </i>
-                        <% end %>
-                        </div>
+			              <% end %>
+			            </div>
 
+                       <div class='row tab-visible-actions tab_visible_actions_<%= "#{idx}" %>'>
+                       	<div class="col-xs-12">
+                         <%= link_to delete_research_tab_path(research_id: tab.research.id, tab_id: tab.id), 
+                                     remote: true,
+                                     data: {confirm: "¿Esta seguro que quiere eliminar esta solapa? Tambien se eliminarán todos los campos contenidos en ella."},
+                                     title: "Eliminar Solapa" do %>
+                           <i class="btn btn-default btn-action pull-right">
+                             <i class="glyphicon glyphicon-trash"></i>
+                           </i>
+                         <% end %>
+                         <%= link_to "javascript: tabActionsLogic(#{idx}, true)", title: "Editar Solapa", id: "tab_edit_#{idx}" do %>
+                           <i class="btn btn-default btn-action pull-right">
+                             <i class="glyphicon glyphicon-pencil"></i>
+                           </i>
+                         <% end %>
+                       </div>
+                       </div>
                   	  </div>
+                  	  
                   	</h4>
                   </div>
                   <div class="container col-xs-12" style="position: relative; top: -120px;">

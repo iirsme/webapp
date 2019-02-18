@@ -53,3 +53,16 @@ function researchFormLogic () {
     });
   }
 }
+
+function tabActionsLogic (idx, edit) {
+  if (edit) {
+    $('.tab_visible_actions_' + idx).css("display", "none");
+    $('.tab_hidden_actions_' + idx).css("display", "inline");
+  } else {
+    $('.tab_visible_actions_' + idx).css("display", "inline");
+    $('.tab_hidden_actions_' + idx).css("display", "none");
+  }
+}
+
+
+

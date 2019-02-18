@@ -13,7 +13,7 @@ class TabsController < ApplicationController
     name = params[:name]
 
     if name.blank?
-      @title = "El nombre es necessario para agregar una nueva Solapa"
+      @title = "El nombre es necesario para agregar una nueva Solapa"
       @is_error = true
       respond_to do |format|
         format.js { render partial: 'researches/wizard/messages'}
@@ -28,6 +28,37 @@ class TabsController < ApplicationController
         format.js { render partial: 'research_tabs/refresh_research_tabs', tabs: @tabs }
       end
       return
+    else
+      @title = @tab.errors.messages[:name][0]
+      @is_error = true
+      respond_to do |format|
+        format.js { render partial: 'researches/wizard/messages'}
+      end
+      return 
+    end
+  end
+
+  def update_research_tab
+    tab_id = params["tab_0"]
+    name = params["tab_name_0"]
+    research_id = params["tab_research_0"]
+
+    if name.blank?
+      @title = "El nombre de una Solapa es obligatorio"
+      @is_error = true
+      respond_to do |format|
+        format.js { render partial: 'researches/wizard/messages'}
+      end
+      return
+    end
+
+    @tab = Tab.where(id: tab_id).first
+    @tab.name = name
+    if @tab.save
+      respond_to do |format|
+        @tabs = Tab.all_research_tabs(research_id)
+        format.js { render partial: 'research_tabs/refresh_research_tabs', tabs: @tabs }
+      end
     else
       @title = @tab.errors.messages[:name][0]
       @is_error = true
