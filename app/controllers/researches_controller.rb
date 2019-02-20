@@ -5,6 +5,9 @@ class ResearchesController < ApplicationController
   before_action only: [:edit, :update, :destroy] do
     require_owner(@research)
   end
+  before_action only: [:show] do
+    require_research_user(@research)
+  end
 
   def enter_research
     # render plain: params.inspect
@@ -80,7 +83,7 @@ class ResearchesController < ApplicationController
   end
   def set_current_research
     @current_research = @research
-    end
+  end
   def research_params
     params.require(:research).permit(:code, :name, :description, :is_private, :password, :registration_code, :owner_id)
   end

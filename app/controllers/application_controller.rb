@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :current_view, :current_research, :logged_in?, :is_admin?, 
-                :current_step, :active_research_tab?
+                :current_step, :active_research_tab?,
+                :is_research_user?
 
   def current_view
     @current_view
@@ -39,11 +40,9 @@ class ApplicationController < ActionController::Base
 
   def require_owner(research)
     if current_user.id != research.owner.id
-      puts "***** NO ES OWNER"
       flash[:danger] = "Acción permitida solo para el propietario del Protocolo"
       redirect_to root_path
     end
-    puts "***** SI ES OWNER"
   end
 
    def true?(obj)
@@ -57,5 +56,21 @@ class ApplicationController < ActionController::Base
        return tab == step ? 'active' : ''
      end
    end
+
+  def is_research_user?(research)
+    research.research_users.each do |ru|
+      if ru.user.id == current_user.id
+        return true
+      end
+    end
+    return false
+  end
+
+  def require_research_user(research)
+    if !is_research_user?(research)
+      flash[:danger] = "Acción permitida solo para usuarios del Protocolo"
+      redirect_to root_path
+    end
+  end
 
 end
