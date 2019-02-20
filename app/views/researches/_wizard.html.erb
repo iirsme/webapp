@@ -38,6 +38,11 @@
 
       <%= hidden_field_tag "is-new-research", @research.new_record? %>
 
+      <div class="spacer-10"></div>
+      <div id="wizard-messages">
+        <%= render 'researches/wizard/messages' %>
+      </div>
+
       <div class="tab-content">
         <div role="tabpanel" id="step1" class="wizard-pane tab-pane <%= active_research_tab?(@research, @current_step, 1) %>">
           <%= render 'form', obj: @research %>
