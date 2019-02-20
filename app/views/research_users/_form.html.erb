@@ -14,7 +14,7 @@
             <div class="col-md-12 column">
 
 			  <%= form_tag add_research_user_path, remote: true, method: :get, class: "form-horizontal" do %>
-			    <%= hidden_field_tag :research_id, @research.id %>
+			    <%= hidden_field_tag "u_research_id", @research.id %>
 			    <div class="form-group">
 			      <label class="col-xs-offset-1 col-xs-1 control-label" for="name">Usuario</label>
 			      <div class="col-xs-2">

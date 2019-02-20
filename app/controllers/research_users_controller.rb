@@ -11,7 +11,7 @@ class ResearchUsersController < ApplicationController
   def add_research_user
     user_id = params[:research_user][:user_id]
     role_id = params[:research_user][:role_id]
-    research_id = params[:research_id]
+    research_id = params["u_research_id"]
 
     if user_id.blank? || role_id.blank?
       @title = "Usuario y Rol son campos necessarios para agregar un nuevo Usuario"

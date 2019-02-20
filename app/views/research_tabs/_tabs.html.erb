@@ -31,7 +31,8 @@
                               <%= button_tag(type: :submit, class: "btn btn-default btn-action pull-right", title: 'Guardar Cambios') do %>
   			                    <i class="glyphicon glyphicon-ok"></i>
 			                  <% end %>
-                              <%= hidden_field_tag "tab_#{idx}", tab.id %>
+                              <%= hidden_field_tag "tab_idx_#{idx}", idx %>
+                              <%= hidden_field_tag "tab_id_#{idx}", tab.id %>
                               <%= hidden_field_tag "tab_research_#{idx}", tab.research.id %>
                               <%= text_field_tag("tab_name_#{idx}", nil, class: "form-control form-style input-sm") %>
                             </div>

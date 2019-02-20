@@ -9,7 +9,7 @@ class TabsController < ApplicationController
   end
 
   def add_research_tab
-    research_id = params[:research_id]
+    research_id = params["t_research_id"]
     name = params[:name]
 
     if name.blank?
@@ -39,9 +39,15 @@ class TabsController < ApplicationController
   end
 
   def update_research_tab
-    tab_id = params["tab_0"]
-    name = params["tab_name_0"]
-    research_id = params["tab_research_0"]
+    idx = ""
+    params.each do |key, value|
+      if key.start_with?("tab_idx_")
+        idx = value
+      end
+    end
+    tab_id = params["tab_id_#{idx}"]
+    name = params["tab_name_#{idx}"]
+    research_id = params["tab_research_#{idx}"]
 
     if name.blank?
       @title = "El nombre de una Solapa es obligatorio"
