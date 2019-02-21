@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :roles
 
   resources :users
+  
+  resources :fields
 
   resources :researches, except: [:index]
   post 'enter_research', to: 'researches#enter_research'

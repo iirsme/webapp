@@ -11,20 +11,25 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-      	<li class="dropdown">
-          <a href="#" class="dropdown-toggle navbar-item-title" data-toggle="dropdown"> Crear nuevo &nbsp; <b class="fa fa-angle-down"></b></a>
-          <ul class="dropdown-menu">
-            <li class="navbar-item-title"><%= link_to '#' do %>
-              <span class="fa fa-shield"></span> Rol <% end %>
-            </li>
-            <li class="navbar-item-title"><%= link_to '#' do %>
-              <span class="fa fa-male"></span> Usuario <% end %>
-            </li>
-            <li class="navbar-item-title"><%= link_to '#' do %>
-              <span class="fa fa-users"></span> Candidato <% end %>
-            </li>
-          </ul>
-        </li>
+      	<% if is_admin? %>
+      	  <li class="dropdown">
+            <a href="#" class="dropdown-toggle navbar-item-title" data-toggle="dropdown"> Crear nuevo &nbsp; <b class="fa fa-angle-down"></b></a>
+            <ul class="dropdown-menu">
+              <li class="navbar-item-title"><%= link_to new_role_path do %>
+                <span class="fa fa-shield"></span> Rol <% end %>
+              </li>
+              <li class="navbar-item-title"><%= link_to new_user_path do %>
+                <span class="fa fa-male"></span> Usuario <% end %>
+              </li>
+              <li class="navbar-item-title"><%= link_to new_candidate_path do %>
+                <span class="fa fa-users"></span> Candidato <% end %>
+              </li>
+              <li class="navbar-item-title"><%= link_to new_field_path do %>
+                <span class="fa fa-th-list"></span> Campo <% end %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
         <li class="navbar-item-title"><%= link_to '#' do %><span class="fa fa-question-circle"></span> Ayuda <% end %></li>
         <li class="navbar-item-empty"></li>
         <li class="dropdown">
@@ -56,6 +61,9 @@
           <li class="<%= current_view === 'users' ? 'active' : '' %> menu-item"><%= link_to users_path do %> <span class="fa fa-male"></span> Usuarios <% end %></li>
         <% end %>
         <li class="<%= current_view === 'candidates' ? 'active' : '' %> menu-item"><%= link_to candidates_path do %> <span class="fa fa-users"></span> Candidatos <% end %></li>
+        <% if is_admin? %>
+          <li class="<%= current_view === 'fields' ? 'active' : '' %> menu-item"><%= link_to fields_path do %> <span class="fa fa-th-list"></span> Campos <% end %></li>
+        <% end %>
         <li class="menu-item"><a href="#"><span class="fa fa-database"></span> Base de Datos </a></li>
       </ul>
 
