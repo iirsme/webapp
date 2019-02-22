@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_140917) do
+ActiveRecord::Schema.define(version: 2019_02_21_221318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2019_02_12_140917) do
     t.jsonb "values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "validation_type"
+    t.text "description"
   end
 
   create_table "geonames", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

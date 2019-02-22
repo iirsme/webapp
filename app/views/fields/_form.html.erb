@@ -1,0 +1,75 @@
+<%= render 'shared/errors', obj: @field %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+      <%= form_for(@field, :html => {role: "form"}) do |el| %>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a data-toggle="none" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+              <span class="fa fa-id-card panel-form-icon"></span>Datos Básicos
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-3 col-md-3">
+                <label>Etiqueta (Nombre externo)</label>
+                <div class="form-group">
+                  <%= el.text_field :label, class: "form-control form-style", autofocus: true, onfocus: 'fieldFormLogic();' %>
+                </div>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <label>Campo (Nombre Interno)</label>
+                <div class="form-group">
+                  <%= el.text_field :name, class: "form-control form-style" %>
+                </div>
+              </div>
+              <div class="col-xs-5 col-md-5">
+                <label>Descripción</label>
+                <div class="form-group">
+                  <%= el.text_area :description, rows: 4, class: "form-control form-style" %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3 col-md-3">
+                <label>Tipo</label>
+                <div class="form-group">
+                  <%= el.select :field_type, Field.fields_map.collect {|t| [t[:value], t[:id]]}, {include_blank: true}, class: "form-control form-style field-type" %>
+                </div>
+              </div>
+              <div class="col-xs-3 col-md-3 field-validation-section">
+                <label>Validación</label>
+                <div class="form-group">
+                  <%= el.select :validation_type, Field.validations_map.collect {|t| [t[:value], t[:id]]}, {include_blank: true}, class: "form-control form-style" %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="spacer-50"></div>
+            <div class="row">
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <div class="well well-sm well-primary">
+                  <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
+                    <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
+                      <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+                    <% end %>
+                    <%= link_to fields_path, class: "btn btn-primary btn-sm btn-form" do %>
+                      <em class="fa fa-undo"></em> Atrás 
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

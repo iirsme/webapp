@@ -31,8 +31,8 @@
               <tr>
                 <td class="col col-xs-2 col-data-left"> <%= field.label %> </td>
                 <td class="col col-xs-2 col-data-left"> <%= field.name %> </td>
-                <td class="col col-xs-2 col-data-left"> <%= field.name %> </td>
-                <td class="col col-xs-4 col-data-left"> <%= field.name %> </td>
+                <td class="col col-xs-2 col-data-left"> <%= field.field_type_name %> </td>
+                <td class="col col-xs-4 col-data-left"> <%= field.description %> </td>
                 <td align="center">
                   <%= link_to edit_field_path(field), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
                   <%= link_to field_path(field), data: {confirm: "¿Esta seguro que quiere eliminar este Campo?"},

@@ -45,10 +45,8 @@ $(document).on('ready turbolinks:load', function () {
       }
     }
   });
-});
 
 
-$(document).ready(function () {
   // Validations
   $('.candidate-occupation-field').change(function () {
     candidateFormLogic();

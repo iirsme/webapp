@@ -52,7 +52,7 @@ class FieldsController < ApplicationController
       @field = Field.find(params[:id])
     end
     def field_params
-      params.require(:role).permit(:name, :label, :field_type)
+      params.require(:field).permit(:name, :label, :field_type, :validation_type, :description)
     end
 
 end

@@ -44,4 +44,20 @@ $(document).on('ready turbolinks:load', function () {
     }
   });
 
+
+  // Validations
+  $('.field-type').change(function () {
+    fieldFormLogic();
+  });
+
 });
+
+
+function fieldFormLogic () {
+  var type = $('.field-type').val();
+  if (type === 'text_field') {
+    $('.field-validation-section').show();
+  } else {
+    $('.field-validation-section').hide();
+  }
+};
