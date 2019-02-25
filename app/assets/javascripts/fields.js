@@ -45,9 +45,12 @@ $(document).on('ready turbolinks:load', function () {
   });
 
 
-  // Validations
+  // Listeners
   $('.field-type').change(function () {
     fieldFormLogic();
+  });
+  $('#field_form').submit(function () {
+    buildOptions();
   });
 
 });
@@ -60,4 +63,29 @@ function fieldFormLogic () {
   } else {
     $('.field-validation-section').hide();
   }
+  if (type === 'select') {
+    $('.field-values-section').show();
+  } else {
+    $('.field-values-section').hide();
+  }
+};
+
+function buildOptions () {
+  var json = "[";
+  var id, ids = $('._ids');
+  var val, values = $('._values');
+  for (var i = 0; i < ids.length; i++) {
+    id = $(ids[i]).val();
+    val = $(values[i]).val();
+    if (i > 0) {
+      json += ", ";
+    }
+    json += '{"id": "';
+    json += id;
+    json += '", "value": "'
+    json += val;
+    json += '"}';
+  }
+  json += "]";
+  $('#field_values').val(json);
 };

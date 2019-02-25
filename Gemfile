@@ -32,6 +32,9 @@ gem 'bootstrap-datepicker-rails'
 # Use moment.js
 gem 'momentjs-rails'
 
+# Use nice-hash
+gem 'nice_hash'
+
 # Use HTTParty
 gem 'multi_xml', '~> 0.5.5'
 gem 'httparty', '~> 0.13.7'
