@@ -53,8 +53,32 @@ $(document).on('ready turbolinks:load', function () {
     buildOptions();
   });
 
+
+  // Drag&Drop table
+  $(".table-sortable tbody").sortable({
+    helper: fixHelperModified,
+    update: updatee
+  }).disableSelection();
+
+  $(".table-sortable thead").disableSelection();
+
 });
 
+function fixHelperModified (e, tr) {
+  var $originals = tr.children();
+  var $helper = tr.clone();
+  $helper.children().each(function (index) {
+    $(this).width($originals.eq(index).width())
+  });
+  return $helper;
+};
+
+function updatee () {
+  $('tbody').find('tr').each(function (k,v) {
+  	// Do Nothing
+    // console.log($(v)[0].children[0].dataset.id)
+  });
+};
 
 function fieldFormLogic () {
   var type = $('.field-type').val();
@@ -88,4 +112,26 @@ function buildOptions () {
   }
   json += "]";
   $('#field_values').val(json);
+};
+
+function addFieldOption (event) {
+  var next_opt = $('.field_options').length;
+  var curr_opt = next_opt - 1;
+  var row = "<td class='col col-xs-1' align='center'></td>";
+  row += ("<td class='col col-xs-2'><input type='text' name='id_" + curr_opt + "' id='id_" + curr_opt + "' class='form-control form-style _ids'></td>");
+  row += ("<td class='col col-xs-4'><input type='text' name='val_" + curr_opt + "' id='val_" + curr_opt + "' class='form-control form-style _values'></td>");
+  row += ("<td class='col col-xs-1' align='center'><div class='btn btn-default btn-action'><em class='glyphicon glyphicon-trash'></em></div></td>");
+
+  $('#field_option_' + curr_opt).append(row);
+  $('#field_options_table').append('<tr id="field_option_'+ next_opt + '" class="field_options"></tr>');
+  event.preventDefault();
+};
+
+function removeFieldOption (event, idx) {
+  var row = $('#field_option_' + idx);
+  var inputs = $('#field_option_' + idx + ' td input');
+  inputs.removeClass('_ids');
+  inputs.removeClass('_values');
+  row.hide();
+  event.preventDefault();
 };
