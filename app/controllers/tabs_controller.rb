@@ -95,4 +95,8 @@ class TabsController < ApplicationController
     end
   end
 
+  def add_fields
+    puts "***** #{params}"
+  end
+
 end

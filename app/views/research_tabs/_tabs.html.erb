@@ -57,15 +57,23 @@
                        </div>
                        </div>
                   	  </div>
-                  	  
+
                   	</h4>
                   </div>
                   <div class="container col-xs-12" style="position: relative; top: -120px;">
-                    <div class="row sortable-dataset" id="research_fields_table">
-                      <% Field.all.each do |field| %> <!-- TODO: change it for: @research.fields -->
-                        <div class="list-group-item col-md-4" id='<%= "#{field.id}" %>'><%= "#{field.label}" %></div>
-                      <% end %>
-                    </div>
+                  	<%= form_tag add_fields_to_tab_path, method: :get, remote: true, class: "tab_fields_form", id: "tab_fields_form_#{idx}" do %>
+                      <div class="row sortable-dataset tab_fields_table" id='research_fields_table_<%= "#{idx}" %>'>
+                        <% Field.all.each do |field| %> <!-- TODO: change it for: @research.fields -->
+                          <div class="list-group-item col-md-4"> <%= hidden_field_tag "field_#{field.id}", field.id %> <%= "#{field.label}" %> </div>
+                        <% end %>
+                      </div>
+
+                      <div class="container col-xs-12" style="position: relative; bottom: -125px; right: -25px">
+                        <%= button_tag(type: :submit, class: "btn btn-sm btn-primary pull-right") do %>
+                          <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
 	          <% end %>
@@ -85,8 +93,8 @@
             <div class="row">
           	  <div class="col-xs-12 col-md-12">
                 <div id="available_fields_list" class="list-group sortable-dataset">
-                  <% @master_data.fields.each do |field| %>
-                    <div class="list-group-item" id='<%= "#{field.id}" %>'><%= "#{field.label}" %></div>
+                  <% @master_data.fields.each_with_index do |field| %>
+                    <div class="list-group-item"> <%= hidden_field_tag "field_#{field.id}", field.id %> <%= "#{field.label}" %> </div>
                   <% end %>
                 </div>
               </div>
