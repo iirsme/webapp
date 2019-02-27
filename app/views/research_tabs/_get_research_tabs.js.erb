@@ -10,4 +10,6 @@ $('.step2').on ('ajax:success', function (event, data) {
   $('#step2').addClass('active');
 
   $('#research-tabs').html("<%= j (render 'research_tabs/tabs.html') %>");
+
+  createSortableLists();
 });

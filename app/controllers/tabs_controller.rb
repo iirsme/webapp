@@ -2,9 +2,11 @@ class TabsController < ApplicationController
 
   def get_research_tabs
     research_id = params[:research_id]
-    @tabs = Tab.all_research_tabs(research_id)
+    tabs = Tab.all_research_tabs(research_id)
+    fields = Field.all
+    @master_data = {:tabs => tabs, :fields => fields}
     respond_to do |format|
-      format.js { render partial: 'research_tabs/get_research_tabs', tabs: @tabs }
+      format.js { render partial: 'research_tabs/get_research_tabs'}
     end
   end
 
@@ -23,9 +25,11 @@ class TabsController < ApplicationController
 
     @tab = Tab.new(name: name, research_id: research_id, seq_no: Tab.get_next_seqno(research_id))
     if @tab.save
-      @tabs = Tab.all_research_tabs(research_id)
+      tabs = Tab.all_research_tabs(research_id)
+      fields = Field.all
+      @master_data = {:tabs => tabs, :fields => fields}
       respond_to do |format|
-        format.js { render partial: 'research_tabs/refresh_research_tabs', tabs: @tabs }
+        format.js { render partial: 'research_tabs/refresh_research_tabs'}
       end
       return
     else
@@ -61,9 +65,11 @@ class TabsController < ApplicationController
     @tab = Tab.where(id: tab_id).first
     @tab.name = name
     if @tab.save
+      tabs = Tab.all_research_tabs(research_id)
+      fields = Field.all
+      @master_data = {:tabs => tabs, :fields => fields}
       respond_to do |format|
-        @tabs = Tab.all_research_tabs(research_id)
-        format.js { render partial: 'research_tabs/refresh_research_tabs', tabs: @tabs }
+        format.js { render partial: 'research_tabs/refresh_research_tabs'}
       end
     else
       @title = @tab.errors.messages[:name][0]
@@ -80,9 +86,12 @@ class TabsController < ApplicationController
     tab_id = params[:tab_id]
     tab = Tab.where(id: tab_id).first
     tab.destroy
+    
+    tabs = Tab.all_research_tabs(research_id)
+    fields = Field.all
+    @master_data = {:tabs => tabs, :fields => fields}
     respond_to do |format|
-      @tabs = Tab.all_research_tabs(research_id)
-      format.js { render partial: 'research_tabs/refresh_research_tabs', tabs: @tabs }
+      format.js { render partial: 'research_tabs/refresh_research_tabs'}
     end
   end
 
