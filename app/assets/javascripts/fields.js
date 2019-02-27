@@ -120,7 +120,7 @@ function addFieldOption (event) {
   var row = "<td class='col col-xs-1' align='center'></td>";
   row += ("<td class='col col-xs-2'><input type='text' name='id_" + curr_opt + "' id='id_" + curr_opt + "' class='form-control form-style _ids'></td>");
   row += ("<td class='col col-xs-4'><input type='text' name='val_" + curr_opt + "' id='val_" + curr_opt + "' class='form-control form-style _values'></td>");
-  row += ("<td class='col col-xs-1' align='center'><div class='btn btn-default btn-action'><em class='glyphicon glyphicon-trash'></em></div></td>");
+  row += ("<td class='col col-xs-1' align='center'><a class='btn btn-default btn-action' onclick='removeFieldOption(event, " + curr_opt + ");' href><i class='glyphicon glyphicon-trash'></i></a></td>");
 
   $('#field_option_' + curr_opt).append(row);
   $('#field_options_table').append('<tr id="field_option_'+ next_opt + '" class="field_options"></tr>');
