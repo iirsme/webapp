@@ -28,6 +28,6 @@ Rails.application.routes.draw do
   get 'update_research_tab', to: 'tabs#update_research_tab'
   get 'delete_research_tab', to: 'tabs#delete_research_tab'
 
-  get 'add_fields_to_tab', to: 'tabs#add_fields'
+  get 'add_fields_to_tab', to: 'research_fields#add_fields'
 
 end

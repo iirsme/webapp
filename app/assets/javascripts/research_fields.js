@@ -1,10 +1,5 @@
 $(document).on('ready turbolinks:load', function () {
-
-  // Listeners
-  // $('.tab_fields_form').submit(function () {
-    // buildOptions();
-  // });
-
+  // Do nothing, not yet...
 });
 
 function createSortableLists () {

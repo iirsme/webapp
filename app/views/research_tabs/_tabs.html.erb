@@ -63,12 +63,15 @@
                   <div class="container col-xs-12" style="position: relative; top: -120px;">
                   	<%= form_tag add_fields_to_tab_path, method: :get, remote: true, class: "tab_fields_form", id: "tab_fields_form_#{idx}" do %>
                       <div class="row sortable-dataset tab_fields_table" id='research_fields_table_<%= "#{idx}" %>'>
-                        <% Field.all.each do |field| %> <!-- TODO: change it for: @research.fields -->
+                        <% tab.get_fields.each do |field| %>
                           <div class="list-group-item col-md-4"> <%= hidden_field_tag "field_#{field.id}", field.id %> <%= "#{field.label}" %> </div>
                         <% end %>
                       </div>
 
                       <div class="container col-xs-12" style="position: relative; bottom: -125px; right: -25px">
+                        <%= hidden_field_tag "tab_field_idx_#{idx}", idx %>
+                        <%= hidden_field_tag "tab_field_id_#{idx}", tab.id %>
+                        <%= hidden_field_tag "tab_field_research_#{idx}", tab.research.id %>
                         <%= button_tag(type: :submit, class: "btn btn-sm btn-primary pull-right") do %>
                           <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
                         <% end %>

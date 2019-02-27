@@ -1,4 +1,6 @@
 class Field < ApplicationRecord
+  has_many :research_fields
+  has_many :researches, through: :research_fields
 
   def field_type_name
     field = Field.fields_map.select {|t| t[:id] == field_type}
