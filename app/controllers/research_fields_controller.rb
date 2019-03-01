@@ -14,6 +14,11 @@ class ResearchFieldsController < ApplicationController
     tab_id = params["tab_field_id_#{idx}"]
     research_id = params["tab_field_research_#{idx}"]
 
+    ResearchField.where(tab_id: tab_id).delete_all
+    fields.each_with_index { |field, idx|
+      ResearchField.create(research_id: research_id, tab_id: tab_id, field_id: field, is_required: false, seq_no: idx)
+    }
+
   end
 
 end

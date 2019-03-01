@@ -3,7 +3,8 @@ class TabsController < ApplicationController
   def get_research_tabs
     research_id = params[:research_id]
     tabs = Tab.all_research_tabs(research_id)
-    fields = Field.all
+    fields = Field.get_available_fields(research_id)
+
     @master_data = {:tabs => tabs, :fields => fields}
     respond_to do |format|
       format.js { render partial: 'research_tabs/get_research_tabs'}

@@ -50,6 +50,18 @@ class Research < ApplicationRecord
     return role
   end
 
+  def get_fields
+    research_fields.all.order(seq_no: :asc)
+  end
+
+  def get_fields_as_array
+    fields = []
+    get_fields.each do |rf|
+      fields.push(rf.field.id)
+    end
+    return fields
+  end
+
   private
     def set_password
       if !password.blank? && is_private

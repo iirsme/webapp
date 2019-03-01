@@ -2,6 +2,12 @@ class Field < ApplicationRecord
   has_many :research_fields
   has_many :researches, through: :research_fields
 
+  def self.get_available_fields(research_id)
+    research = Research.where(id: research_id).first
+    fields = research.get_fields_as_array
+    self.where.not(id: fields).order(label: :asc)
+  end
+
   def field_type_name
     field = Field.fields_map.select {|t| t[:id] == field_type}
     name = field[0][:value] unless field.blank?
