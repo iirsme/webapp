@@ -53,31 +53,31 @@
             <div class="spacer-20"></div>
             <%= el.hidden_field :values %>
 
-			<% if !@field.values.blank? %>
-			  <div class="field-values-section">
-                <div class="row">
-                  <div class="col-xs-3 col-md-3">
-                  	<label>Opciones disponibles</label>
-                  </div>
-                  <div class="col-xs-1 col-md-1">
-                  	<%= link_to "", :class => "btn btn-primary btn-xs", :onclick => "addFieldOption(event);"  do %>
-                  	  <i class='fa fa-plus'></i> Agregar opción
-                  	<% end %>
-                  </div>
+			<div class="field-values-section">
+              <div class="row">
+                <div class="col-xs-3 col-md-3">
+                  <label>Opciones disponibles</label>
                 </div>
-                
-                <div class="spacer-10"></div>
-                <div class="row">
-                  <div class="table-responsive col-md-8 col-md-8">
-                    <table class="grid table table-bordered table-sortable" id="field_options_table">
-                      <thead>
-                        <tr>
-                          <th class="col col-xs-1"></th>
-                  	      <th class="col col-xs-2">ID (Valor interno)</th>
-                  	      <th class="col col-xs-4">Etiqueta</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+                <div class="col-xs-1 col-md-1">
+                  <%= link_to "", :class => "btn btn-primary btn-xs", :onclick => "addFieldOption(event);"  do %>
+                    <i class='fa fa-plus'></i> Agregar opción
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="spacer-10"></div>
+              <div class="row">
+                <div class="table-responsive col-md-8 col-md-8">
+                  <table class="grid table table-bordered table-sortable" id="field_options_table">
+                    <thead>
+                      <tr>
+                        <th class="col col-xs-1"></th>
+                        <th class="col col-xs-2">ID (Valor interno)</th>
+                        <th class="col col-xs-4">Etiqueta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if !@field.values.blank? %>
                       	<% field_opt_count = 0 %>
                         <% @field.values.json.each_with_index do |val, idx| %>
                           <tr id='field_option_<%= "#{idx}" %>' class="field_options">
@@ -93,12 +93,12 @@
                           <% field_opt_count += 1 %>
                         <% end %>
                         <tr id='field_option_<%= "#{field_opt_count}" %>' class="field_options">
-            	      </tbody>
-                    </table>
-                  </div>
+                      <% end %>
+            	    </tbody>
+                  </table>
                 </div>
               </div>
-            <% end %>
+            </div>
 
             <div class="spacer-50"></div>
             <div class="row">
