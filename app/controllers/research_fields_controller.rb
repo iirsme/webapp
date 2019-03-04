@@ -18,7 +18,13 @@ class ResearchFieldsController < ApplicationController
     fields.each_with_index { |field, idx|
       ResearchField.create(research_id: research_id, tab_id: tab_id, field_id: field, is_required: false, seq_no: idx)
     }
-
+    
+    # TODO: Enhance this code to handle errors and success messages
+    @title = "Campos agregados exitosamente"
+    @is_error = false
+    respond_to do |format|
+      format.js { render partial: 'researches/wizard/messages'}
+    end
   end
 
 end

@@ -25,6 +25,8 @@ class ResearchUsersController < ApplicationController
     @ru = ResearchUser.new(user_id: user_id, role_id: role_id, research_id: research_id)
     if @ru.save
       @users = ResearchUser.all_research_users(research_id)
+      @title = "Usuario agregado al Protocolo exitosamente"
+      @is_error = false
       respond_to do |format|
         format.js { render partial: 'research_users/refresh_users', users: @users }
       end
@@ -44,8 +46,10 @@ class ResearchUsersController < ApplicationController
     record = params[:record]
     ru = ResearchUser.where(id: record).first
     ru.destroy
+    @users = ResearchUser.all_research_users(research_id)
+    @title = "Usuario eliminado del Protocolo exitosamente"
+    @is_error = false
     respond_to do |format|
-      @users = ResearchUser.all_research_users(research_id)
       format.js { render partial: 'research_users/refresh_users', users: @users }
     end
   end

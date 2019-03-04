@@ -1,6 +1,6 @@
 class Tab < ApplicationRecord
   belongs_to :research
-  has_many :research_fields
+  has_many :research_fields, :dependent => :destroy
   has_many :fields, through: :research_fields
 
   validates :name, uniqueness: { scope: :research, 

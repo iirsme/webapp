@@ -4,8 +4,8 @@ class TabsController < ApplicationController
     research_id = params[:research_id]
     tabs = Tab.all_research_tabs(research_id)
     fields = Field.get_available_fields(research_id)
-
     @master_data = {:tabs => tabs, :fields => fields}
+
     respond_to do |format|
       format.js { render partial: 'research_tabs/get_research_tabs'}
     end
@@ -27,8 +27,10 @@ class TabsController < ApplicationController
     @tab = Tab.new(name: name, research_id: research_id, seq_no: Tab.get_next_seqno(research_id))
     if @tab.save
       tabs = Tab.all_research_tabs(research_id)
-      fields = Field.all
+      fields = Field.get_available_fields(research_id)
       @master_data = {:tabs => tabs, :fields => fields}
+      @title = "Solapa creada exitosamente"
+      @is_error = false
       respond_to do |format|
         format.js { render partial: 'research_tabs/refresh_research_tabs'}
       end
@@ -67,7 +69,7 @@ class TabsController < ApplicationController
     @tab.name = name
     if @tab.save
       tabs = Tab.all_research_tabs(research_id)
-      fields = Field.all
+      fields = Field.get_available_fields(research_id)
       @master_data = {:tabs => tabs, :fields => fields}
       respond_to do |format|
         format.js { render partial: 'research_tabs/refresh_research_tabs'}
@@ -89,8 +91,10 @@ class TabsController < ApplicationController
     tab.destroy
     
     tabs = Tab.all_research_tabs(research_id)
-    fields = Field.all
+    fields = Field.get_available_fields(research_id)
     @master_data = {:tabs => tabs, :fields => fields}
+    @title = "Solapa eliminada exitosamente"
+    @is_error = false
     respond_to do |format|
       format.js { render partial: 'research_tabs/refresh_research_tabs'}
     end
