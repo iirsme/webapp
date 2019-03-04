@@ -53,7 +53,7 @@ class FieldsController < ApplicationController
     end
     def field_params
       puts "************* #{params}"
-      params.require(:field).permit(:name, :label, :field_type, :validation_type, :description, :values)
+      params.require(:field).permit(:name, :label, :field_type, :validation_type, :description, :unit_of_measure, :values)
     end
 
 end

@@ -2,6 +2,14 @@ class Field < ApplicationRecord
   has_many :research_fields
   has_many :researches, through: :research_fields
 
+  def full_label
+    full_label = "#{label}".strip
+    if !unit_of_measure.blank?
+      full_label += " " + "(#{unit_of_measure})".strip
+    end 
+    return full_label
+  end
+
   def self.get_available_fields(research_id)
     research = Research.where(id: research_id).first
     fields = research.get_fields_as_array
