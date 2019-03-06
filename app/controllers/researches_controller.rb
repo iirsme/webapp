@@ -59,7 +59,9 @@ class ResearchesController < ApplicationController
 
   def update
     @current_step = 1
-    if @research.update(research_params)
+    params = research_params
+    params.delete(:password) if params[:password] == Research::TEMP_PASSWORD
+    if @research.update(params)
       redirect_to edit_research_path(@research)
     else
       render 'edit'

@@ -1,4 +1,5 @@
 class Research < ApplicationRecord
+  TEMP_PASSWORD = 'TEMP_PASSWORD'
   belongs_to :owner, :class_name => 'User'
   has_many :research_users
   has_many :users, through: :research_users
@@ -15,6 +16,10 @@ class Research < ApplicationRecord
   before_create :add_owner
   before_update :update_owner
   before_save :set_password
+  
+  def form_password
+    password.present? ? TEMP_PASSWORD : ''
+  end
 
   def requires_password?
     is_private == true
@@ -64,9 +69,9 @@ class Research < ApplicationRecord
 
   private
     def set_password
-      if !password.blank? && is_private
+      if password_changed? && is_private && !password.blank?
         self.password = Digest::SHA2.hexdigest(get_salt + password)
-      elsif !password.blank? && !is_private
+      elsif !is_private && !password.blank?
         self.password = nil
       end
     end
