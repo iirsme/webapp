@@ -38,6 +38,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin_or_account_owner(user_account)
+    if !is_admin? && user_account.id != current_user.id
+      flash[:danger] = "Acción restringida con su rol/usuario actual"
+      redirect_to root_path
+    end
+  end
+
   def require_owner(research)
     if current_user.id != research.owner.id
       flash[:danger] = "Acción permitida solo para el propietario del Protocolo"
