@@ -1,81 +1,114 @@
 <%= render 'shared/errors', obj: @role %>
 
 <div class="row">
-  <div class="col-xs-7 col-xs-offset-0">
-     <%= form_for(@role, :html => {class: "form-horizontal", role: "form"}) do |el| %>
-        <div class="form-group">
-          <label class="col-xs-3 control-label" for="name">Nombre</label>
-          <div class="col-xs-9">
-            <%= el.text_field :name, class: "form-control form-style", autofocus: true %>
-          </div>
-        </div>
+  <div class="col-xs-12 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-        <div class="form-group">
-          <label class="col-xs-3 control-label" for="description">Descripción</label>
-          <div class="col-xs-9">
-            <%= el.text_area :description, rows: 5, class: "form-control form-style" %>
+      <%= form_for(@role, :html => {role: "form"}) do |el| %>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="none" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+                <span class="fa fa-id-card panel-form-icon"></span>Datos Básicos
+              </a>
+            </h4>
           </div>
-        </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-3 col-md-3">
+                  <label>Nombre</label>
+                  <div class="form-group">
+                    <%= el.text_field :name, class: "form-control form-style", autofocus: true %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-5 col-md-5">
+                  <label>Descripción</label>
+                  <div class="form-group">
+                    <%= el.text_area :description, rows: 5, class: "form-control form-style" %>
+                  </div>
+                </div>
+              </div>
 
-        <div class="col-xs-9 col-xs-offset-3">
-          <div class="panel panel-default">
-            <div class="panel-heading material-switch-header">Permisos</div>                
-            <ul class="list-group">
-              <li class="list-group-item">
-                <span class="material-switch-option">Crear</span>
-                <div class="material-switch pull-right">
-                  <%= el.check_box :can_create, id: :can_create %>
-                  <label for="can_create" class="label-primary"></label>
+              <div class="spacer-20"></div>
+              <div class="row">
+		        <div class="col-xs-8 col-md-8">
+		          <div class="panel panel-default">
+		            <div class="panel-heading material-switch-header">Permisos</div>                
+		            <ul class="list-group">
+		              <li class="list-group-item">
+		                <span class="material-switch-option">Crear</span>
+		                <div class="material-switch pull-right">
+		                  <%= el.check_box :can_create, id: :can_create %>
+		                  <label for="can_create" class="label-primary"></label>
+		                </div>
+		              </li>
+		              <li class="list-group-item">
+		                <span class="material-switch-option">Ver</span>
+		                <div class="material-switch pull-right">                  
+		                  <%= el.check_box :can_read, id: :can_read %>
+		                  <label for="can_read" class="label-primary"></label>
+		                </div>
+		              </li>
+		              <li class="list-group-item">
+		                <span class="material-switch-option">Editar</span>
+		                <div class="material-switch pull-right">                  
+		                  <%= el.check_box :can_update, id: :can_update %>
+		                  <label for="can_update" class="label-primary"></label>
+		                </div>
+		              </li>
+		              <li class="list-group-item">
+		                <span class="material-switch-option">Auditar</span>
+		                <div class="material-switch pull-right">                  
+		                  <%= el.check_box :can_audit, id: :can_audit %>
+		                  <label for="can_audit" class="label-primary"></label>
+		                </div>
+		              </li>
+		              <li class="list-group-item">
+		                <span class="material-switch-option">Eliminar</span>
+		                <div class="material-switch pull-right">                  
+		                  <%= el.check_box :can_delete, id: :can_delete %>
+		                  <label for="can_delete" class="label-primary"></label>
+		                </div>
+		              </li>
+		            </ul>
+		            <div class="panel-heading material-switch-header">Configuración</div>
+		            <ul class="list-group">
+		              <li class="list-group-item">
+		                <span class="material-switch-option">Rol predeterminado</span>
+		                <div class="material-switch pull-right">
+		                  <%= el.check_box :is_default, id: :is_default %>
+		                  <label for="is_default" class="label-primary"></label>
+		                </div>
+		              </li>
+		            </ul>
+		          </div>
+		    	</div>
+              </div>
+              
+              <div class="spacer-50"></div>
+              <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                  <div class="well well-sm well-primary">
+                    <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
+                      <%= button_tag(:class => "btn btn-primary btn-sm btn-form field-values-submit-btn") do %>
+                        <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+                      <% end %>
+                      <%= link_to roles_path, class: "btn btn-primary btn-sm btn-form" do %>
+                        <em class="fa fa-undo"></em> Atrás 
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
-              </li>
-              <li class="list-group-item">
-                <span class="material-switch-option">Ver</span>
-                <div class="material-switch pull-right">                  
-                  <%= el.check_box :can_read, id: :can_read %>
-                  <label for="can_read" class="label-primary"></label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <span class="material-switch-option">Editar</span>
-                <div class="material-switch pull-right">                  
-                  <%= el.check_box :can_update, id: :can_update %>
-                  <label for="can_update" class="label-primary"></label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <span class="material-switch-option">Auditar</span>
-                <div class="material-switch pull-right">                  
-                  <%= el.check_box :can_audit, id: :can_audit %>
-                  <label for="can_audit" class="label-primary"></label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <span class="material-switch-option">Eliminar</span>
-                <div class="material-switch pull-right">                  
-                  <%= el.check_box :can_delete, id: :can_delete %>
-                  <label for="can_delete" class="label-primary"></label>
-                </div>
-              </li>
-            </ul>
-            <div class="panel-heading material-switch-header">Configuración</div>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <span class="material-switch-option">Rol predeterminado</span>
-                <div class="material-switch pull-right">
-                  <%= el.check_box :is_default, id: :is_default %>
-                  <label for="is_default" class="label-primary"></label>
-                </div>
-              </li>
-            </ul>
-          </div>
-    	</div>
-        
-        <div class="form-group">
-          <div class="col-xs-offset-6 col-xs-10">
-          	 <%= el.submit "Guardar", class: "btn btn-primary btn-form" %>
-          	 <%= link_to "Atras", roles_path, class: "btn btn-primary btn-form" %>
+              </div>
+              
+            </div>
           </div>
         </div>
-     <% end %>
+      <% end %>
+
     </div>
+  </div>
 </div>
