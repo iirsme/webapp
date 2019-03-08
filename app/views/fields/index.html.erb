@@ -1,5 +1,5 @@
 <div class="">
-  <h3 class="screen-header">Campos usados en el Sistema</h3>
+  <h3 class="screen-header">Variables usadas en el Sistema</h3>
   <p class="spacer-30"></p>
 
   <div class="col-md-12 col-md-offset-0">
@@ -35,7 +35,7 @@
                 <td class="col col-xs-4 col-data-left"> <%= field.description %> </td>
                 <td align="center">
                   <%= link_to edit_field_path(field), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
-                  <%= link_to field_path(field), data: {confirm: "¿Esta seguro que quiere eliminar este Campo?"},
+                  <%= link_to field_path(field), data: {confirm: "¿Esta seguro que quiere eliminar esta Variable?"},
                                                class: "btn btn-default btn-action",
                                                method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
                 </td>

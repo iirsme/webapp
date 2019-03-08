@@ -16,7 +16,7 @@ class FieldsController < ApplicationController
     # render plain: params[:field].inspect
     @field = Field.new(field_params) 
     if @field.save
-      flash[:success] = "Campo creado satisfactoriamente"
+      flash[:success] = "Variable creada satisfactoriamente"
       redirect_to fields_path
     else
       render 'new'
@@ -28,7 +28,7 @@ class FieldsController < ApplicationController
 
   def destroy
     @field.destroy
-    flash[:success] = "Campo eliminado satisfactoriamente"
+    flash[:success] = "Variable eliminada satisfactoriamente"
     redirect_to fields_path
   end
 
@@ -37,7 +37,7 @@ class FieldsController < ApplicationController
 
   def update
     if @field.update(field_params)
-      flash[:success] = "Campo actualizado satisfactoriamente"
+      flash[:success] = "Variable actualizada satisfactoriamente"
       redirect_to fields_path
     else
       render 'edit'

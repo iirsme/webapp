@@ -20,7 +20,7 @@ class ResearchFieldsController < ApplicationController
     }
     
     # TODO: Enhance this code to handle errors and success messages
-    @title = "Campos agregados exitosamente"
+    @title = "Variables agregadas exitosamente"
     @is_error = false
     respond_to do |format|
       format.js { render partial: 'researches/wizard/messages'}

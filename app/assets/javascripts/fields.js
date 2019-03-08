@@ -1,5 +1,5 @@
 $(document).on('ready turbolinks:load', function () {
-  var entity = 'campo(s)';
+  var entity = 'variable(s)';
 
   // Fields table
   $('.fields-table').DataTable({
