@@ -10,7 +10,7 @@ class Research < ApplicationRecord
   validates :owner, presence: true # See es.yml for error message
   validates :name, presence: { message: "Nombre no puede ir vacio" }
   validates :code, presence: { message: "Codigo no puede ir vacio" },
-                   uniqueness: { case_sensitive: false, message: "Ya hay otro protocolo con el mismo codigo" }
+                   uniqueness: { case_sensitive: false, message: "Ya hay otro protocolo con el mismo Codigo" }
   validates :password, if: :requires_password?, presence: { message: "Especifique una contraseña para el protocolo" }
 
   before_create :add_owner
