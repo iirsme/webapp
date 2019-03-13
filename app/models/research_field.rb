@@ -3,4 +3,8 @@ class ResearchField < ApplicationRecord
   belongs_to :tab
   belongs_to :field
 
+  validates :field, uniqueness: { scope: :research,
+                                     message: "Campo duplicado en el Protocolo" }
+
+
 end

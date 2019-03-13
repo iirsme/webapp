@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_185748) do
+ActiveRecord::Schema.define(version: 2019_03_13_145113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_185748) do
     t.boolean "is_required", default: false, null: false
     t.decimal "seq_no", null: false
     t.index ["field_id"], name: "index_research_fields_on_field_id"
+    t.index ["research_id", "field_id"], name: "index_research_fields_on_research_id_and_field_id", unique: true
     t.index ["research_id"], name: "index_research_fields_on_research_id"
     t.index ["tab_id"], name: "index_research_fields_on_tab_id"
   end
