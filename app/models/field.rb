@@ -1,12 +1,14 @@
 class Field < ApplicationRecord
   has_many :research_fields
   has_many :researches, through: :research_fields
+  
+  before_save :clear_fields
 
   validates :name, presence: { message: "Nombre Interno no puede ir vacio" },
                    uniqueness: { case_sensitive: false, message: "Ya hay otra variable con el mismo Nombre Interno" }
   validates :label, presence: { message: "Etiqueta no puede ir vacia" },
                    uniqueness: { case_sensitive: false, message: "Ya hay otra variable con la misma Etiqueta" }
-  validates :field_type, presence: { message: "El Tipo de Variable no puede ir vacio" }  
+  validates :field_type, presence: { message: "El Tipo de Variable no puede ir vacio" }
   validates :validation_type, if: :requires_validation_type?, presence: { message: "Especifique un tipo de validación para la variable" }
 
   def requires_validation_type?
@@ -47,6 +49,12 @@ class Field < ApplicationRecord
       {'id': 'numeric', 'value': 'Numérico'},
       {'id': 'alphanumeric', 'value': 'Alfanumérico'}
     ]
+  end
+  
+  protected
+  def clear_fields
+    self.validation_type = nil if field_type != 'text_field'
+    self.values = nil if field_type != 'select'
   end
 
 end
