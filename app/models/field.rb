@@ -1,8 +1,8 @@
 class Field < ApplicationRecord
   has_many :research_fields
   has_many :researches, through: :research_fields
-  
-  before_save :clear_fields
+
+  before_save :evaluate_fields
 
   validates :name, presence: { message: "Nombre Interno no puede ir vacio" },
                    uniqueness: { case_sensitive: false, message: "Ya hay otra variable con el mismo Nombre Interno" }
@@ -50,11 +50,40 @@ class Field < ApplicationRecord
       {'id': 'alphanumeric', 'value': 'Alfanumérico'}
     ]
   end
-  
+
   protected
-  def clear_fields
+  def evaluate_fields
     self.validation_type = nil if field_type != 'text_field'
     self.values = nil if field_type != 'select'
+
+    if field_type == 'select' && !values.blank?
+      puts "*****************************************"
+      puts values
+
+      ids = []
+      vals = []
+
+      options = JSON.parse(values)
+      options.each do |opt|
+        analize(opt["id"], ids, true)
+        analize(opt["value"], vals, false)
+      end
+
+
+    end
+  end
+
+  def analize(value, array, regex)
+    error = false
+    
+    error = true if value.blank?
+    # continuar
+    
+    if error
+      puts value
+      errors.add(:field, "Las opciones deben de ser obligatorias, con ID unicos, solo minusculas y '_' (guion bajo) son permitidos. ")
+      throw :abort
+    end
   end
 
 end
