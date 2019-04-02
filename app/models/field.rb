@@ -87,7 +87,7 @@ class Field < ApplicationRecord
       raise 'Mandatory Error' if value.blank?
       raise 'Unique Error' if array.include?(value)
       if regex
-        if value =~ /^([a-z]+[_]?[a-z]+)+$/
+        if value =~ /^([a-z]+[_]?[a-z]+)+$/ || value =~ /^[0-9]{1,3}$/
           # do nothing
         else
           raise 'Regex Error'
@@ -99,7 +99,10 @@ class Field < ApplicationRecord
     end
 
     if error
-      errors.add(:field, "Las opciones del campo deben de ser obligatorias, con ID unicos, solo minusculas y '_' (guion bajo) son permitidos. ")
+      errors.add(:field, "Las opciones del campo deben de 
+      ser obligatorias,
+      con ID y Etiquetas unicos,
+      solo minusculas y '_' (guion bajo) ó solo numeros (maximo 3 digitos) son permitidos. ")
       throw :abort
     end
     array.push(value)
