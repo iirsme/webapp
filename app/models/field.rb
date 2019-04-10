@@ -39,7 +39,8 @@ class Field < ApplicationRecord
       {'id': 'text_field', 'value': 'Texto'},
       {'id': 'text_area', 'value': 'Area de Texto'},
       {'id': 'check_box', 'value': 'Si/No'},
-      {'id': 'select', 'value': 'Selector'}
+      {'id': 'select', 'value': 'Selector'},
+      {'id': 'multi_select', 'value': 'Selector Multiple'}
     ]
   end
 
@@ -63,9 +64,9 @@ class Field < ApplicationRecord
 
   def evaluate_type
     self.validation_type = nil if field_type != 'text_field'
-    self.values = nil if field_type != 'select'
+    self.values = nil unless (field_type == 'select' || field_type == 'multi_select')
 
-    if field_type == 'select' && !values.blank?
+    if (field_type == 'select' || field_type == 'multi_select') && !values.blank?
       puts "*****************************************"
       puts values
       puts "*****************************************"

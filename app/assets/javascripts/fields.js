@@ -87,7 +87,7 @@ function fieldFormLogic () {
   } else {
     $('.field-validation-section').hide();
   }
-  if (type === 'select') {
+  if (type === 'select' || type === 'multi_select') {
     $('.field-values-section').show();
   } else {
     $('.field-values-section').hide();
