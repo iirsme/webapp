@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= logged_in? === false ? 'login-body':'normal-body' %>">
     <%= render 'layouts/navigation' %>
   	<%= render 'layouts/messages' %>
     <%= yield %>

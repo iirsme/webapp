@@ -10,8 +10,22 @@ $blue-color: #428BCA;
   src: url(BebasNeue.otf) format("truetype");
 }
 
+
+
 /* BASICS */
-body {
+.login-body {
+  padding-top: 50px;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  background-color: $light-blue-color;
+  background-image: asset-url('image2.jpg'); // HERE
+  background-repeat: repeat-y;
+  background-position: top;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.normal-body {
   padding-top: 50px;
   font-family: "Poppins", sans-serif;
   height: 100vh;
@@ -48,7 +62,6 @@ body {
 .form-style:focus {
   border: 1.5px solid #39ace7; 
 }
-
 .label-padding {
   margin-top: 7px; 
 }
@@ -98,7 +111,7 @@ body {
   -webkit-background-clip: padding-box;
 }
 .login-logo {
-  background-image: asset-url('small_logo.jpg');
+  background-image: asset-url('small_logo.jpg'); // HERE
   margin-left: auto;
   margin-right: auto;
   height: 145px;
@@ -285,6 +298,10 @@ body {
 .navbar-brand-title:hover {
   text-decoration: none;
   color: white;
+}
+.navbar-brand-image { // HERE
+  height: 60px;
+  transform: scale(.8);
 }
 .navbar-right {
   font-size: 1.1em;
@@ -737,7 +754,7 @@ section .section-title {
   border: 2px dashed #dadada;
 }
 .img-1 {
-  background-image: asset-url('research-icon1.png');
+  background-image: asset-url('research-icon1.png'); // HERE
 }
 
 
