@@ -18,7 +18,7 @@ $blue-color: #428BCA;
   font-family: "Poppins", sans-serif;
   height: 100vh;
   background-color: $light-blue-color;
-  background-image: asset-url('image2.jpg'); // HERE
+  background-image: asset-url('full-image.jpg'); // HERE
   background-repeat: repeat-y;
   background-position: top;
   background-attachment: fixed;
@@ -300,7 +300,7 @@ $blue-color: #428BCA;
   color: white;
 }
 .navbar-brand-image { // HERE
-  height: 60px;
+  height: 65px;
   transform: scale(.8);
 }
 .navbar-right {
