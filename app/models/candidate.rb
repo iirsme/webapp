@@ -1,6 +1,9 @@
 class Candidate < ApplicationRecord
   attr_accessor :current_user # For Audit purposes
 
+  has_many :patients
+  has_many :researches, through: :patients
+
   before_save :clear_other_occupation
   after_create :insert_log
   before_update :update_log

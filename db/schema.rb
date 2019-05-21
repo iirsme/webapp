@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_145113) do
+ActiveRecord::Schema.define(version: 2019_05_21_041347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 2019_03_13_145113) do
     t.string "geoname_id", null: false
     t.string "name", null: false
     t.index ["geoname_id"], name: "index_geonames_on_geoname_id"
+  end
+
+  create_table "patients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "research_id", null: false
+    t.uuid "candidate_id", null: false
+    t.index ["candidate_id"], name: "index_patients_on_candidate_id"
+    t.index ["research_id", "candidate_id"], name: "index_patients_on_research_id_and_candidate_id", unique: true
+    t.index ["research_id"], name: "index_patients_on_research_id"
   end
 
   create_table "research_fields", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -151,6 +159,8 @@ ActiveRecord::Schema.define(version: 2019_03_13_145113) do
   end
 
   add_foreign_key "audits", "users"
+  add_foreign_key "patients", "candidates"
+  add_foreign_key "patients", "researches"
   add_foreign_key "research_fields", "fields"
   add_foreign_key "research_fields", "researches"
   add_foreign_key "research_fields", "tabs"

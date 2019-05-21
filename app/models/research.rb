@@ -6,6 +6,7 @@ class Research < ApplicationRecord
   has_many :tabs
   has_many :research_fields
   has_many :fields, through: :research_fields
+  has_many :patients
 
   validates :owner, presence: true # See es.yml for error message
   validates :name, presence: { message: "Nombre no puede ir vacio" }
