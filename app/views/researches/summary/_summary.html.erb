@@ -1,0 +1,47 @@
+	  <%= form_for(@research, :html => {role: "form-horizontal"}) do |el| %>
+	    <div class="form-group">
+	      <label class="col-xs-offset-0 col-xs-3 control-label" for="name">¿Protocolo listo?</label>
+	      <div class="col-xs-9 material-switch pull-right label-padding">
+	        <%= el.check_box :is_ready, id: :is_ready, class: 'form-control form-style' %>
+	        <label for="is_ready" class="label-primary"></label>
+	      </div>
+	    </div>
+	    <div class="spacer-50"></div>
+	    <div class="col-xs-offset-10 col-xs-2">
+	      <%= button_tag(type: :submit, class: "btn btn-md btn-primary") do %>
+	        <i class="glyphicon glyphicon-floppy-disk""></i> Guardar
+          <% end %>
+	    </div>
+	  <% end %>
+
+      <div class="spacer-50"></div>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr style="width:100%">
+            <th class="text-center" style="width:20%"> </th>
+            <th class="text-center" style="width:55%"> Paso </th>
+	        <th class="text-center" style="width:25%"> Estado </th>
+          </tr>
+	    </thead>
+        <tbody>
+          <% if !@summary.nil? %>
+            <% @summary.each_with_index do |s, idx| %>
+              <% step = idx + 1 %>
+              <% message = "" %>
+              <tr>
+                <td class="col-data-center"><%= step %></td>
+                <% if step == 1%>
+                  <% message = "Datos Generales" %>
+      	        <% elsif step == 2 %>
+      	          <% message = "Configuración de Solapas y Campos" %>
+      	        <% else %>
+      	          <% message = "Configuración de Usuarios" %>
+      	        <% end %>
+      	        <td><%= message %></td>
+      	        <td class="col-data-center"><i class='glyphicon glyphicon-<%= (s ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>

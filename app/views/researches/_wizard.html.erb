@@ -27,11 +27,11 @@
             <% end %>
           </li>
           <li role="presentation" class="wizard-step step4 <%= active_research_tab?(@research, @current_step, 4) %>">
-            <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Finalizar">
+            <%= link_to get_research_summary_path(research_id: @research.id), remote: true, title: "Finalizar" do %>
               <span class="round-tab">
                 <i class="fa fa-check"></i>
               </span>
-            </a>
+            <% end %>
           </li>
         </ul>
       </div>
@@ -57,6 +57,6 @@
         </div>
 
         <div role="tabpanel" id="step4" class="wizard-pane tab-pane <%= active_research_tab?(@research, @current_step, 4) %>">
-          <h1>PASO 4</h1>
+          <%= render 'researches/summary/form', obj: @research %>
         </div>
       </div>

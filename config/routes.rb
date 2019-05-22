@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :researches, except: [:index]
   post 'enter_research', to: 'researches#enter_research'
   get 'go_back_research', to: 'researches#back'
-  
+
   resources :candidates
   get 'get_audit', to: 'candidates#get_audit'
 
@@ -29,5 +29,7 @@ Rails.application.routes.draw do
   get 'delete_research_tab', to: 'tabs#delete_research_tab'
 
   get 'add_fields_to_tab', to: 'research_fields#add_fields'
+  
+  get 'get_research_summary', to: 'researches#get_summary'
 
 end

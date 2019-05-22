@@ -32,6 +32,14 @@ class ResearchesController < ApplicationController
     end
     redirect_to research_path(@research)
   end
+  
+  def get_summary
+    @research = Research.find(params[:research_id])
+    @summary = [true, true, false]
+    respond_to do |format|
+      format.js { render partial: 'researches/summary/get_summary', summary: @summary }
+    end
+  end
 
   def show
   end

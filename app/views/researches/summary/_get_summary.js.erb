@@ -1,0 +1,13 @@
+$('.step4').on ('ajax:success', function (event, data) {
+  $('.wizard-step').each(function(index, item) {
+    $(item).removeClass('active');
+  });
+  $('.step4').addClass('active');
+
+  $('.wizard-pane').each(function(index, item) {
+    $(item).removeClass('active');
+  });
+  $('#step4').addClass('active');
+
+  $('#research-summary').html("<%= j (render 'researches/summary/summary.html') %>");
+});
