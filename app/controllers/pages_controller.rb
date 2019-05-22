@@ -5,6 +5,6 @@ class PagesController < ApplicationController
       redirect_to login_path
       return
     end
-    @researches = Research.all
+    @researches = Research.order(:code).all
   end
 end

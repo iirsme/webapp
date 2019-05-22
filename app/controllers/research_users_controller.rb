@@ -2,6 +2,8 @@ class ResearchUsersController < ApplicationController
 
   def get_research_users
     research_id = params[:research_id]
+    @research = Research.find(params[:research_id])
+    @research.id? # Raise intentionally an error if nil
     @users = ResearchUser.all_research_users(research_id)
     respond_to do |format|
       format.js { render partial: 'research_users/get_users', users: @users }

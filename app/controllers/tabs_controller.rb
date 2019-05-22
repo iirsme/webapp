@@ -2,6 +2,8 @@ class TabsController < ApplicationController
 
   def get_research_tabs
     research_id = params[:research_id]
+    @research = Research.find(params[:research_id])
+    @research.id? # Raise intentionally an error if nil
     tabs = Tab.all_research_tabs(research_id)
     fields = Field.get_available_fields(research_id)
     @master_data = {:tabs => tabs, :fields => fields}

@@ -30,14 +30,24 @@ class ResearchesController < ApplicationController
         redirect_to home_path and return
       end
     end
-    redirect_to research_path(@research)
+
+    if @research.is_ready
+      redirect_to research_path(@research)
+    else
+      redirect_to edit_research_path(@research)
+    end
   end
-  
+
   def get_summary
     @research = Research.find(params[:research_id])
-    @summary = [true, true, false]
+    step1 = @research.id? #Raise intentionally an error if nil
+    step2 = @research.tabs.length > 0 && @research.fields.length > 0
+    step3 = @research.users.length > 0
+    @summary = [step1, step2, step3]
+    @ready = step1 && step2 && step3
+
     respond_to do |format|
-      format.js { render partial: 'researches/summary/get_summary', summary: @summary }
+      format.js { render partial: 'researches/summary/get_summary' }
     end
   end
 
@@ -68,12 +78,22 @@ class ResearchesController < ApplicationController
   def update
     @current_step = 1
     params = research_params
-    params.delete(:password) if params[:password] == Research::TEMP_PASSWORD
-    if @research.update(params)
-      redirect_to edit_research_path(@research)
+    is_ready = params[:is_ready]
+    if is_ready.blank?
+      params.delete(:password) if params[:password] == Research::TEMP_PASSWORD
+      if @research.update(params)
+        redirect_to edit_research_path(@research)
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      if @research.update(params) && ActiveModel::Type::Boolean.new.cast(is_ready) 
+        redirect_to research_path(@research)
+      else
+        render 'edit'
+      end
     end
+      
   end
   
   def back
@@ -95,7 +115,7 @@ class ResearchesController < ApplicationController
     @current_research = @research
   end
   def research_params
-    params.require(:research).permit(:code, :name, :description, :is_private, :password, :registration_code, :owner_id)
+    params.require(:research).permit(:code, :name, :description, :is_private, :password, :registration_code, :owner_id, :is_ready)
   end
 
 end
