@@ -18,7 +18,6 @@ $(document).on('ready turbolinks:load', function () {
       null,
       null,
       null,
-      { orderable: false },
       { orderable: false }
     ],
     language: {
