@@ -21,13 +21,15 @@ class ResearchesController < ApplicationController
     password = params["password_" + seq_no]
 
     @research = Research.find(id)
-    if @research.is_private
-      if !@research.correct_password?(password)
-        flash[:danger] = "Contraseña incorrecta"
-        redirect_to home_path and return
-      elsif !@research.authorized_user?(current_user)
-        flash[:danger] = "Acceso denegado, favor de contactar al administrador del protocolo"
-        redirect_to home_path and return
+    if !is_super_admin?
+      if @research.is_private
+        if !@research.correct_password?(password)
+          flash[:danger] = "Contraseña incorrecta"
+          redirect_to home_path and return
+        elsif !@research.authorized_user?(current_user)
+          flash[:danger] = "Acceso denegado, favor de contactar al administrador del protocolo"
+          redirect_to home_path and return
+        end
       end
     end
 
