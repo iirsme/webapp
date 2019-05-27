@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :current_view, :current_research, :logged_in?, :is_admin?, 
                 :current_step, :active_research_tab?,
-                :is_research_user?
+                :is_research_user?,
+                :is_super_admin?
 
   def current_view
     @current_view
@@ -22,6 +23,10 @@ class ApplicationController < ActionController::Base
   
   def is_admin?
     current_user.is_admin
+  end
+
+  def is_super_admin?
+    current_user.username == 'system.admin'
   end
 
   def require_user
@@ -46,6 +51,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_owner(research)
+    if is_super_admin?
+      return;
+    end
     if current_user.id != research.owner.id
       flash[:danger] = "Acción permitida solo para el propietario del Protocolo"
       redirect_to root_path
@@ -74,6 +82,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_research_user(research)
+    if is_super_admin?
+      return;
+    end
     if !is_research_user?(research)
       flash[:danger] = "Acción permitida solo para usuarios del Protocolo"
       redirect_to root_path

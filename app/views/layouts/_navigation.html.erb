@@ -75,7 +75,7 @@
       <% if @current_research %>
         <ul class="nav nav-sidebar">
           <%= link_to research_path(@current_research), class: "nav-sidebar-title" do %><%= @current_research.code %><% end %>
-          <% if @current_research.owner?(@current_research, current_user) %>
+          <% if @current_research.owner?(@current_research, current_user) || is_super_admin? %>
             <li class="<%= current_view === 'research-setup' ? 'active' : '' %> menu-item"><%= link_to edit_research_path(@current_research) do %> <span class="glyphicon glyphicon-cog"></span> Configuración <% end %></li>
           <% end %>
           <li class="menu-item"><a href="#"><span class="fa fa-heartbeat"></span> Pacientes </a></li>
