@@ -54,6 +54,7 @@ class ResearchesController < ApplicationController
   end
 
   def show
+    @available_candidates = Candidate.where("id NOT IN (SELECT candidate_id FROM patients WHERE research_id = ?)", @research.id).order(curp: :asc);
   end
 
   def new

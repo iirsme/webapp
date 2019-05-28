@@ -74,6 +74,10 @@ class Candidate < ApplicationRecord
     lastname = self.last_name1 + ' ' + self.last_name2 unless self.last_name2.blank?
   end
 
+  def get_identifier
+    ide = self.curp + ' - ' + self.name + ' ' + get_last_name
+  end
+
   def requires_occupation?
     occupation == 'Otro'
   end
