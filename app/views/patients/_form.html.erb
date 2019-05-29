@@ -1,0 +1,64 @@
+<%= render 'shared/errors', obj: @patient %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <%= form_for(@patient, :html => {role: "form"}) do |el| %>
+        <%= hidden_field_tag :research_id, @current_research.id %>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <span class="fa fa-id-card panel-form-icon"></span>Datos Generales
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-6 col-md-6">
+              	  <label>Candidato</label>
+                  <%= el.collection_select(:candidate_id, @available_candidates, :id, "#{:get_identifier}", { include_blank: true }, {class: 'form-control form-style'} ) %>
+                </div>
+              </div>
+
+              <div class="spacer-50"></div>
+              <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                  <div class="well well-sm well-primary">
+                    <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
+                      <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
+                        <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+                      <% end %>
+                      <%= link_to patients_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+                        <em class="fa fa-undo"></em> Atrás 
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <% if !@patient.new_record? %>
+        <div class="spacer-5"></div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseVisits" aria-expanded="true" aria-controls="collapseVisits">
+                <span class="fa fa-calendar panel-form-icon"></span> Visitas
+              </a>
+            </h4>
+          </div>
+          <div id="collapseVisits" class="panel-collapse collapse" role="tabpanel">
+            <div class="panel-body">
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

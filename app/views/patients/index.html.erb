@@ -36,7 +36,7 @@
                 <td class="col col-xs-1 col-data-left"> <%= patient.candidate.cell_phone %> </td>
                 <td class="col col-xs-1 col-data-left"> <%= patient.candidate.phone %> </td>
                 <td align="center">
-                  <%= link_to edit_patient_path(patient), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
+                  <%= link_to edit_patient_path(patient, research_id: @current_research), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
                   <%= link_to patient_path(patient, research_id: @current_research), data: {confirm: "¿Esta seguro que quiere eliminar este Paciente?"},
                                                class: "btn btn-default btn-action",
                                                method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>

@@ -96,7 +96,6 @@ class ResearchesController < ApplicationController
         render 'edit'
       end
     end
-      
   end
   
   def back
