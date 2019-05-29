@@ -22,14 +22,13 @@ Rails.application.routes.draw do
   get 'get_research_users', to: 'research_users#get_research_users'
   get 'add_research_user', to: 'research_users#add_research_user'
   get 'delete_research_user', to: 'research_users#delete_research_user'
-
   get 'get_research_tabs', to: 'tabs#get_research_tabs'
   get 'add_research_tab', to: 'tabs#add_research_tab'
   get 'update_research_tab', to: 'tabs#update_research_tab'
   get 'delete_research_tab', to: 'tabs#delete_research_tab'
-
   get 'add_fields_to_tab', to: 'research_fields#add_fields'
-  
   get 'get_research_summary', to: 'researches#get_summary'
+  
+  resources :patients
 
 end

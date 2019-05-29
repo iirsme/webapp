@@ -78,7 +78,8 @@
           <% if @current_research.owner?(@current_research, current_user) || is_super_admin? %>
             <li class="<%= current_view === 'research-setup' ? 'active' : '' %> menu-item"><%= link_to edit_research_path(@current_research) do %> <span class="glyphicon glyphicon-cog"></span> Configuración <% end %></li>
           <% end %>
-          <li class="menu-item"><a href="#"><span class="fa fa-heartbeat"></span> Pacientes </a></li>
+          <li class="<%= current_view === 'patients' ? 'active' : '' %> menu-item"><%= link_to patients_path(research_id: @current_research) do %> <span class="fa fa-heartbeat"></span> Pacientes <% end %></li>
+
           <li class="menu-item"><a href="#"><span class="fa fa-calendar"></span> Visitas </a></li>
           <li class="menu-item"><a href="#"><span class="fa fa-file"></span> Reporte </a></li>
         </ul>
