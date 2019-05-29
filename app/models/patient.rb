@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
   belongs_to :research
   belongs_to :candidate
+  has_many :appointments
   
   validates :candidate, presence: {message: "Candidato no puede ir vacio"},
                         uniqueness: { scope: :research, 

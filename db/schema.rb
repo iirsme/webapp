@@ -10,12 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_001335) do
+ActiveRecord::Schema.define(version: 2019_05_29_222924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "research_id", null: false
+    t.uuid "patient_id", null: false
+    t.decimal "appt_no"
+    t.date "appt_date", null: false
+    t.time "appt_time", null: false
+    t.string "status", null: false
+    t.text "notes"
+    t.jsonb "values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["research_id"], name: "index_appointments_on_research_id"
+  end
 
   create_table "audits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "record_id", null: false
@@ -159,6 +174,8 @@ ActiveRecord::Schema.define(version: 2019_05_22_001335) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "researches"
   add_foreign_key "audits", "users"
   add_foreign_key "patients", "candidates"
   add_foreign_key "patients", "researches"
