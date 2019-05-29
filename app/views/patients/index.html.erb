@@ -10,7 +10,7 @@
             <h3 class="panel-title"></h3>
           </div>
           <div class="col col-xs-6 text-right">
-            <%= link_to "Nuevo", new_patient_path, class: "btn btn-sm btn-primary btn-create" %>
+            <%= link_to "Nuevo", new_patient_path(research_id: @current_research), class: "btn btn-sm btn-primary btn-create" %>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
                 <td class="col col-xs-1 col-data-left"> <%= patient.candidate.phone %> </td>
                 <td align="center">
                   <%= link_to edit_patient_path(patient), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
-                  <%= link_to patient_path(patient), data: {confirm: "¿Esta seguro que quiere eliminar este Paciente?"},
+                  <%= link_to patient_path(patient, research_id: @current_research), data: {confirm: "¿Esta seguro que quiere eliminar este Paciente?"},
                                                class: "btn btn-default btn-action",
                                                method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
                 </td>
