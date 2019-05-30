@@ -79,9 +79,9 @@
             <li class="<%= current_view === 'research-setup' ? 'active' : '' %> menu-item"><%= link_to edit_research_path(@current_research) do %> <span class="glyphicon glyphicon-cog"></span> Configuración <% end %></li>
           <% end %>
           <li class="<%= current_view === 'patients' ? 'active' : '' %> menu-item"><%= link_to patients_path(research_id: @current_research) do %> <span class="fa fa-heartbeat"></span> Pacientes <% end %></li>
-
-          <li class="menu-item"><a href="#"><span class="fa fa-calendar"></span> Visitas </a></li>
-          <li class="menu-item"><a href="#"><span class="fa fa-file"></span> Reporte </a></li>
+          <li class="<%= current_view === 'appointments' ? 'active' : '' %> menu-item"><%= link_to appointments_path(research_id: @current_research) do %> <span class="fa fa-calendar"></span> Visitas <% end %></li>
+          
+          <!-- <li class="menu-item"><a href="#"><span class="fa fa-file"></span> Reporte </a></li> TODO: Will be a report menu? -->
         </ul>
       <% end %>
 

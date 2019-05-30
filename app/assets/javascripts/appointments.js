@@ -1,8 +1,8 @@
 $(document).on('ready turbolinks:load', function () {
-  var entity = 'paciente(s)';
+  var entity = 'visita(s)';
 
-  // Patients table
-  $('.patients-table').DataTable({
+  // Appointments table
+  $('.appointments-table').DataTable({
     retrieve: true,
     ordering: true,
     searching: true,
@@ -13,7 +13,7 @@ $(document).on('ready turbolinks:load', function () {
     },
     processing: true,
     paging: true,
-    lengthMenu: [10, 20, 50],
+    lengthMenu: [10, 20, 50, 100],
     columns: [
       null,
       null,

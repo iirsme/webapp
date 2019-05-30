@@ -28,10 +28,13 @@ Rails.application.routes.draw do
   get 'delete_research_tab', to: 'tabs#delete_research_tab'
   get 'add_fields_to_tab', to: 'research_fields#add_fields'
   get 'get_research_summary', to: 'researches#get_summary'
-  
+
   resources :patients
 
+  resources :appointments
   get 'add_patient_appointment', to: 'appointments#add_patient_appointment'
   get 'delete_patient_appointment', to: 'appointments#delete_patient_appointment'
+
+  get 'see_evaluation', to: 'evaluations#show'
 
 end

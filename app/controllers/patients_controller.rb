@@ -23,6 +23,8 @@ class PatientsController < ApplicationController
       flash[:success] = "Paciente agregado al protocolo satisfactoriamente"
     end
     redirect_to new_patient_path(@patient, research_id: @current_research)
+
+    # TODO: Fix/add errors management
   end
 
   def destroy
@@ -41,6 +43,8 @@ class PatientsController < ApplicationController
       flash[:success] = "Paciente actualizado satisfactoriamente"
     end
     redirect_to edit_patient_path(@patient, research_id: @current_research)
+
+    # TODO: Fix/add errors management
   end
   
 
