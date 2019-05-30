@@ -1,10 +1,11 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr style="width:100%">
-        <th class="text-center" style="width:10%"> No. </th>
-        <th class="text-center" style="width:25%"> Status </th>
-	    <th class="text-center" style="width:25%"> Fecha </th>
-	    <th class="text-center" style="width:25%"> Hora </th>
+        <th class="text-center" style="width:5%"> No. </th>
+        <th class="text-center" style="width:13%"> Status </th>
+	    <th class="text-center" style="width:11%"> Fecha </th>
+	    <th class="text-center" style="width:11%"> Hora </th>
+	    <th class="text-center" style="width:45%"> Notas </th>
 	    <th class="text-center" style="width:15%"> </th>
       </tr>
 	</thead>
@@ -17,7 +18,13 @@
       	    <td class="text-center"><%= appt.status %></td>
       	    <td class="text-center"><%= appt.appt_date.strftime("%d/%m/%Y") %></td>
       	    <td class="text-center"><%= appt.appt_time.strftime("%I:%M %p") %></td>
-      	    <td class="text-center"></td>
+      	    <td><%= appt.notes %></td>
+      	    <td class="text-center">
+              <%= link_to delete_patient_appointment_path(record: appt),
+                                                          data: {confirm: "¿Esta seguro que quiere eliminar esta Visita?"},
+                                                          class: "btn btn-default btn-action",
+                                                          remote: true do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+      	    </td>
           </tr>
         <% end %>
       <% end %>
