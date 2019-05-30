@@ -52,8 +52,63 @@
               </a>
             </h4>
           </div>
-          <div id="collapseVisits" class="panel-collapse collapse" role="tabpanel">
+          <div id="collapseVisits" class="panel-collapse collapse in" role="tabpanel">
             <div class="panel-body">
+              <div class="spacer-10"></div>
+
+              <%= form_tag add_patient_appointment_path, remote: true, method: :get, id: 'patient-appt-form', :html => {role: "form"} do %>
+                <div class="form-group row no-padding col-xs-12 col-md-12">
+                  <%= hidden_field_tag 'patient_id', @patient.id %>
+                  <%= hidden_field_tag 'research_id', @current_research.id %>
+
+                  <div class="row">
+                    <div class="col-xs-2 col-md-2">
+                      <label>Visita No.</label>
+                      <%= text_field_tag :appt_no, params[:appt_no], class: "form-control form-style" %>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                      <label>Status</label>
+                      <%= select_tag :status, options_for_select(['Pendiente', 'Agendada', 'Completada', 'Cancelada']),
+                          {:include_blank => true, :class =>'form-control form-style'} %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-3 col-md-3">
+                      <label>Fecha</label>
+                      <div class='input-group date' id='datepicker1'>
+                        <%= text_field_tag :appt_date, params[:appt_date], class: "form-control form-style", value: (Date.current.strftime("%d/%m/%Y")) %>
+                        <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                      <label>Hora</label>
+                      <%= time_field_tag :appt_time, params[:appt_time], {class: "form-control form-style" } %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-8 col-md-8">
+                      <label>Notas</label>
+                      <%= text_area_tag :notes, params[:notes], class: "form-control form-style" %>
+                    </div>
+                  </div>
+                  
+                  <div class="spacer-20"></div>
+
+                  <div class="row">
+			        <div class="col-xs-offset-10 col-md-offset-10 col-xs-2 col-md-2">
+				      <%= button_tag(type: :submit, class: "btn btn-primary btn-sm") do %>
+				        <i class="fa fa-plus"></i> Agregar Visita
+				      <% end %>
+			        </div>
+                  </div>
+                </div>
+              <% end %>
+
+              <div id='appts-list'>
+                <%= render 'appts_list' %>
+              </div>
             </div>
           </div>
         </div>

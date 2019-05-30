@@ -33,6 +33,7 @@ class PatientsController < ApplicationController
 
   def edit
     @available_candidates = Candidate.where("id NOT IN (SELECT candidate_id FROM patients WHERE research_id = ? AND candidate_id <> ?)", @current_research.id, @patient.candidate.id).order(curp: :asc);
+    @appts = Appointment.all_patient_appts(@patient.id)
   end
   
   def update
