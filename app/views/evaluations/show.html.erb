@@ -1,1 +1,15 @@
-<h1>Evaluacion</h1>
+<%= form_for @appointment do |apt| %>
+
+  <%= apt.fields_for :values, OpenStruct.new(@appointment.values) do |builder| %>
+    <% @appointment.research.fields.each_with_index do |field, index| %>
+      <% if index == 0 || (index > 0 && index % 3 == 0) %>
+        <div class="row">
+      <% end %>
+      <%= render "fields/builder/#{field.field_type}", field: field, f: builder %>
+      <% if index > 0 && index % 2 == 0 %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end%>

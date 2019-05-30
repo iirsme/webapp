@@ -17,6 +17,6 @@ class EvaluationsController < ApplicationController
     @current_research = Research.find(params[:research_id])
   end
   def set_appointment
-    @appoitment = Appointment.find(params[:id])
+    @appointment = Appointment.find(params[:id])
   end
 end

@@ -1,6 +1,7 @@
 class Appointment < ApplicationRecord
   belongs_to :research
   belongs_to :patient
+  serialize :values, Hash
   
   validates :appt_date, presence: { message: "Fecha no puede ir vacio." }
   validates :appt_time, presence: { message: "Hora no puede ir vacio." }

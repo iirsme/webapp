@@ -1,0 +1,7 @@
+<div class="col-xs-4 col-md-4">
+  <label class="control-label"><%= f.label field.label %></label>
+  <div class="col-xs-12 col-md-12 material-switch pull-right label-padding">
+    <%= f.check_box field.name, id: field.name, class: 'form-control form-style', disabled: false %>
+    <label for='<%= "#{field.name}" %>' class="label-primary"></label>
+  </div>
+</div>
