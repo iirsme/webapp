@@ -45,8 +45,16 @@ class AppointmentsController < ApplicationController
 
   def update
     @comesFrom = params[:comesFrom]
-    if @appointment.update(appointment_params)
-      redirect_to see_evaluation_path(id: @appointment, research_id: @current_research, comesFrom: @comesFrom)
+    is_evaluation = !appointment_params[:values].blank?
+    if is_evaluation
+      puts "*************** EVALUATION..."
+      if @appointment.update(appointment_params)
+        flash[:success] = "Evaluación guardada satisfactoriamente"
+        redirect_to see_evaluation_path(id: @appointment, research_id: @current_research, comesFrom: @comesFrom)
+      end
+    else
+      puts "*************** APPOINTMENT..."
+
     end
   end
 
