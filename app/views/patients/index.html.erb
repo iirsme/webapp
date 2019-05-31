@@ -20,8 +20,8 @@
           <thead>
             <tr>
               <th class="col col-xs-3 col-header">CURP</th>
-              <th class="col col-xs-2 col-header">Nombre</th>
-              <th class="col col-xs-3 col-header">Apellidos</th>
+              <th class="col col-xs-3 col-header">Nombre</th>
+              <th class="col col-xs-2 col-header">Email</th>
               <th class="col col-xs-1 col-header">Telefono</th>
               <th class="col col-xs-1 col-header">Celular</th>
               <th class="col col-xs-2 col-header"></th>
@@ -31,8 +31,8 @@
             <% @patients.each do |patient| %>
               <tr>
               	<td class="col col-xs-3 col-data-left"> <%= patient.candidate.curp %> </td>
-                <td class="col col-xs-2 col-data-left"> <%= patient.candidate.name %> </td>
-                <td class="col col-xs-3 col-data-left"> <%= patient.candidate.get_last_name %> </td>
+                <td class="col col-xs-3 col-data-left"> <%= "#{patient.candidate.name} #{patient.candidate.get_last_name}" %> </td>
+                <td class="col col-xs-2 col-data-left"> <%= patient.candidate.email %> </td>
                 <td class="col col-xs-1 col-data-left"> <%= patient.candidate.cell_phone %> </td>
                 <td class="col col-xs-1 col-data-left"> <%= patient.candidate.phone %> </td>
                 <td align="center">

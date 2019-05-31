@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_current_view
-  before_action :set_current_research, only: [:index, :edit, :create, :new, :update, :destroy]
+  before_action :set_current_research
   before_action :set_appointment, only: [:edit, :update, :destroy]
   before_action only: [:index, :edit, :create, :new, :update, :destroy] do
     require_research_user(@current_research)
@@ -34,7 +34,7 @@ class AppointmentsController < ApplicationController
   end
 
   def index
-    @appointments = Appointment.where(research_id: @current_research.id)
+    @appointments = Appointment.where(research_id: @current_research.id).order(appt_date: :asc, appt_time: :asc)
   end
 
   def new
