@@ -45,7 +45,7 @@
 
       <div class="tab-content">
         <div role="tabpanel" id="step1" class="wizard-pane tab-pane <%= active_research_tab?(@research, @current_step, 1) %>">
-          <%= render 'form', obj: @research %>
+          <%= render 'form', obj: @research, read_only: false %>
         </div>
 
         <div role="tabpanel" id="step2" class="wizard-pane tab-pane <%= active_research_tab?(@research, @current_step, 2) %>">

@@ -1,35 +1,91 @@
 <%= render 'shared/errors', obj: @research %>
 
-<div class="col-xs-12 col-xs-offset-0 col-md-12 col-md-offset-0">
-  <div class="row setup-content">
+<div class="spacer-30"></div>
+<div class="container col-xs-12">
+<div class="row">
+	
+  <div class="col-xs-6 col-md-6">
+    <div class="row setup-content">
+      <div class="col-xs-12 col-md-12">
+        <div class="col-xs-12 col-md-12 panel panel-default" id="step">
+          <div class="spacer-10"></div>
+          <h4 class="text-left"> Datos Generales </h4>
+          <div class="spacer-20"></div>
+          <div class="container col-xs-12">
+            <div class="row clearfix">
+              <%= render 'researches/form', obj: @current_research, read_only: true %>
+		    </div>
+	      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	
+  <div class="col-xs-6 col-xs-offset-0 col-md-6 col-md-offset-0">
+    <div class="row setup-content">
+      <div class="col-xs-12 col-md-12">
+        <div class="col-xs-12 col-md-12 panel panel-default" id="step">
+          <div class="spacer-10"></div>
+          <h4 class="text-left"> Ultimos pacientes agregados </h4>
+          <div class="spacer-20"></div>
+          <div class="container col-xs-12">
+            <div class="row clearfix">
+              <div class="col-md-12 column">
+<!--
+              <div id="research-users">
+                <%#= render 'research_users/users' %> TODO: Replace for last patients partial
+              </div>
+-->
+			    <table class="table table-bordered table-hover">
+  			      <thead>
+	  		        <tr style="width:100%">
+			          <th class="text-center" style="width:30%"> CURP </th>
+			          <th class="text-center" style="width:45%"> Nombre </th>
+			          <th class="text-center" style="width:10%"> Telefono </th>
+			          <th class="text-center" style="width:10%"> Celular </th>
+				      <th class="text-center" style="width:5%"> </th>
+			        </tr>
+				  </thead>
+			      <tbody>
+			      </tbody>
+			    </table>
+
+  			  </div>
+		    </div>
+	      </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="spacer-10"></div>
+    <div class="row setup-content">
     <div class="col-xs-12 col-md-12">
       <div class="col-xs-12 col-md-12 panel panel-default" id="step">
       	<div class="spacer-10"></div>
-      	<h4 class="text-center"> Pacientes del Protocolo </h4>
+      	<h4 class="text-left"> Próximas visitas </h4>
         <div class="spacer-20"></div>
         <div class="container col-xs-12">
           <div class="row clearfix">
             <div class="col-md-12 column">
-
-			  <%= form_tag add_research_user_path, remote: true, method: :get, class: "form-horizontal" do %>  <!-- TODO: Replace for add_patients_path -->
-			    <%= hidden_field_tag "p_research_id", @research.id %>
-			    <div class="form-group">
-			      <label class="col-xs-offset-0 col-xs-1 control-label" for="name">Candidato</label>
-			      <div class="col-xs-6">
-			        <%= collection_select(:patient, :candidate_id, @available_candidates, :id, "#{:get_identifier}", { include_blank: true }, {class: 'form-control form-style'} ) %> 
-			      </div>
-			      <div class="col-xs-2">
-			        <%= button_tag(type: :submit, class: "btn btn-md btn-primary") do %>
-			          <i class="fa fa-plus"></i> Agregar a pacientes
-			        <% end %>
-			      </div>
-			    </div>
-			  <% end %>
-
+<!--
               <div id="research-users">
-                <%= render 'research_users/users' %> <!-- TODO: Replace for patients partial -->
+                <%#= render 'research_users/users' %> TODO: Replace next visits partial
               </div>
-
+-->
+			  <table class="table table-bordered table-hover">
+			    <thead>
+			      <tr style="width:100%">
+			        <th class="text-center" style="width:30%"> CURP </th>
+			        <th class="text-center" style="width:25%"> Status </th>
+			        <th class="text-center" style="width:20%"> Fecha </th>
+			        <th class="text-center" style="width:20%"> Hora </th>
+				    <th class="text-center" style="width:5%"> </th>
+			      </tr>
+				</thead>
+			    <tbody>
+			    </tbody>
+			  </table>
+			  
 			</div>
 		    </div>
 	      </div>
@@ -37,4 +93,9 @@
       </div>
     </div>
   </div>
+  
+  
+</div>
+</div>
+
 
