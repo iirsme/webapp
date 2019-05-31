@@ -21,10 +21,11 @@ class PatientsController < ApplicationController
     @patient.research = @current_research
     if @patient.save
       flash[:success] = "Paciente agregado al protocolo satisfactoriamente"
+      redirect_to edit_patient_path(@patient, research_id: @current_research)
+    else
+      @available_candidates = Candidate.where("id NOT IN (SELECT candidate_id FROM patients WHERE research_id = ?)", @current_research.id).order(curp: :asc);
+      render 'new'  
     end
-    redirect_to new_patient_path(@patient, research_id: @current_research)
-
-    # TODO: Fix/add errors management
   end
 
   def destroy
@@ -42,9 +43,7 @@ class PatientsController < ApplicationController
     if @patient.update(patient_params)
       flash[:success] = "Paciente actualizado satisfactoriamente"
     end
-    redirect_to edit_patient_path(@patient, research_id: @current_research)
-
-    # TODO: Fix/add errors management
+    redirect_to edit_patient_path(@patient, research_id: @current_research) # TODO: Fix/add errors management
   end
   
 

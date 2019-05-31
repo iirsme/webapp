@@ -44,4 +44,9 @@ es:
           attributes:
             patient:
               required: "El Paciente no puede ir vacio"
+              
+        patient:
+          attributes:
+            candidate:
+              required: "El Candidato no puede ir vacio"
 
