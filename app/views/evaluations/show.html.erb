@@ -1,40 +1,72 @@
-<%= form_for @appointment do |apt| %>
+<div class="">
+  <h3 class="screen-header">Evaluación</h3>
+  <p class="spacer-30"></p>
+
+<%= render 'shared/errors', obj: @appointment %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <%= form_for(@appointment, :html => {role: "form"}) do |apt| %>
+        <%= hidden_field_tag("research_id", @current_research.id) %>
+        <%= apt.hidden_field(:research_id) %>
   
-  <%= hidden_field_tag("research_id", @current_research.id) %>
-  <%= apt.hidden_field(:research_id) %>
-  
-  <%= apt.fields_for :values, OpenStruct.new(@appointment.values) do |builder| %>
-    <% @appointment.research.fields.each_with_index do |field, index| %>
-      <% if index == 0 || (index > 0 && index % 3 == 0) %>
-        <div class="row">
-      <% end %>
-      <%= render "fields/builder/#{field.field_type}", field: field, f: builder %>
-      <% if index > 0 && index % 2 == 0 %>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-  
-  <div class="spacer-50"></div>
-  <div class="row">
-    <div class="col-xs-12 col-md-12 col-lg-12">
-      <div class="well well-sm well-primary">
-        <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
-          <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
-            <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
-          <% end %>
-          <% if @comesFrom == 'appointments' %>
-            <%= link_to appointments_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
-              <em class="fa fa-undo"></em> Atrás 
-            <% end %>
-          <% elsif @comesFrom == 'patient'%>
-            <%= link_to edit_patient_path(@appointment.patient, research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
-              <em class="fa fa-undo"></em> Atrás 
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+        <% @appointment.research.tabs.each_with_index do |tab, tab_idx| %>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href='#<%= "collapse#{tab_idx}" %>' aria-expanded="true" aria-controls='<%= "collapse#{tab_idx}" %>'>
+                  <%= tab.name %>
+                </a>
+              </h4>
+            </div>
+            
+            <div id='<%= "collapse#{tab_idx}" %>' class="panel-collapse collapse in" role="tabpanel">
+              <div class="panel-body">
+	            <%= apt.fields_for :values, OpenStruct.new(@appointment.values) do |builder| %>
+	              <% tab.get_fields.each_with_index do |rf, index| %>
+	                <% if index == 0 || (index > 0 && index % 3 == 0) %>
+                      <div class="row">
+	                <% end %>
+	                <%= render "fields/builder/#{rf.field.field_type}", field: rf.field, f: builder %>
+	                <% if index > 0 && index % 2 == 0 %>
+	                  </div>
+                    <% end %>
+	              <% end %>
+  	            <% end %>
+
+                <% if tab_idx == @appointment.research.tabs.count - 2 %>
+                  <div class="spacer-50"></div>
+                  <div class="row">
+                    <div class="col-xs-12 col-md-12 col-lg-12">
+			    	  <div class="well well-sm well-primary">
+				        <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
+				          <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
+				            <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+				          <% end %>
+  				          <% if @comesFrom == 'appointments' %>
+				            <%= link_to appointments_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+				              <em class="fa fa-undo"></em> Atrás 
+				            <% end %>
+				          <% elsif @comesFrom == 'patient'%>
+				            <%= link_to edit_patient_path(@appointment.patient, research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+				              <em class="fa fa-undo"></em> Atrás 
+				            <% end %>
+				          <% end %>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end%>
+
     </div>
   </div>
+</div>
 
-<% end%>
+</div>
