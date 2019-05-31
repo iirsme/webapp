@@ -39,4 +39,9 @@ es:
           attributes:
             owner:
               required: "El Propietario del Protocolo no puede ir vacio"
+              
+        appointment:
+          attributes:
+            patient:
+              required: "El Paciente no puede ir vacio"
 

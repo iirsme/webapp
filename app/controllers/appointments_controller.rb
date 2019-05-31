@@ -1,8 +1,8 @@
 class AppointmentsController < ApplicationController
   before_action :set_current_view
-  before_action :set_current_research, only: [:index, :edit, :new, :update, :destroy]
+  before_action :set_current_research, only: [:index, :edit, :create, :new, :update, :destroy]
   before_action :set_appointment, only: [:edit, :update, :destroy]
-  before_action only: [:index, :edit, :update, :destroy] do
+  before_action only: [:index, :edit, :create, :new, :update, :destroy] do
     require_research_user(@current_research)
   end
 
@@ -39,22 +39,45 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+    @comesFrom = params[:comesFrom]
     @appointment.research = @current_research
     @patients = Patient.all.order('candidate.curp ASC');
+  end
+
+  def create
+    @comesFrom = params[:comesFrom]
+    @appointment = Appointment.new(appointment_params)
+    if @appointment.save
+      flash[:success] = "Visita creada satisfactoriamente"
+      redirect_to appointments_path(research_id: @current_research.id)
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @comesFrom = params[:comesFrom]
   end
 
   def update
     @comesFrom = params[:comesFrom]
     is_evaluation = !appointment_params[:values].blank?
     if is_evaluation
-      puts "*************** EVALUATION..."
       if @appointment.update(appointment_params)
-        flash[:success] = "Evaluación guardada satisfactoriamente"
+        flash[:success] = "Evaluación actualizada satisfactoriamente"
         redirect_to see_evaluation_path(id: @appointment, research_id: @current_research, comesFrom: @comesFrom)
       end
     else
-      puts "*************** APPOINTMENT..."
-
+      if @appointment.update(appointment_params)
+        flash[:success] = "Visita actualizada satisfactoriamente"
+        if @comesFrom == "appointments"
+          redirect_to appointments_path(research_id: @current_research.id)
+        else
+          redirect_to edit_patient_path(@appointment.patient, research_id: @current_research.id)
+        end
+      else
+        render 'edit'
+      end
     end
   end
 

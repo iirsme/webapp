@@ -1,1 +1,88 @@
 <%= render 'shared/errors', obj: @appointment %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <%= form_for(@appointment, :html => {role: "form"}) do |el| %>
+        <%= hidden_field_tag("research_id", @current_research.id) %>
+        <%= hidden_field_tag("comesFrom", @comesFrom) %>
+        <%= el.hidden_field(:research_id) %>
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <span class="fa fa-id-card panel-form-icon"></span>Datos Generales
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-6 col-md-6">
+              	  <label>Paciente</label>
+                  <%= el.collection_select(:patient_id, Patient.get_patients_by_research(@current_research.id), :id, "#{:get_identifier}", { include_blank: true }, {class: 'form-control form-style'} ) %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-2 col-md-2">
+                  <label>Visita No.</label>
+                  <%= el.text_field :appt_no, value: (@appointment.appt_no.blank? ? nil : @appointment.appt_no.to_i), class: "form-control form-style" %>
+                </div>
+                <div class="col-xs-3 col-md-3">
+                  <label>Status</label>
+                  <%= el.select :status, ['Pendiente', 'Agendada', 'Completada', 'Cancelada'], {:include_blank => true}, {:class =>'form-control form-style'} %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3 col-md-3">
+                  <label>Fecha</label>
+                  <div class='input-group date' id='datepicker1'>
+                    <%= el.text_field :appt_date, class: "form-control form-style", 
+                                                  value: (!@appointment.appt_date.blank? ? @appointment.appt_date.strftime("%d/%m/%Y") : Date.current.strftime("%d/%m/%Y") ) %>
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-xs-3 col-md-3">
+                  <label>Hora</label>
+                  <%= el.time_field :appt_time, {class: "form-control form-style" } %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-8 col-md-8">
+                  <label>Notas</label>
+                  <%= el.text_area :notes, class: "form-control form-style" %>
+                </div>
+              </div>
+
+              <div class="spacer-50"></div>
+	            <div class="row">
+    	          <div class="col-xs-12 col-md-12 col-lg-12">
+        	        <div class="well well-sm well-primary">
+            	      <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
+	                    <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
+    	                  <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+        	            <% end %>
+		                <% if @comesFrom == 'appointments' %>
+				          <%= link_to appointments_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+				            <em class="fa fa-undo"></em> Atrás 
+				          <% end %>
+				        <% elsif @comesFrom == 'patient'%>
+				          <%= link_to edit_patient_path(@appointment.patient, research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+				            <em class="fa fa-undo"></em> Atrás 
+				          <% end %>
+				        <% end %>
+        	          </div>
+            	    </div>
+	              </div>
+    	        </div>
+            </div>
+          </div>
+        </div>
+      
+      <% end %>
+    </div>
+  </div>
+</div>
