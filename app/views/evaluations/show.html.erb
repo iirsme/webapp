@@ -11,7 +11,8 @@
         <%= hidden_field_tag("research_id", @current_research.id) %>
         <%= apt.hidden_field(:research_id) %>
   
-        <% @appointment.research.tabs.each_with_index do |tab, tab_idx| %>
+        <% tabs = @appointment.research.tabs %>
+        <% tabs.each_with_index do |tab, tab_idx| %>
           <div class="panel panel-default">
             <div class="panel-heading" role="tab">
               <h4 class="panel-title">
@@ -24,18 +25,19 @@
             <div id='<%= "collapse#{tab_idx}" %>' class="panel-collapse collapse in" role="tabpanel">
               <div class="panel-body">
 	            <%= apt.fields_for :values, OpenStruct.new(@appointment.values) do |builder| %>
-	              <% tab.get_fields.each_with_index do |rf, index| %>
+                  <% fields = tab.get_fields %>
+	              <% fields.each_with_index do |rf, index| %>
 	                <% if index == 0 || (index > 0 && index % 3 == 0) %>
                       <div class="row">
 	                <% end %>
 	                <%= render "fields/builder/#{rf.field.field_type}", field: rf.field, f: builder %>
-	                <% if index > 0 && index % 2 == 0 %>
+	                <% if (index > 0 && index % 2 == 0) || index == fields.count - 1 %>
 	                  </div>
                     <% end %>
 	              <% end %>
   	            <% end %>
 
-                <% if tab_idx == @appointment.research.tabs.count - 2 %>
+                <% if tab_idx == tabs.count - 1 %>
                   <div class="spacer-50"></div>
                   <div class="row">
                     <div class="col-xs-12 col-md-12 col-lg-12">
