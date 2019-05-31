@@ -1,5 +1,8 @@
 <%= form_for @appointment do |apt| %>
-
+  
+  <%= hidden_field_tag("research_id", @current_research.id) %>
+  <%= apt.hidden_field(:research_id) %>
+  
   <%= apt.fields_for :values, OpenStruct.new(@appointment.values) do |builder| %>
     <% @appointment.research.fields.each_with_index do |field, index| %>
       <% if index == 0 || (index > 0 && index % 3 == 0) %>
@@ -11,5 +14,27 @@
       <% end %>
     <% end %>
   <% end %>
+  
+  <div class="spacer-50"></div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12">
+      <div class="well well-sm well-primary">
+        <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
+          <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
+            <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+          <% end %>
+          <% if @comesFrom == 'appointments' %>
+            <%= link_to appointments_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+              <em class="fa fa-undo"></em> Atrás 
+            <% end %>
+          <% elsif @comesFrom == 'patient'%>
+            <%= link_to edit_patient_path(@appointment.patient, research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+              <em class="fa fa-undo"></em> Atrás 
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <% end%>

@@ -7,6 +7,7 @@ class EvaluationsController < ApplicationController
   end
 
   def show
+    @comesFrom = params[:comesFrom]
   end
 
   private

@@ -1,8 +1,8 @@
 class AppointmentsController < ApplicationController
   before_action :set_current_view
-  before_action :set_current_research, only: [:index, :edit, :new, :update, :show, :destroy]
-  before_action :set_appointment, only: [:edit, :update, :show, :destroy]
-  before_action only: [:index, :edit, :update, :show, :destroy] do
+  before_action :set_current_research, only: [:index, :edit, :new, :update, :destroy]
+  before_action :set_appointment, only: [:edit, :update, :destroy]
+  before_action only: [:index, :edit, :update, :destroy] do
     require_research_user(@current_research)
   end
 
@@ -43,6 +43,12 @@ class AppointmentsController < ApplicationController
     @patients = Patient.all.order('candidate.curp ASC');
   end
 
+  def update
+    if @appointment.update(appointment_params)
+      redirect_to see_evaluation_path(id: @appointment, research_id: @current_research)
+    end
+  end
+
   def destroy
     @appointment.destroy
     flash[:success] = "Visita eliminada satisfactoriamente del protocolo"
@@ -61,6 +67,6 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
   def appointment_params
-    params.require(:appointment).permit(:patient_id, :research_id, :appt_no, :status, :appt_date, :appt_time, :notes)
+    params.require(:appointment).permit(:patient_id, :research_id, :appt_no, :status, :appt_date, :appt_time, :notes, values: {})
   end
 end
