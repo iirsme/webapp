@@ -9,6 +9,7 @@
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <%= form_for(@appointment, :html => {role: "form"}) do |apt| %>
         <%= hidden_field_tag("research_id", @current_research.id) %>
+        <%= hidden_field_tag("comesFrom", @comesFrom) %>
         <%= apt.hidden_field(:research_id) %>
   
         <% tabs = @appointment.research.tabs %>

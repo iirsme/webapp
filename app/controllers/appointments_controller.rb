@@ -44,8 +44,9 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    @comesFrom = params[:comesFrom]
     if @appointment.update(appointment_params)
-      redirect_to see_evaluation_path(id: @appointment, research_id: @current_research)
+      redirect_to see_evaluation_path(id: @appointment, research_id: @current_research, comesFrom: @comesFrom)
     end
   end
 
