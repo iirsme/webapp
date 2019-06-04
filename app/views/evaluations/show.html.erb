@@ -22,23 +22,27 @@
                 </a>
               </h4>
             </div>
-            
+
             <div id='<%= "collapse#{tab_idx}" %>' class="panel-collapse collapse in" role="tabpanel">
               <div class="panel-body">
+
 	            <%= apt.fields_for :values, OpenStruct.new(@appointment.values) do |builder| %>
                   <% fields = tab.get_fields %>
 	              <% fields.each_with_index do |rf, index| %>
-	                <% if index == 0 || (index > 0 && index % 3 == 0) %>
+	                <% if index % 3 == 0 %>
+	                  <% if index > 0 %>
+                        </div>
+	                  <% end %>
                       <div class="row">
 	                <% end %>
 	                <%= render "fields/builder/#{rf.field.field_type}", field: rf.field, f: builder %>
-	                <% if (index > 0 && index % 2 == 0) || index == fields.count - 1 %>
-	                  </div>
-                    <% end %>
+                    <% if index == fields.count - 1 %>
+                      </div>
+	                <% end %>
 	              <% end %>
   	            <% end %>
 
-                <% if tab_idx == tabs.count - 1 %>
+  	            <% if tab_idx == tabs.count - 1 %>
                   <div class="spacer-50"></div>
                   <div class="row">
                     <div class="col-xs-12 col-md-12 col-lg-12">
@@ -62,8 +66,9 @@
 				  </div>
                 <% end %>
 
-              </div>
-            </div>
+  	          </div>
+			</div>     
+
           </div>
         <% end %>
       <% end%>
