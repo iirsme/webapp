@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_222924) do
+ActiveRecord::Schema.define(version: 2019_06_04_155100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_222924) do
 
   create_table "candidates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.decimal "seq_no", default: -> { "nextval('candidate_seq'::regclass)" }
-    t.string "curp", null: false
+    t.string "curp"
     t.string "name", null: false
     t.string "last_name1", null: false
     t.string "last_name2"
