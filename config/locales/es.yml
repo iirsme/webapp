@@ -4,6 +4,7 @@ es:
     seq_no: 'Folio'
     name: 'Nombre'
     curp: 'CURP'
+    hospital_record: 'Registro de Hospital'
     last_name1: 'Appellido Materno'
     last_name2: 'Appellido Paterno'
     birth_date: 'Fecha de Nacimiento'

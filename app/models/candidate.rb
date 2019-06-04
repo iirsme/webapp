@@ -11,6 +11,7 @@ class Candidate < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :curp, uniqueness: { case_sensitive: false, message: "Ya hay otro Candidato con el mismo CURP" }
+  validates :hospital_record, uniqueness: { case_sensitive: false, message: "Ya hay otro Candidato con el mismo Registro de Hospital" }
   validates :name, presence: { message: "Nombre no puede ir vacio" }
   validates :last_name1, presence: { message: "Al menos un Apellido debe de registrarse" }
   validates :birth_date, presence: { message: "Fecha de Nacimiento no puede ir vacio" }
@@ -73,8 +74,12 @@ class Candidate < ApplicationRecord
     lastname = self.last_name1 + ' ' + self.last_name2 unless self.last_name2.blank?
   end
 
+  def get_ide
+    num = self.curp.blank? ? self.hospital_record : self.curp
+  end
+
   def get_identifier
-    ide = self.curp + ' - ' + self.name + ' ' + get_last_name
+    identifier = get_ide + ' - ' + self.name + ' ' + get_last_name
   end
 
   def requires_occupation?

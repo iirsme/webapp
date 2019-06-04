@@ -8,7 +8,7 @@ class Patient < ApplicationRecord
                                       message: "Este Candidato ya es paciente de este Protocolo" }
 
   def get_identifier
-    ide = self.candidate.curp + ' - ' + self.candidate.name + ' ' + candidate.get_last_name
+    ide = self.candidate.get_identifier
   end
 
   def self.get_patients_by_research(research_id)
