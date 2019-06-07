@@ -922,10 +922,20 @@ span.round-tab:hover {
 .tab-hidden-actions {
   display: none;
 }
+.tabs-scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 50px;
+  height: 50px;
+}
 
 
 
 /* FIELDS */
+.panel-heading-empty {
+  max-height: 70px;
+  height: 70px;
+}
 .table-sortable tbody tr {
   cursor: move;
 }
@@ -934,12 +944,12 @@ span.round-tab:hover {
   cursor: -webkit-grabbing;
 }
 .scrollable {
-  overflow: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .fixed-height-250 {
   height: 230px;
 }
 .fixed-height-450 {
-  height: 440px;
+  height: 400px;
 }
