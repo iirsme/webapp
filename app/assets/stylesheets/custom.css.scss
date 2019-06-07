@@ -933,3 +933,13 @@ span.round-tab:hover {
   cursor: move;
   cursor: -webkit-grabbing;
 }
+.scrollable {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.fixed-height-250 {
+  height: 230px;
+}
+.fixed-height-450 {
+  height: 440px;
+}

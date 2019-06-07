@@ -62,13 +62,13 @@
                   </div>
                   <div class="container col-xs-12" style="position: relative; top: -120px;">
                   	<%= form_tag add_fields_to_tab_path, method: :get, remote: true, class: "tab_fields_form", id: "tab_fields_form_#{idx}" do %>
-                      <div class="row sortable-dataset tab_fields_table" id='research_fields_table_<%= "#{idx}" %>'>
+                      <div class="row sortable-dataset tab_fields_table scrollable fixed-height-250" id='research_fields_table_<%= "#{idx}" %>'>
                         <% tab.get_fields.each do |rf| %>
                           <div class="list-group-item col-md-4"> <%= hidden_field_tag "field_#{rf.field.id}", rf.field.id %> <%= "#{rf.field.full_label}" %> </div>
                         <% end %>
                       </div>
 
-                      <div class="container col-xs-12" style="position: relative; bottom: -125px; right: -25px">
+                      <div class="container col-xs-12" style="position: relative; bottom: -120px; right: -25px">
                         <%= hidden_field_tag "tab_field_idx_#{idx}", idx %>
                         <%= hidden_field_tag "tab_field_id_#{idx}", tab.id %>
                         <%= hidden_field_tag "tab_field_research_#{idx}", tab.research.id %>
@@ -95,7 +95,7 @@
             </div>
             <div class="row">
           	  <div class="col-xs-12 col-md-12">
-                <div id="available_fields_list" class="list-group sortable-dataset">
+                <div id="available_fields_list" class="list-group sortable-dataset scrollable fixed-height-450">
                   <% @master_data.fields.each_with_index do |field| %>
                     <div class="list-group-item"> <%= hidden_field_tag "field_#{field.id}", field.id %> <%= "#{field.full_label}" %> </div>
                   <% end %>
