@@ -49,6 +49,7 @@ class TabsController < ApplicationController
 
   def update_research_tab
     idx = ""
+    seq_modified = false
     params.each do |key, value|
       if key.start_with?("tab_idx_")
         idx = value
@@ -56,20 +57,44 @@ class TabsController < ApplicationController
     end
     tab_id = params["tab_id_#{idx}"]
     name = params["tab_name_#{idx}"]
+    seq = params["tab_seq_#{idx}"]
     research_id = params["tab_research_#{idx}"]
 
-    if name.blank?
-      @title = "El nombre de una Solapa es obligatorio"
-      @is_error = true
-      respond_to do |format|
-        format.js { render partial: 'researches/wizard/messages'}
+    @tab = Tab.where(id: tab_id).first
+    if !name.blank?
+      @tab.name = name
+    end
+    if !seq.blank? && is_number?(seq)
+      seq = seq.to_i
+      tabs_num = Tab.all_research_tabs(research_id).count
+      if seq > 0 && seq <= tabs_num
+        seq_modified = true
+        @tab.seq_no = seq
+      else
+        @title = "La nueva posición debe de estar entre 1 y #{tabs_num}"
+        @is_error = true
+        respond_to do |format|
+          format.js { render partial: 'researches/wizard/messages'}
+        end
+        return
       end
-      return
     end
 
-    @tab = Tab.where(id: tab_id).first
-    @tab.name = name
     if @tab.save
+      if seq_modified
+        research_tabs = Tab.where("id <> ? AND research_id = ?", tab_id, research_id).order(seq_no: :asc)
+        new_seq = 1
+        research_tabs.each do |t|
+          if new_seq != seq
+            t.seq_no = new_seq
+          elsif new_seq == seq
+            new_seq = new_seq + 1
+            t.seq_no = new_seq
+          end
+          t.save
+          new_seq = new_seq + 1
+        end
+      end
       tabs = Tab.all_research_tabs(research_id)
       fields = Field.get_available_fields(research_id)
       @master_data = {:tabs => tabs, :fields => fields}

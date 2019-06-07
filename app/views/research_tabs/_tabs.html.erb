@@ -34,7 +34,12 @@
                               <%= hidden_field_tag "tab_idx_#{idx}", idx %>
                               <%= hidden_field_tag "tab_id_#{idx}", tab.id %>
                               <%= hidden_field_tag "tab_research_#{idx}", tab.research.id %>
-                              <%= text_field_tag("tab_name_#{idx}", nil, class: "form-control form-style input-sm") %>
+                              <div class="col-xs-7">
+                                <%= text_field_tag("tab_name_#{idx}", nil, class: "form-control form-style input-sm", placeholder: "Nombre") %>
+                              </div>
+                              <div class="col-xs-3">
+                                <%= text_field_tag("tab_seq_#{idx}", nil, class: "form-control form-style input-sm", placeholder: "Posición") %>
+                              </div>
                             </div>
 			              <% end %>
 			            </div>
