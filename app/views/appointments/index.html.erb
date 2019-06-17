@@ -42,10 +42,10 @@
                 <td class="col col-xs-1 col-data-center"> <%= appt.appt_date.strftime("%d/%m/%Y") %> </td>
                 <td class="col col-xs-1 col-data-center"> <%= appt.appt_time.strftime("%I:%M %p") %> </td>
                 <td align="center">
-                  <%= link_to see_evaluation_path(id: appt, research_id: @current_research, comesFrom: "appointments"), class: "btn btn-default btn-action" do %> <em class="fa fa-clipboard"></em> <% end %>
-                  <%= link_to edit_appointment_path(appt, research_id: @current_research, comesFrom: "appointments"), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
+                  <%= link_to see_evaluation_path(id: appt, research_id: @current_research, comesFrom: "appointments"), class: "btn-action" do %> <em class="fa fa-clipboard"></em> <% end %>
+                  <%= link_to edit_appointment_path(appt, research_id: @current_research, comesFrom: "appointments"), class: "btn-action " do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
                   <%= link_to appointment_path(appt, research_id: @current_research), data: {confirm: "¿Esta seguro que quiere eliminar esta Visita?"},
-                                           class: "btn btn-default btn-action",
+                                           class: "btn-action",
                                            method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
                 </td>
               </tr>

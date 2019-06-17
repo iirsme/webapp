@@ -19,26 +19,26 @@
         <table class="table table-striped table-bordered table-list users-table">
           <thead>
             <tr>
-              <th class="col col-xs-2 col-header">Usuario</th>
+              <th class="col col-xs-3 col-header">Usuario</th>
               <th class="col col-xs-3 col-header">Email</th>
               <th class="col col-xs-2 col-header">Nombre</th>
               <th class="col col-xs-2 col-header">Apellidos</th>
               <th class="col col-xs-1 col-header">Administrador</th>
-              <th class="col col-xs-2 col-header"></th>
+              <th class="col col-xs-1 col-header"></th>
             </tr> 
           </thead>
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td class="col col-xs-2 col-data-left"> <%= user.username %> </td>
+                <td class="col col-xs-3 col-data-left"> <%= user.username %> </td>
                 <td class="col col-xs-3 col-data-left"> <%= user.email %> </td>
                 <td class="col col-xs-2 col-data-left"> <%= user.firstname %> </td>
                 <td class="col col-xs-2 col-data-left"> <%= user.lastname %> </td>
                 <td class="col col-xs-1 col-data-center"><i class='glyphicon glyphicon-<%= (user.is_admin ? 'ok txt-green' : 'remove txt-red') %>'></i></td>
                 <td align="center">
-                  <%= link_to edit_user_path(user), class: "btn btn-default btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
+                  <%= link_to edit_user_path(user), class: "btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
                   <%= link_to user_path(user), data: {confirm: "¿Esta seguro que quiere eliminar este Usurio?"},
-                                               class: "btn btn-default btn-action",
+                                               class: "btn-action",
                                                method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
                 </td>
               </tr>
