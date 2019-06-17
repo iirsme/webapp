@@ -38,6 +38,9 @@ class CandidatesController < ApplicationController
     @candidate.destroy
     flash[:success] = "Candidato eliminado satisfactoriamente"
     redirect_to candidates_path
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:danger] = "Este candidato no puede ser eliminado ya que es Paciente de 1 o más Protocolos"
+    redirect_to candidates_path
   end
 
   def edit

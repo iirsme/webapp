@@ -32,6 +32,9 @@ class PatientsController < ApplicationController
     @patient.destroy
     flash[:success] = "Paciente eliminado satisfactoriamente del protocolo"
     redirect_to patients_path(research_id: @current_research)
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:danger] = "Este paciente no puede ser eliminado ya que contiene 1 o más Visitas"
+    redirect_to patients_path(research_id: @current_research)
   end
 
   def edit

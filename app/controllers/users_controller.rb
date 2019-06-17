@@ -35,6 +35,9 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "Usuario eliminado satisfactoriamente"
     redirect_to users_path
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:danger] = "Este usuario no puede ser eliminado ya que pertenece a 1 o más Protocolos"
+    redirect_to users_path
   end
 
   def edit

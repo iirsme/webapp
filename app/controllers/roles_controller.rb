@@ -30,6 +30,9 @@ class RolesController < ApplicationController
     @role.destroy
     flash[:success] = "Rol eliminado satisfactoriamente"
     redirect_to roles_path
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:danger] = "Este rol no puede ser eliminado ya que es usado por 1 o más Usuarios"
+    redirect_to roles_path
   end
 
   def edit

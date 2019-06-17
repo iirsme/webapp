@@ -30,6 +30,9 @@ class FieldsController < ApplicationController
     @field.destroy
     flash[:success] = "Variable eliminada satisfactoriamente"
     redirect_to fields_path
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:danger] = "Esta variable no puede ser eliminada ya que está siendo utilizada en 1 o más Protocolos"
+    redirect_to fields_path
   end
 
   def edit
