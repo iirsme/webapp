@@ -24,11 +24,11 @@
                           <%= form_tag update_research_tab_path, method: :get, remote: true, class: "form-horizontal pull-right", id: "tab_form_#{idx}" do %>
                             <div class="col-xs-12">
                               <%= link_to "javascript: tabActionsLogic(#{idx}, false)", title: "Deshacer cambios", id: "tab_undo_#{idx}" do %>
-                                <i class="btn btn-default btn-action pull-right">
+                                <i class="btn btn-default pull-right">
                                   <i class="glyphicon glyphicon-repeat"></i>
                                 </i>
                               <% end %>                            	
-                              <%= button_tag(type: :submit, class: "btn btn-default btn-action pull-right", title: 'Guardar Cambios') do %>
+                              <%= button_tag(type: :submit, class: "btn btn-default pull-right", title: 'Guardar Cambios') do %>
   			                    <i class="glyphicon glyphicon-ok"></i>
 			                  <% end %>
                               <%= hidden_field_tag "tab_idx_#{idx}", idx %>
@@ -50,12 +50,12 @@
                                      remote: true,
                                      data: {confirm: "¿Esta seguro que quiere eliminar esta solapa? Tambien se eliminarán todos los campos contenidos en ella."},
                                      title: "Eliminar Solapa" do %>
-                           <i class="btn btn-default btn-action pull-right">
+                           <i class="btn btn-default pull-right">
                              <i class="glyphicon glyphicon-trash"></i>
                            </i>
                          <% end %>
                          <%= link_to "javascript: tabActionsLogic(#{idx}, true)", title: "Editar Solapa", id: "tab_edit_#{idx}" do %>
-                           <i class="btn btn-default btn-action pull-right">
+                           <i class="btn btn-default pull-right">
                              <i class="glyphicon glyphicon-pencil"></i>
                            </i>
                          <% end %>
@@ -69,7 +69,11 @@
                   	<%= form_tag add_fields_to_tab_path, method: :get, remote: true, class: "tab_fields_form", id: "tab_fields_form_#{idx}" do %>
                       <div class="row sortable-dataset tab_fields_table scrollable fixed-height-250" id='research_fields_table_<%= "#{idx}" %>'>
                         <% tab.get_fields.each do |rf| %>
-                          <div class="list-group-item col-md-4"> <%= hidden_field_tag "field_#{rf.field.id}", rf.field.id %> <%= "#{rf.field.full_label}" %> </div>
+                          <% if rf.field.blank? %>
+                            <div class="list-group-item col-md-12 tab-subtitle"> <%= hidden_field_tag "field_#{rf.id}", rf.id %> <%= "Ejemplo de Subtitulo" %> </div>  <!-- "#{rf.subtitle_label}" -->
+                          <% else %>
+                            <div class="list-group-item col-md-4 tab-field"> <%= hidden_field_tag "field_#{rf.field.id}", rf.field.id %> <%= "#{rf.field.full_label}" %> </div>
+                          <% end %>
                         <% end %>
                       </div>
 

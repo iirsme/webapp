@@ -64,7 +64,9 @@ class Research < ApplicationRecord
   def get_fields_as_array
     fields = []
     get_fields.each do |rf|
-      fields.push(rf.field.id)
+      if !rf.field.blank?
+        fields.push(rf.field.id)
+      end
     end
     return fields
   end

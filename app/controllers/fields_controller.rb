@@ -55,7 +55,6 @@ class FieldsController < ApplicationController
       @field = Field.find(params[:id])
     end
     def field_params
-      puts "************* #{params}"
       params.require(:field).permit(:name, :label, :field_type, :validation_type, :description, :unit_of_measure, :values)
     end
 
