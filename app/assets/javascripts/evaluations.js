@@ -10,7 +10,7 @@ $(document).on('ready turbolinks:load', function () {
     allSelectedText: 'Todos seleccionados...',
     numberDisplayed: 0,
     templates: {
-      ul: '<ul class="multiselect-container col-xs-12 col-md-12 dropdown-menu" style="font-size: smaller; max-height: 350px; overflow: auto auto;"></ul>'
+      ul: '<ul class="multiselect-container col-xs-12 col-md-12 dropdown-menu" style="font-size: smaller; max-height: 350px; overflow: auto auto !important;"></ul>'
     }
   });
 });
