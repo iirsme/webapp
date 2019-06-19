@@ -1,4 +1,4 @@
 <div class="col-xs-4 col-md-4">
   <label><%= field.full_label %></label>
-  <%= f.select field.name, JSON.parse(field.values).collect {|opt| [opt['value'], opt['id']]}, {include_blank: false}, multiple: true, class: 'form-control', disabled: false %>
+  <%= f.select field.name, JSON.parse(field.values).collect {|opt| [opt['value'], opt['id']]}, {include_blank: false}, multiple: true, class: 'multi_select form-control', disabled: false %>
 </div>
