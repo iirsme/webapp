@@ -28,17 +28,40 @@
 
 	            <%= apt.fields_for :values, OpenStruct.new(@appointment.values) do |builder| %>
                   <% fields = tab.get_fields %>
+                  <% field_idx = 0 %>
 	              <% fields.each_with_index do |rf, index| %>
-	                <% if index % 3 == 0 %>
-	                  <% if index > 0 %>
+
+	                <% if !rf.field.nil? %>
+	                  <% field_idx = field_idx + 1 %>
+	                  <% if field_idx == 1 %>
+	                    <div class="row">
+                      <% end %>
+	                  <%= render "fields/builder/#{rf.field.field_type}", field: rf.field, f: builder %>
+	                  <% if field_idx == 3 %>
                         </div>
+                        <% field_idx = 0 %>
 	                  <% end %>
-                      <div class="row">
-	                <% end %>
-	                <%= render "fields/builder/#{rf.field.field_type}", field: rf.field, f: builder %>
-                    <% if index == fields.count - 1 %>
+	                <% else %>
+	                  <% if field_idx > 0 %>
+	                    </div>
+	                    <% field_idx = 0 %>
+	                  <% end %>
+                      <div class="spacer-30"></div>
+	                  <div class="row">
+                        <div class="col-md-12">
+                          <h4 class="" style="font-weight: bold">Ejemplo de Subtitulo</h4> <!-- "#{rf.subtitle_level}" -->
+                        </div>
                       </div>
-	                <% end %>
+                      <div class="spacer-10"></div>
+                    <% end %>
+
+                    <% if index == fields.count - 1 %>
+	                  <% if field_idx > 0 %>
+	                    </div>
+	                    <% field_idx = 0 %>
+	                  <% end %>
+                    <% end %>
+
 	              <% end %>
   	            <% end %>
 
