@@ -940,14 +940,20 @@ span.round-tab:hover {
   font-size: smaller;
   font-weight: normal;
   overflow: hidden;
-  max-width: 33.33%;
+  height: 38px;
   max-height: 38px;
+}
+.row-triplet {
+  max-width: 33.33%;
 }
 .tab-subtitle {
   font-size: 15px;
   font-weight: bold;
   overflow: hidden;
   max-height: 38px;
+}
+.panel-tabs-setup {
+  height: 450px;
 }
 
 

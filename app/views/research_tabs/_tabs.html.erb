@@ -11,13 +11,13 @@
             <% end %>
 	      </ul>
 	    </div>
-	    <div class="panel-body">
+	    <div class="panel-body panel-tabs-setup">
           <div class="tab-content">
             <% if !@master_data.nil? && !@master_data.tabs.nil? %>
 	          <% @master_data.tabs.each_with_index do |tab, idx| %>
                 <div class="tab-pane fade <%= idx == 0 ? 'in active' : '' %>" id="tab<%= idx.to_s %>">
-                  <div class= "panel-heading">
-                  	<h4 class=="panel-title">
+                  <div class="panel-heading">
+                  	<h4 class="panel-titlee">
                       <div style="position: relative; top: -95px; right: -25px">
 
                         <div class="row tab-hidden-actions tab_hidden_actions_<%= "#{idx}" %> ">
@@ -70,9 +70,9 @@
                       <div class="row sortable-dataset tab_fields_table scrollable fixed-height-250" id='research_fields_table_<%= "#{idx}" %>'>
                         <% tab.get_fields.each do |rf| %>
                           <% if rf.field.blank? %>
-                            <div class="list-group-item col-md-12 tab-subtitle"> <%= hidden_field_tag "field_#{rf.id}", rf.id %> <%= "#{rf.subtitle_label}" %> </div>  <!-- "#{rf.subtitle_label}" -->
+                            <div class="list-group-item col-md-12 tab-subtitle"> <%= hidden_field_tag "field_#{rf.id}", rf.id %> <%= "#{rf.subtitle_label}" %> </div>
                           <% else %>
-                            <div class="list-group-item col-md-4 tab-field"> <%= hidden_field_tag "field_#{rf.field.id}", rf.field.id %> <%= "#{rf.field.full_label}" %> </div>
+                            <div class="list-group-item col-md-4 tab-field row-triplet"> <%= hidden_field_tag "field_#{rf.field.id}", rf.field.id %> <%= "#{rf.field.full_label}" %> </div>
                           <% end %>
                         <% end %>
                       </div>
@@ -94,26 +94,50 @@
         </div>
 	  </div>
     </div>
+    
+    
     <div class="col-xs-4 col-md-4">
       <div class="panel with-nav-tabs panel-default">
-	    <div class="panel-heading panel-heading-empty">
+	    <div class="panel-heading">
+	      <ul class="nav nav-tabs tabs-scrollable">
+            <li class="active"><a href="#available_fields" data-toggle="tab"> Variables </a></li>
+            <li class="inactive"><a href="#available_labels" data-toggle="tab"> Subtitulos </a></li>
+	      </ul>
 	    </div>
-        <div class="panel-body">
-          <% if !@master_data.nil? && !@master_data.fields.nil? %>
-            <div class="row">
-            </div>
-            <div class="row">
-          	  <div class="col-xs-12 col-md-12">
-                <div id="available_fields_list" class="list-group sortable-dataset scrollable fixed-height-450">
-                  <% @master_data.fields.each_with_index do |field| %>
-                    <div class="list-group-item"> <%= hidden_field_tag "field_#{field.id}", field.id %> <%= "#{field.full_label}" %> </div>
-                  <% end %>
-                </div>
+        <div class="panel-body panel-tabs-setup">
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="available_fields">
+              <div class="panel-heading">
+                <div style="position: relative; top: -65px;">
+                  <% if !@master_data.nil? && !@master_data.fields.nil? %>
+                    <div class="row">
+                    </div>
+  	                <div class="row">
+                      <div class="col-xs-12 col-md-12">
+            	        <div id="available_fields_list" class="list-group sortable-dataset scrollable fixed-height-450">
+	                      <% @master_data.fields.each_with_index do |field| %>
+    	                    <div class="list-group-item tab-field"> <%= hidden_field_tag "field_#{field.id}", field.id %> <%= "#{field.full_label}" %> </div>
+	                      <% end %>
+    	                </div>
+	                  </div>
+    	            </div>
+        	      <% end %>
+        	    </div>
               </div>
             </div>
-          <% end %>
+            
+            <div class="tab-pane fade in" id="available_labels">
+              <div class="panel-heading">
+              	<div style="position: relative; top: -65px;">
+              	</div>
+              </div>
+            </div>
+            
+          </div>
         </div>
 	  </div>
     </div>
+    
+    
   </div>
 </div>
