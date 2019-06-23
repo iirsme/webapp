@@ -70,7 +70,7 @@
                       <div class="row sortable-dataset tab_fields_table scrollable fixed-height-250" id='research_fields_table_<%= "#{idx}" %>'>
                         <% tab.get_fields.each do |rf| %>
                           <% if rf.field.blank? %>
-                            <div class="list-group-item col-md-12 tab-subtitle"> <%= hidden_field_tag "field_#{rf.id}", rf.id %> <%= "Ejemplo de Subtitulo" %> </div>  <!-- "#{rf.subtitle_label}" -->
+                            <div class="list-group-item col-md-12 tab-subtitle"> <%= hidden_field_tag "field_#{rf.id}", rf.id %> <%= "#{rf.subtitle_label}" %> </div>  <!-- "#{rf.subtitle_label}" -->
                           <% else %>
                             <div class="list-group-item col-md-4 tab-field"> <%= hidden_field_tag "field_#{rf.field.id}", rf.field.id %> <%= "#{rf.field.full_label}" %> </div>
                           <% end %>
