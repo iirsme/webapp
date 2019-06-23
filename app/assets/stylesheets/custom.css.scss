@@ -946,6 +946,8 @@ span.round-tab:hover {
 .tab-subtitle {
   font-size: 15px;
   font-weight: bold;
+  overflow: hidden;
+  max-height: 38px;
 }
 
 
