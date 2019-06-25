@@ -12,7 +12,7 @@
         <%= hidden_field_tag("comesFrom", @comesFrom) %>
         <%= apt.hidden_field(:research_id) %>
   
-        <% tabs = @appointment.research.tabs %>
+        <% tabs = Tab.all_research_tabs(@appointment.research.id) %>
         <% tabs.each_with_index do |tab, tab_idx| %>
           <div class="panel panel-default">
             <div class="panel-heading" role="tab">
