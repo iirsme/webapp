@@ -9,9 +9,21 @@ function createSortableLists () {
     sort: false,
     onAdd: function (evt) {
       var item = $(evt.item);
-      if (item.hasClass('col-md-4')) {
-        item.removeClass('col-md-4');
-      }
+      item.removeClass('col-md-4');
+      item.removeClass('row-triplet')
+      item.removeClass('tab-subtitle');
+    }
+  });
+  
+  Sortable.create($('#available_labels_list')[0], {
+    group: "research_fields",
+    animation: 200,
+    sort: false,
+    onAdd: function (evt) {
+      var item = $(evt.item);
+      item.removeClass('col-md-4');
+      item.removeClass('row-triplet')
+      item.removeClass('tab-subtitle');
     }
   });
 
@@ -22,9 +34,12 @@ function createSortableLists () {
       animation: 200,
       sort: true,
       onAdd: function (evt) {
-        var item = $(evt.item); 
-        if (!item.hasClass('col-md-4')) {
+        var item = $(evt.item);
+        if (item.hasClass('tab-field')) {
           item.addClass('col-md-4');
+        } else if (item.hasClass('tab-label')) {
+          item.addClass('col-md-12');
+          item.addClass('tab-subtitle');
         }
       }
     });

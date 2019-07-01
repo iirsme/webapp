@@ -6,7 +6,8 @@ class TabsController < ApplicationController
     @research.id? # Raise intentionally an error if nil
     tabs = Tab.all_research_tabs(research_id)
     fields = Field.get_available_fields(research_id)
-    @master_data = {:tabs => tabs, :fields => fields}
+    labels = ResearchField.get_available_labels(research_id)
+    @master_data = {:tabs => tabs, :fields => fields, :labels => labels}
 
     respond_to do |format|
       format.js { render partial: 'research_tabs/get_research_tabs'}
@@ -30,7 +31,8 @@ class TabsController < ApplicationController
     if @tab.save
       tabs = Tab.all_research_tabs(research_id)
       fields = Field.get_available_fields(research_id)
-      @master_data = {:tabs => tabs, :fields => fields}
+      labels = ResearchField.get_available_labels(research_id)
+      @master_data = {:tabs => tabs, :fields => fields, :labels => labels}
       @title = "Solapa creada exitosamente"
       @is_error = false
       respond_to do |format|
@@ -97,7 +99,8 @@ class TabsController < ApplicationController
       end
       tabs = Tab.all_research_tabs(research_id)
       fields = Field.get_available_fields(research_id)
-      @master_data = {:tabs => tabs, :fields => fields}
+      labels = ResearchField.get_available_labels(research_id)
+      @master_data = {:tabs => tabs, :fields => fields, :labels => labels}
       respond_to do |format|
         format.js { render partial: 'research_tabs/refresh_research_tabs'}
       end
@@ -119,7 +122,8 @@ class TabsController < ApplicationController
     
     tabs = Tab.all_research_tabs(research_id)
     fields = Field.get_available_fields(research_id)
-    @master_data = {:tabs => tabs, :fields => fields}
+    labels = ResearchField.get_available_labels(research_id)
+    @master_data = {:tabs => tabs, :fields => fields, :labels => labels}
     @title = "Solapa eliminada exitosamente"
     @is_error = false
     respond_to do |format|

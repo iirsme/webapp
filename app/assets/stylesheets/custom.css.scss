@@ -943,6 +943,13 @@ span.round-tab:hover {
   height: 38px;
   max-height: 38px;
 }
+.tab-label {
+  font-size: smaller;
+  font-weight: normal;
+  overflow: hidden;
+  height: 38px;
+  max-height: 38px;
+}
 .row-triplet {
   max-width: 33.33%;
 }
@@ -951,6 +958,9 @@ span.round-tab:hover {
   font-weight: bold;
   overflow: hidden;
   max-height: 38px;
+}
+.ghost {
+  opacity: 5;
 }
 .panel-tabs-setup {
   height: 450px;
@@ -977,10 +987,12 @@ span.round-tab:hover {
 .fixed-height-250 {
   height: 230px;
 }
-.fixed-height-450 {
+.fixed-height-310 {
+  height: 310px;
+}
+.fixed-height-400 {
   height: 400px;
 }
-
 
 
 /* TABLE MODIFICATIONS */

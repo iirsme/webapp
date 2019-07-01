@@ -27,12 +27,18 @@ class ResearchFieldsController < ApplicationController
     tab_id = params["tab_field_id_#{idx}"]
     research_id = params["tab_field_research_#{idx}"]
 
-    ResearchField.where("tab_id = ? AND field_id IS NOT NULL", tab_id).delete_all
+    subtitles = ResearchField.where("tab_id = ? AND field_id IS NULL", tab_id)
+    subtitles.each { |subtitle|
+      subtitle.update(tab_id: nil, seq_no: 0)
+    }
+    
+    ResearchField.where("tab_id = ?", tab_id).delete_all
+    
     fields.each_with_index { |field, idx|
       f = Field.where(id: field).first
       if f.nil?
         rf = ResearchField.where(id: field).first
-        rf.update(seq_no: idx)
+        rf.update(tab_id: tab_id, seq_no: idx)
       else
         ResearchField.create(research_id: research_id, tab_id: tab_id, field_id: field, is_required: false, seq_no: idx)
       end
