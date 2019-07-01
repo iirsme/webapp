@@ -1,5 +1,18 @@
 class ResearchFieldsController < ApplicationController
 
+  def add_label
+    puts "***** #{params}"
+
+  end
+
+  def get_labels
+    puts "***** #{params}"
+    research_id = params[:research_id]
+    @research = Research.find(params[:research_id])
+    labels = Field.get_available_fields(research_id)
+
+  end
+
   def add_fields
     puts "***** #{params}"
     idx = ""

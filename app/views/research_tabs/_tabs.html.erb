@@ -45,21 +45,21 @@
 			            </div>
 
                        <div class='row tab-visible-actions tab_visible_actions_<%= "#{idx}" %>'>
-                       	<div class="col-xs-12">
-                         <%= link_to delete_research_tab_path(research_id: tab.research.id, tab_id: tab.id), 
-                                     remote: true,
-                                     data: {confirm: "¿Esta seguro que quiere eliminar esta solapa? Tambien se eliminarán todos los campos contenidos en ella."},
-                                     title: "Eliminar Solapa" do %>
-                           <i class="btn btn-default pull-right">
-                             <i class="glyphicon glyphicon-trash"></i>
-                           </i>
-                         <% end %>
-                         <%= link_to "javascript: tabActionsLogic(#{idx}, true)", title: "Editar Solapa", id: "tab_edit_#{idx}" do %>
-                           <i class="btn btn-default pull-right">
-                             <i class="glyphicon glyphicon-pencil"></i>
-                           </i>
-                         <% end %>
-                       </div>
+                         <div class="col-xs-12">
+                            <%= link_to delete_research_tab_path(research_id: tab.research.id, tab_id: tab.id), 
+                                       remote: true,
+                                       data: {confirm: "¿Esta seguro que quiere eliminar esta solapa? Tambien se eliminarán todos los campos contenidos en ella."},
+                                       title: "Eliminar Solapa" do %>
+                             <i class="btn btn-default pull-right">
+                               <i class="glyphicon glyphicon-trash"></i>
+                             </i>
+                           <% end %>
+                           <%= link_to "javascript: tabActionsLogic(#{idx}, true)", title: "Editar Solapa", id: "tab_edit_#{idx}" do %>
+                             <i class="btn btn-default pull-right">
+                               <i class="glyphicon glyphicon-pencil"></i>
+                             </i>
+                           <% end %>
+                         </div>
                        </div>
                   	  </div>
 
@@ -125,11 +125,28 @@
         	    </div>
               </div>
             </div>
-            
+
             <div class="tab-pane fade in" id="available_labels">
               <div class="panel-heading">
-              	<div style="position: relative; top: -65px;">
-              	</div>
+                <h4 class="panel-titlee">
+                  <div class="row" style="position: relative; top: -75px; right: -35px">
+                    <div class="col-xs-12">
+                      <%= form_tag add_label_to_research_path, method: :get, remote: true, class: "col-xs-12 form-horizontal pull-right" do %>
+                        <div class="col-xs-12">
+                          <%= button_tag(type: :submit, class: "btn btn-default pull-right", title: 'Guardar Cambios') do %>
+                            <i class="glyphicon glyphicon-ok"></i>
+			              <% end %>
+                          <%= hidden_field_tag "label_research_id", @research.id %>
+                          <div class="col-xs-10">
+                            <%= text_field_tag("label_name", nil, class: "form-control form-style input-sm", placeholder: "Nombre") %>
+                          </div>
+                        </div>
+			          <% end %>
+                    </div>
+                  </div>
+                </h4>
+              </div>
+              <div class="container col-xs-12" style="position: relative; top: -80px;">
               </div>
             </div>
             
