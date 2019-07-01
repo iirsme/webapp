@@ -16,6 +16,7 @@ class TabsController < ApplicationController
 
   def add_research_tab
     research_id = params["t_research_id"]
+    @research = Research.find(research_id)
     name = params[:name]
 
     if name.blank?
@@ -61,6 +62,7 @@ class TabsController < ApplicationController
     name = params["tab_name_#{idx}"]
     seq = params["tab_seq_#{idx}"]
     research_id = params["tab_research_#{idx}"]
+    @research = Research.find(research_id)
 
     @tab = Tab.where(id: tab_id).first
     if !name.blank?
@@ -116,6 +118,7 @@ class TabsController < ApplicationController
 
   def delete_research_tab
     research_id = params[:research_id]
+    @research = Research.find(research_id)
     tab_id = params[:tab_id]
     tab = Tab.where(id: tab_id).first
     tab.destroy
