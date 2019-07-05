@@ -44,12 +44,10 @@ class CandidatesController < ApplicationController
   end
 
   def edit
-    puts "************ #{params}"
+    
   end
 
   def update
-    puts "************ #{candidate_params}"
-    
     @candidate.current_user = current_user
     if @candidate.update(candidate_params)
       flash[:success] = "Candidato actualizado satisfactoriamente"
@@ -70,6 +68,6 @@ class CandidatesController < ApplicationController
     params.require(:candidate).permit(:curp, :hospital_record, :name, :last_name1, :last_name2, :birth_date, :evaluation_date, :age, :phone, :cell_phone, :email, 
     :gender, :marital_status, :occupation, :occupation_other, :scolarship, :birth_city, :birth_state, :birth_country, :address_main_street, 
     :address_street_no1, :address_street_no2, :address_street1, :address_street2, :address_region, :address_city, :address_state, :address_country, 
-    :diagnosis, :diagnosis_date, .:obesity)
+    :diagnosis, :diagnosis_date, obesity: [])
   end
 end

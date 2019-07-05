@@ -32,6 +32,7 @@ es:
     address_country: 'País de Residencia'
     diagnosis: 'Diagnóstico'
     diagnosis_date: 'Fecha de Diagnóstico'
+    obesity: 'Obesidad'
 
   activerecord:
     errors:

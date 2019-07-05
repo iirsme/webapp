@@ -11,6 +11,20 @@ class Audit < ApplicationRecord
       action = "Eliminado"
     end
   end
+
+  def self.get_values_as_string(values)
+    result = ""
+    no_values = values.length
+    values.each_with_index do |id, idx|
+      if !id.empty?
+        result = result + "" + Candidate.get_map_value(id)
+        if idx < no_values - 1
+          result = result + ", "
+        end
+      end
+    end
+    return result
+  end
   
   def self.track_change(record_id, entity, action, user, log)
     create(record_id: record_id, entity: entity, action: action, user_id: user, done_at: Time.current, log: log)

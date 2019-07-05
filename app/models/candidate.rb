@@ -100,6 +100,11 @@ class Candidate < ApplicationRecord
       {'id': '9', 'value': 'Abuela p'}
     ]
   end
+  
+  def self.get_map_value(id)
+    option = family_map.select {|map| map[:id] == id}
+    value = option.nil? ? nil : option[0].value
+  end
 
   protected
   def clear_other_occupation
