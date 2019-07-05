@@ -56,6 +56,15 @@ class Candidate < ApplicationRecord
         if Geoname.include?(att)
           old_value = Geoname.get_name(self.attribute_was(att))
           new_value = Geoname.get_name(self[att])
+
+        elsif [true, false].include?(self[att])
+          old_value = self.attribute_was(att) ? "Si" : "No"
+          new_value = self[att] ? "Si" : "No"
+
+        elsif self[att].kind_of?(Array)
+          old_value = Audit.get_values_as_string(self.attribute_was(att))
+          new_value = Audit.get_values_as_string(self[att])
+
         else
           old_value = self.attribute_was(att)
           new_value = self[att]          

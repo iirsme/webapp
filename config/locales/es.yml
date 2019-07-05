@@ -33,6 +33,20 @@ es:
     diagnosis: 'Diagnóstico'
     diagnosis_date: 'Fecha de Diagnóstico'
     obesity: 'Obesidad'
+    dm2: 'DM2'
+    hta: 'HTA'
+    ecv: 'ECV'
+    iam: 'IAM'
+    irc: 'IRC'
+    evc: 'EVC'
+    cancer: 'Cancer'
+    hipercolesterolemia: 'Hipercolesterolemia'
+    ar: 'AR'
+    lupus: 'Lupus'
+    espondilitis: 'Espondilitis'
+    miopatia: 'Miopatía'
+    other_illness: 'Otra'
+    str_illness_other: 'Especifique'
 
   activerecord:
     errors:

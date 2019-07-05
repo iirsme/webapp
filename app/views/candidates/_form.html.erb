@@ -268,8 +268,88 @@
                 <label>Obesidad</label>
                 <%= el.select :obesity, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
               </div>
+              <div class="col-xs-4 col-md-4">
+                <label>DM2</label>
+                <%= el.select :dm2, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <label>HTA</label>
+                <%= el.select :hta, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
             </div>
-            
+            <div class="row">
+              <div class="col-xs-4 col-md-4">
+                <label>ECV</label>
+                <%= el.select :ecv, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <label>IAM</label>
+                <%= el.select :iam, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <label>IRC</label>
+                <%= el.select :irc, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 col-md-4">
+                <label>EVC</label>
+                <%= el.select :evc, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <label>Cancer</label>
+                <%= el.select :cancer, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <label>Hipercolesterolemia</label>
+                <%= el.select :hipercolesterolemia, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+            </div>
+            <div class="spacer-20"></div>
+            <div class="row">
+              <div class="col-xs-3 col-md-3">
+                <label class="control-label">AR</label>
+                <div class="col-xs-12 col-md-12 material-switch pull-right label-padding">
+                  <%= el.check_box :ar, id: :ar, class: 'form-control form-style', disabled: false %>
+                  <label for='ar' class="label-primary"></label>
+                </div>
+              </div>
+              <div class="col-xs-3 col-md-3">
+                <label class="control-label">Lupus</label>
+                <div class="col-xs-12 col-md-12 material-switch pull-right label-padding">
+                  <%= el.check_box :lupus, id: :lupus, class: 'form-control form-style', disabled: false %>
+                  <label for='lupus' class="label-primary"></label>
+                </div>
+              </div>
+              <div class="col-xs-3 col-md-3">
+                <label class="control-label">Espondilitis</label>
+                <div class="col-xs-12 col-md-12 material-switch pull-right label-padding">
+                  <%= el.check_box :espondilitis, id: :espondilitis, class: 'form-control form-style', disabled: false %>
+                  <label for='espondilitis' class="label-primary"></label>
+                </div>
+              </div>
+              <div class="col-xs-3 col-md-3">
+                <label class="control-label">Miopatía</label>
+                <div class="col-xs-12 col-md-12 material-switch pull-right label-padding">
+                  <%= el.check_box :miopatia, id: :miopatia, class: 'form-control form-style', disabled: false %>
+                  <label for='miopatia' class="label-primary"></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3 col-md-3">
+                <label class="control-label">Otra</label>
+                <div class="col-xs-12 col-md-12 material-switch pull-right label-padding">
+                  <%= el.check_box :other_illness, id: :other_illness, class: 'form-control form-style', disabled: false %>
+                  <label for='other_illness' class="label-primary"></label>
+                </div>
+              </div>
+              <div class="col-xs- col-md-7">
+                <label>&nbsp;</label>
+                <%= el.text_field :str_illness_other, class: "form-control form-style", placeholder: "Especifique" %>
+              </div>
+            </div>
+
             <div class="spacer-50"></div>
             <div class="row">
               <div class="col-xs-12 col-md-12 col-lg-12">

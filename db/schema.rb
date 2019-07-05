@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_05_003523) do
+ActiveRecord::Schema.define(version: 2019_07_05_021051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -78,6 +78,20 @@ ActiveRecord::Schema.define(version: 2019_07_05_003523) do
     t.datetime "updated_at", null: false
     t.string "hospital_record"
     t.json "obesity"
+    t.json "dm2"
+    t.json "hta"
+    t.json "ecv"
+    t.json "iam"
+    t.json "irc"
+    t.json "evc"
+    t.json "cancer"
+    t.json "hipercolesterolemia"
+    t.boolean "ar", default: false
+    t.boolean "lupus", default: false
+    t.boolean "espondilitis", default: false
+    t.boolean "miopatia", default: false
+    t.boolean "other_illness", default: false
+    t.string "str_illness_other"
   end
 
   create_table "fields", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

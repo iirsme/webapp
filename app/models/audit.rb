@@ -14,6 +14,8 @@ class Audit < ApplicationRecord
 
   def self.get_values_as_string(values)
     result = ""
+    return result unless !values.nil?
+
     no_values = values.length
     values.each_with_index do |id, idx|
       if !id.empty?
