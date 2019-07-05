@@ -106,7 +106,7 @@ class Candidate < ApplicationRecord
       {'id': '6', 'value': 'Abuela p'},
       {'id': '7', 'value': 'Abuelo p'},
       {'id': '8', 'value': 'Abuela m'},
-      {'id': '9', 'value': 'Abuela p'}
+      {'id': '9', 'value': 'Abuelo m'}
     ]
   end
   
