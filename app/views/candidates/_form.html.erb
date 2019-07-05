@@ -249,7 +249,26 @@
                 <%= el.select :address_city, [], {:include_blank => true}, class: 'form-control' %>
               </div>
             </div>
-                 
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+              <span class="fa fa-address-book"></span> Antecedentes Heredo Familiares
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel">        	
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-3 col-md-3">
+                <label>Obesidad/Sobrepeso</label>
+                <%= el.select :obesity, Candidate.family_map.collect {|t| [t[:value], t[:id]]}, {include_blank: false}, multiple: true, class: 'multi_select form-control' %>
+              </div>
+            </div>
+
             <div class="spacer-50"></div>
             <div class="row">
               <div class="col-xs-12 col-md-12 col-lg-12">
@@ -266,7 +285,6 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
       <% end %>
 

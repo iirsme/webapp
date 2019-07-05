@@ -85,7 +85,22 @@ class Candidate < ApplicationRecord
   def requires_occupation?
     occupation == 'Otro'
   end
-  
+
+  def self.family_map
+    [
+      {'id': '0', 'value': 'Mamá'},
+      {'id': '1', 'value': 'Papá'},
+      {'id': '2', 'value': 'Hermanos'},
+      {'id': '3', 'value': 'Hermanas'},
+      {'id': '4', 'value': 'Tíos p'},
+      {'id': '5', 'value': 'Tíos m'},
+      {'id': '6', 'value': 'Abuela p'},
+      {'id': '7', 'value': 'Abuelo p'},
+      {'id': '8', 'value': 'Abuela m'},
+      {'id': '9', 'value': 'Abuela p'}
+    ]
+  end
+
   protected
   def clear_other_occupation
     self.occupation_other = nil if occupation != 'Otro'
