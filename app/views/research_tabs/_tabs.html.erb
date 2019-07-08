@@ -147,19 +147,9 @@
                 </h4>
               </div>
               <div class="container col-xs-12" style="position: relative; top: -80px;">
-                <% if !@master_data.nil? && !@master_data.labels.nil? %>
-                  <div class="row">
-                  </div>
-  	              <div class="row">
-                    <div class="col-xs-12 col-md-12">
-            	      <div id="available_labels_list" class="list-group sortable-dataset scrollable fixed-height-310">
-	                    <% @master_data.labels.each_with_index do |label| %>
-    	                  <div class="list-group-item tab-label"> <%= hidden_field_tag "field_#{label.id}", label.id %> <%= "#{label.subtitle_label}" %> </div>
-	                    <% end %>
-    	              </div>
-	                </div>
-    	          </div>
-        	    <% end %>
+			    <div id="research-labels">
+			      <%= render 'research_tabs/labels' %>
+			    </div>
               </div>
             </div>
             

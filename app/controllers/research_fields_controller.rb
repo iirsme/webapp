@@ -1,17 +1,44 @@
 class ResearchFieldsController < ApplicationController
 
   def add_label
-    puts "***** #{params}"
-
+    research_id = params[:label_research_id]
+    label_name = params[:label_name]
+    
+    if label_name.blank?
+      @title = "El nombre es necesario para agregar un nuevo Subtitulo"
+      @is_error = true
+      respond_to do |format|
+        format.js { render partial: 'researches/wizard/messages'}
+      end
+      return
+    end
+    
+    @label = ResearchField.new(research_id: research_id, seq_no: 0, subtitle_label: label_name)
+    if @label.save
+      labels = ResearchField.get_available_labels(research_id)
+      @master_data = {:labels => labels}
+      @title = "Subtitulo agregado exitosamente"
+      @is_error = false
+      respond_to do |format|
+        format.js { render partial: 'research_tabs/refresh_research_labels'}
+      end
+      return
+    else
+      @title = @label.errors.messages[:name][0]
+      @is_error = true
+      respond_to do |format|
+        format.js { render partial: 'researches/wizard/messages'}
+      end
+      return
+    end
   end
 
-  def get_labels
-    puts "***** #{params}"
-    research_id = params[:research_id]
-    @research = Research.find(params[:research_id])
-    labels = Field.get_available_fields(research_id)
-
-  end
+#  def get_labels   
+#    puts "***** #{params}"
+#    research_id = params[:research_id]
+#    @research = Research.find(params[:research_id])
+#    labels = Field.get_available_fields(research_id)
+#  end
 
   def add_fields
     puts "***** #{params}"

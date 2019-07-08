@@ -2,8 +2,8 @@ $(document).on('ready turbolinks:load', function () {
   // Do nothing, not yet...
 });
 
-function createSortableLists () {
-  Sortable.create($('#available_fields_list')[0], {
+function createSortableLists (onlyLabels) {
+  Sortable.create($('#available_labels_list')[0], {
     group: "research_fields",
     animation: 200,
     sort: false,
@@ -14,8 +14,12 @@ function createSortableLists () {
       item.removeClass('tab-subtitle');
     }
   });
-  
-  Sortable.create($('#available_labels_list')[0], {
+
+  if (onlyLabels) {
+    return;
+  }
+
+  Sortable.create($('#available_fields_list')[0], {
     group: "research_fields",
     animation: 200,
     sort: false,
