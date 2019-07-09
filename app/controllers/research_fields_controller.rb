@@ -79,7 +79,7 @@ class ResearchFieldsController < ApplicationController
         ResearchField.create(research_id: research_id, tab_id: tab_id, field_id: field, is_required: false, seq_no: idx)
       end
     }
-    
+
     # TODO: Enhance this code to handle errors and success messages
     @title = "Variables agregadas exitosamente"
     @is_error = false
