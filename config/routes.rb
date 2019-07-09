@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'delete_research_tab', to: 'tabs#delete_research_tab'
   get 'add_fields_to_tab', to: 'research_fields#add_fields'
   get 'add_label_to_research', to: 'research_fields#add_label'
+  get 'delete_research_label', to: 'research_fields#delete_label'
   get 'get_research_labels', to: 'research_fields#get_labels'
   get 'get_research_summary', to: 'researches#get_summary'
 

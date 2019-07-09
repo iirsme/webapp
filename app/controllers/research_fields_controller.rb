@@ -3,6 +3,7 @@ class ResearchFieldsController < ApplicationController
   def add_label
     research_id = params[:label_research_id]
     label_name = params[:label_name]
+    @research = Research.find(research_id)
     
     if label_name.blank?
       @title = "El nombre es necesario para agregar un nuevo Subtitulo"
@@ -32,16 +33,24 @@ class ResearchFieldsController < ApplicationController
       return
     end
   end
+  
+  def delete_label
+    research_id = params[:research_id]
+    @research = Research.find(research_id)
+    label_id = params[:label_id]
+    label = ResearchField.where(id: label_id).first
+    label.destroy
 
-#  def get_labels   
-#    puts "***** #{params}"
-#    research_id = params[:research_id]
-#    @research = Research.find(params[:research_id])
-#    labels = Field.get_available_fields(research_id)
-#  end
+    labels = ResearchField.get_available_labels(research_id)
+    @master_data = {:labels => labels}
+    @title = "Subtitulo eliminado exitosamente"
+    @is_error = false
+    respond_to do |format|
+      format.js { render partial: 'research_tabs/refresh_research_labels'}
+    end
+  end
 
   def add_fields
-    puts "***** #{params}"
     idx = ""
     fields = []
     params.each do |key, value|

@@ -990,6 +990,20 @@ span.round-tab:hover {
 .fixed-height-400 {
   height: 400px;
 }
+.subtitle_close_icon {
+  padding: 0px 5px 2px 5px;
+  cursor: pointer;
+  font-size: 10px;
+  position: relative;
+  float: right;
+  right: -13px;
+  top: -8px;
+  font-weight: bold;
+}
+.subtitle_close_icon:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 
 
 /* TABLE MODIFICATIONS */

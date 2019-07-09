@@ -44,6 +44,7 @@ function createSortableLists (onlyLabels) {
         } else if (item.hasClass('tab-label')) {
           item.addClass('col-md-12');
           item.addClass('tab-subtitle');
+          item[0].children[1].remove();
         }
       }
     });
