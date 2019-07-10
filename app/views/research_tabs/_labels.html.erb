@@ -5,13 +5,19 @@
     <div class="col-xs-12 col-md-12">
       <div id="available_labels_list" class="list-group sortable-dataset scrollable fixed-height-310">
         <% @master_data.labels.each_with_index do |label| %>
-          <div class="list-group-item tab-label"> 
-            <%= hidden_field_tag "field_#{label.id}", label.id %> <%= "#{label.subtitle_label}" %>
-            <%= link_to delete_research_label_path(research_id: @research.id, label_id: label.id), 
-                        remote: true,
-                        title: "Eliminar" do %>
-              <span class="subtitle_close_icon">x</span>
-            <% end %>
+          <div class="list-group-item tab-label">
+            <div class="row">
+              <div class="cols-xs-11 col-md-11">
+                <%= hidden_field_tag "field_#{label.id}", label.id %> <%= "#{label.subtitle_label}" %>
+              </div>
+              <div class="cols-xs-1 col-md-1">
+                <%= link_to delete_research_label_path(research_id: @research.id, label_id: label.id), 
+                            remote: true,
+                            title: "Eliminar" do %>
+                  <span class="subtitle_close_icon">x</span>
+                <% end %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
