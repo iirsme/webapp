@@ -81,7 +81,7 @@ class Candidate < ApplicationRecord
   end
 
   def get_last_name
-    lastname = self.last_name1 + ' ' + self.last_name2 unless self.last_name2.blank?
+    lastname = self.last_name1 + ' ' + self.last_name2 unless self.last_name2.nil?
   end
 
   def get_ide
