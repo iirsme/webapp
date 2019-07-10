@@ -19,10 +19,11 @@
         <table class="table table-striped table-bordered table-list candidates-table">
           <thead>
             <tr>
-              <th class="col col-xs-3 col-header">CURP</th>
+              <th class="col col-xs-2 col-header">CURP</th>
+              <th class="col col-xs-2 col-header">Registro de Hospital</th>
               <th class="col col-xs-2 col-header">Nombre</th>
               <th class="col col-xs-2 col-header">Apellido(s)</th>
-              <th class="col col-xs-2 col-header">Email</th>
+              <th class="col col-xs-1 col-header">Email</th>
               <th class="col col-xs-1 col-header">Telefono</th>
               <th class="col col-xs-1 col-header">Celular</th>
               <th class="col col-xs-1 col-header"></th>
@@ -31,10 +32,11 @@
           <tbody>
             <% @candidates.each do |candidate| %>
               <tr>
-                <td class="col col-xs-3 col-data-left"> <%= candidate.curp %> </td>
+                <td class="col col-xs-2 col-data-left"> <%= candidate.curp %> </td>
+                <td class="col col-xs-2 col-data-left"> <%= candidate.hospital_record %> </td>
                 <td class="col col-xs-2 col-data-left"> <%= candidate.name %> </td>
                 <td class="col col-xs-2 col-data-left"> <%= candidate.get_last_name %> </td>
-                <td class="col col-xs-2 col-data-left"> <%= candidate.email %> </td>
+                <td class="col col-xs-1 col-data-left"> <%= candidate.email %> </td>
                 <td class="col col-xs-1 col-data-left"> <%= candidate.phone %> </td>
                 <td class="col col-xs-1 col-data-left"> <%= candidate.cell_phone %> </td>
                 <td align="center">

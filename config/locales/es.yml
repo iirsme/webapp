@@ -65,4 +65,10 @@ es:
           attributes:
             candidate:
               required: "El Candidato no puede ir vacio"
-
+              
+        candidate:
+          attributes:
+            curp:
+              taken: "Ya hay otro Candidato con el mismo CURP"
+            hospital_record:
+              taken: "Ya hay otro Candidato con el mismo Registro de Hospital"

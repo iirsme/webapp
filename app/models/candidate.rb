@@ -10,8 +10,9 @@ class Candidate < ApplicationRecord
   before_destroy :delete_log
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :curp, uniqueness: { case_sensitive: false, message: "Ya hay otro Candidato con el mismo CURP" }
-  validates :hospital_record, uniqueness: { case_sensitive: false, message: "Ya hay otro Candidato con el mismo Registro de Hospital" }
+  
+  validates_uniqueness_of :curp, conditions: -> { where.not(curp: '') }
+  validates_uniqueness_of :hospital_record, conditions: -> { where.not(hospital_record: '') }  
   validates :name, presence: { message: "Nombre no puede ir vacio" }
   validates :last_name1, presence: { message: "Al menos un Apellido debe de registrarse" }
   validates :birth_date, presence: { message: "Fecha de Nacimiento no puede ir vacio" }
