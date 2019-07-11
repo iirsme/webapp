@@ -12,7 +12,7 @@
               <div class="mainflip">
                 <div class="frontside-new">
                   <div class="card">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center card-body-style">
                       <div class="frontside-image img-0"></div>
 	                  <h4 class="card-title">&nbsp;</h4>
 	                  <p class="card-name">Crear nuevo Protocolo</p>
@@ -33,8 +33,13 @@
              <div class="mainflip">
                <div class="frontside">
                  <div class="card">
-                   <div class="card-body text-center">
-                     <div class="frontside-image img-1"></div>
+                   <div class="card-body text-center card-body-style">
+                   	<!-- TODO: Fix this to load the image from db -->
+                   	 <% if research.seq_no == 1 %>
+                   	   <div class="frontside-image img-mexpan"></div>
+                   	 <% else %>
+                   	   <div class="frontside-image img-1"></div>
+                   	 <% end %>
                      <h4 class="card-title"><%= research.code %></h4>
                      <p class="card-name"><%= research.name %></p>
                      <div class="btn btn-primary btn-md"><i class='fa fa-<%= (research.is_private ? "lock" : "unlock") %>'></i></div>
@@ -43,7 +48,7 @@
                </div>
                <div class="backside">
                  <div class="card">
-                   <div class="card-body text-center mt-4">
+                   <div class="card-body text-center mt-4 card-body-style">
                      <h4 class="card-title"><%= research.code %></h4>
                      <p class="card-name"><%= research.name %></p>
                      <% if research.description.nil? || research.description.blank? || research.description == " " %>

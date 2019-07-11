@@ -748,6 +748,12 @@ section .section-title {
 .img-1 {
   background-image: asset-url('research-icon1.png'); // HERE
 }
+.img-mexpan {
+  background-image: asset-url('research-mexpan.jpg'); // TODO: Fix this to load the image from db
+}
+.card-body-style {
+  padding-top: 5px;
+}
 
 
 
