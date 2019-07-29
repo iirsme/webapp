@@ -40,7 +40,9 @@
                               <div class="rowlist">
                                 <div class="row">
                                   <div class="col-xs-1 col-md-1 text-center">&nbsp;</div>
-                                  <div class="col-xs-3 col-md-3 text-left audit-content"><%= t('candidate.' + row["column"]) %></div>
+                                  <% if audit.entity == 'candidate' %>
+                                    <div class="col-xs-3 col-md-3 text-left audit-content"><%= t('candidate.' + row["column"]) %></div>
+                                  <% end %>
                                   <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['new_value'] %></div>
                                   <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['old_value'] %></div>
                                 </div>

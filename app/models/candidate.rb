@@ -63,8 +63,8 @@ class Candidate < ApplicationRecord
           new_value = self[att] ? "Si" : "No"
 
         elsif self[att].kind_of?(Array)
-          old_value = Audit.get_values_as_string(self.attribute_was(att))
-          new_value = Audit.get_values_as_string(self[att])
+          old_value = Candidate.get_values_as_string(self.attribute_was(att))
+          new_value = Candidate.get_values_as_string(self[att])
 
         else
           old_value = self.attribute_was(att)
@@ -84,6 +84,10 @@ class Candidate < ApplicationRecord
     lastname = self.last_name1 + ' ' + self.last_name2 unless self.last_name2.nil?
   end
 
+  def get_type
+    return self.class.name.downcase
+  end
+
   def get_ide
     num = self.curp.blank? ? self.hospital_record : self.curp
   end
@@ -94,6 +98,22 @@ class Candidate < ApplicationRecord
 
   def requires_occupation?
     occupation == 'Otro'
+  end
+
+  def self.get_values_as_string(values)
+    result = ""
+    return result unless !values.nil?
+
+    no_values = values.length
+    values.each_with_index do |id, idx|
+      if !id.empty?
+        result = result + "" + Candidate.get_map_value(id)
+        if idx < no_values - 1
+          result = result + ", "
+        end
+      end
+    end
+    return result
   end
 
   def self.family_map

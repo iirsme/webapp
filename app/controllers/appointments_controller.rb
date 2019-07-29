@@ -9,6 +9,7 @@ class AppointmentsController < ApplicationController
   def add_patient_appointment
     @appt = Appointment.new(patient_id: params[:patient_id], research_id: params[:research_id], appt_no: params[:appt_no], 
                             status: params[:status], appt_date: params[:appt_date], appt_time: params[:appt_time], notes: params[:notes])
+    @appt.current_user = current_user
     if @appt.save
       @appts = Appointment.all_patient_appts(@appt.patient.id)
       respond_to do |format|
@@ -21,9 +22,10 @@ class AppointmentsController < ApplicationController
 
   def delete_patient_appointment
     record = params[:record]
-    appt = Appointment.where(id: record).first
-    patient = appt.patient
-    if appt.destroy
+    @appt = Appointment.where(id: record).first
+    @appt.current_user = current_user
+    patient = @appt.patient
+    if @appt.destroy
       @appts = Appointment.all_patient_appts(patient.id)
       respond_to do |format|
         format.js { render partial: 'patients/appts' }
@@ -47,6 +49,7 @@ class AppointmentsController < ApplicationController
   def create
     @comesFrom = params[:comesFrom]
     @appointment = Appointment.new(appointment_params)
+    @appointment.current_user = current_user
     if @appointment.save
       flash[:success] = "Visita creada satisfactoriamente"
       redirect_to appointments_path(research_id: @current_research.id)
@@ -60,6 +63,7 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    @appointment.current_user = current_user
     @comesFrom = params[:comesFrom]
     is_evaluation = !appointment_params[:values].blank?
     if is_evaluation
@@ -82,6 +86,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    @appointment.current_user = current_user
     @appointment.destroy
     flash[:success] = "Visita eliminada satisfactoriamente del protocolo"
     redirect_to appointments_path(research_id: @current_research)

@@ -92,10 +92,13 @@
 
   	          </div>
 			</div>     
-
           </div>
         <% end %>
       <% end%>
+
+      <% if current_user.admin? && !@appointment.new_record? %>
+        <%= render 'audits/individual_audit_form', record: @appointment %>
+      <% end %>
 
     </div>
   </div>

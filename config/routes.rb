@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get 'go_back_research', to: 'researches#back'
 
   resources :candidates
-  get 'get_audit', to: 'candidates#get_audit'
 
   get 'get_research_users', to: 'research_users#get_research_users'
   get 'add_research_user', to: 'research_users#add_research_user'
@@ -39,5 +38,7 @@ Rails.application.routes.draw do
   get 'delete_patient_appointment', to: 'appointments#delete_patient_appointment'
 
   get 'see_evaluation', to: 'evaluations#show'
-
+ 
+  get 'get_audit', to: 'audits#get_audit'
+  
 end

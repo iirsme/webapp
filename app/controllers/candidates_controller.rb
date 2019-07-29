@@ -4,13 +4,6 @@ class CandidatesController < ApplicationController
   before_action :require_user
   before_action :require_admin, only: [:destroy]
 
-  def get_audit
-    @audit = Audit.get_audit(params[:record_id], params[:from], params[:to])
-    respond_to do |format|
-      format.js { render partial: 'log' }
-    end
-  end
-
   def index
     @candidates = Candidate.all
   end
