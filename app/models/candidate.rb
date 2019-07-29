@@ -41,12 +41,12 @@ class Candidate < ApplicationRecord
 
   def insert_log
     log = []
-    Audit.track_change(self.id, self.class.name.downcase, 'I', current_user.id, log.to_json)
+    Audit.track_change(self.id, self.get_type, 'I', current_user.id, log.to_json)
   end
 
   def delete_log
     log = []
-    Audit.track_change(self.id, self.class.name.downcase, 'D', current_user.id, log.to_json)
+    Audit.track_change(self.id, self.get_type, 'D', current_user.id, log.to_json)
   end
 
   def update_log
@@ -73,7 +73,7 @@ class Candidate < ApplicationRecord
         log << { :column => att, :old_value => old_value, :new_value => new_value }
       end
     end
-    Audit.track_change(self.id, self.class.name.downcase, 'U', current_user.id, log.to_json)
+    Audit.track_change(self.id, self.get_type, 'U', current_user.id, log.to_json)
   end
 
   def get_seqno
