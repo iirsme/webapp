@@ -42,6 +42,9 @@
                                   <div class="col-xs-1 col-md-1 text-center">&nbsp;</div>
                                   <% if audit.entity == 'candidate' %>
                                     <div class="col-xs-3 col-md-3 text-left audit-content"><%= t('candidate.' + row["column"]) %></div>
+                                  <% elsif audit.entity == 'evaluation' %>
+                                    <% field = Field.find_by_name(row["column"]) %>
+                                    <div class="col-xs-3 col-md-3 text-left audit-content"><%= !field.nil? ? field.label : "<Variable desconocida>" %></div>  
                                   <% end %>
                                   <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['new_value'] %></div>
                                   <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['old_value'] %></div>
