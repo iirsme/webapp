@@ -109,6 +109,28 @@ class ResearchesController < ApplicationController
     end
   end
 
+  def destroy
+    ResearchUser.where(research_id: @research.id).delete_all # Delete Research Users
+    ResearchField.where(research_id: @research.id).delete_all # Delete Research Fields
+    Tab.where(research_id: @research.id).delete_all # Delete Tabs
+
+    appts = Appointment.where(research_id: @research.id)
+    appts.each do |a|
+      Audit.where(record_id: a.id).delete_all # Delete Audits
+    end
+
+    appts.delete_all # Delete Appointments
+    Patient.where(research_id: @research.id).delete_all # Delete Patients
+    @research.destroy # Delete the Research
+
+    flash[:success] = "Protocolo eliminado satisfactoriamente"
+    redirect_to home_path
+  rescue ActiveRecord::InvalidForeignKey
+    @current_step = 1
+    flash[:danger] = "Error al eliminar el Protocolo. No se pudieron eliminar todas las referencias."
+    redirect_to edit_research_path(@research)
+  end
+
   private
   def set_research
     @research = Research.find(params[:id])

@@ -70,11 +70,26 @@
 		    <% if !read_only %>
  		      <div class="form-group">
                 <div class="spacer-20"></div>
-		        <div class="col-xs-12 col-md-12 text-center">
-		      	   <%= link_to "Atras", go_back_research_path(research: @research, go_home: @research.new_record?), class: "btn btn-primary btn-form" %>
-		      	   <%= el.submit "Guardar", class: "btn btn-primary btn-form" %>
-		      	   <!-- <%#= link_to "Siguiente", '#', class: "btn btn-primary btn-form next-step" %> -->
+		        <div class="col-xs-offset-2 col-xs-8 col-md-8 text-center">
+		      	   <%= link_to go_back_research_path(research: @research, go_home: @research.new_record?), class: "btn btn-primary" do %> 
+		      	     <i class="fa fa-chevron-left"></i> Atrás
+		      	   <% end %>
+                   <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                     <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                   <% end %>
 		        </div>
+		        <% if !@research.new_record? %>
+		          <div class="col-xs-2 col-md-2">
+                    <%= link_to research_path(@research), 
+                                data: {confirm: "¿Esta seguro que quiere eliminar este Protocolo? " +
+                                "Esta acción eliminará todo lo relacionado a él y ya no podrá ser revertida. " +
+                                "El proceso puede tardar algunos minutos."},
+                                method: :delete,
+                                class: "btn btn-primary pull-right" do %> 
+                        <i class="glyphicon glyphicon-trash"></i> Eliminar Protocolo 
+                    <% end %>
+                  </div>
+                <% end %>
 		        <div class="spacer-20"></div>
 		      </div>
             <% end %>
