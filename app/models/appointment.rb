@@ -18,11 +18,7 @@ class Appointment < ApplicationRecord
   def insert_log
     log = []
     Audit.track_change(self.id, self.get_type, 'I', current_user.id, log.to_json)
-  end
-
-  def insert_eval_log
-    log = []
-    Audit.track_change(self.id, self.get_eval_type, 'I', current_user.id, log.to_json)
+    # Audit.track_change(self.id, self.get_eval_type, 'I', current_user.id, log.to_json)
   end
 
   def update_log
@@ -30,13 +26,12 @@ class Appointment < ApplicationRecord
     type = is_evaluation ? self.get_eval_type : self.get_type
 
     if is_evaluation
-      prev_audits = Audit.find_by_type(self.id, type)
-      if prev_audits.size == 0
-        insert_eval_log
-        return
-      else
-        log = update_eval_log
-      end
+      # prev_audits = Audit.find_by_type(self.id, type)
+      # if prev_audits.size == 0
+      #   insert_eval_log
+      #   return
+      # end
+      log = update_eval_log
     else
       log = update_appt_log
     end
@@ -46,12 +41,38 @@ class Appointment < ApplicationRecord
 
   def delete_log
     log = []
-    Audit.track_change(self.id, self.get_type, 'D', current_user.id, log.to_json)
+    # Audit.track_change(self.id, self.get_type, 'D', current_user.id, log.to_json)
     Audit.track_change(self.id, self.get_eval_type, 'D', current_user.id, log.to_json)
   end
 
   def update_eval_log
-    return []
+    log = []
+    if self.attribute_changed?('values')
+      old_values = self.attribute_was('values')
+      new_values = self['values']
+
+      new_values.each do |key, value|
+        new_value = value
+        old_value = old_values.has_key?(key) ? old_values[key] : ""
+        
+        if old_value != new_value
+          field = Field.find_by_name(key)
+          if field.field_type == 'check_box'
+            new_value = new_value.to_i.zero? ? "No" : "Si"
+            old_value = old_value.to_i.zero? ? "No" : "Si"
+          elsif field.field_type == 'select'
+            new_value = field.get_value(new_value)
+            old_value = field.get_value(old_value)
+          elsif field.field_type == 'multi_select'
+            new_value = field.get_values(new_value)
+            old_value = field.get_values(old_value)
+          end
+          log << { :column => key, :old_value => old_value, :new_value => new_value }
+        end
+      end
+      
+    end
+    return log
   end
 
   def update_appt_log

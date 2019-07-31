@@ -1,4 +1,5 @@
 class Field < ApplicationRecord
+  TEXT_FIELDS = ['text_field', 'text_area']
   has_many :research_fields
   has_many :researches, through: :research_fields
 
@@ -32,6 +33,39 @@ class Field < ApplicationRecord
   def field_type_name
     field = Field.fields_map.select {|t| t[:id] == field_type}
     name = field[0][:value] unless field.blank?
+  end
+  
+  def find_by_research_and_name(research_id, name)
+    Field
+      .select('fields.id, fields.field_type')
+      .joins(:research_fields)
+      .where('research_id=? AND fields.name=?', research_id, name).first
+  end
+
+  def find_by_name(name)
+    where(name: name).first
+  end
+
+  def get_value(id)
+    key = self.values.json.select {|map| map[:id] == id}
+    value = key.empty? ? "" : key[0].value
+  end
+
+  def get_values(ids)
+    result = ""
+    return result unless !ids.nil?
+    return result unless ids.length > 0
+
+    no_values = ids.length
+    ids.each_with_index do |id, idx|
+      if !id.empty?
+        result = result + "" + self.get_value(id)
+        if idx < no_values - 1
+          result = result + ", "
+        end
+      end
+    end
+    return result
   end
 
   def self.fields_map
