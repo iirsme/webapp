@@ -27,7 +27,7 @@ class ResearchesController < ApplicationController
           flash[:danger] = "Contraseña incorrecta"
           redirect_to home_path and return
         elsif !@research.authorized_user?(current_user)
-          flash[:danger] = "Acceso denegado, favor de contactar al administrador del protocolo"
+          flash[:danger] = "Acceso denegado, favor de contactar al administrador del protocolo."
           redirect_to home_path and return
         end
       end
@@ -36,7 +36,12 @@ class ResearchesController < ApplicationController
     if @research.is_ready
       redirect_to research_path(@research)
     else
-      redirect_to edit_research_path(@research)
+      if @current_user.owner?(@research) || is_super_admin?
+        redirect_to edit_research_path(@research)
+      else
+        flash[:danger] = "Acceso denegado. El Protocolo al que quiere ingresar esta deshabilitado termporalmente."
+        redirect_to home_path and return
+      end
     end
   end
 

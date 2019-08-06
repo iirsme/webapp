@@ -36,4 +36,49 @@ class User < ApplicationRecord
     self.is_admin
   end
 
+  def owner?(research)
+    research.owner.id === self.id
+  end
+
+  def get_privileges(research)
+    role = get_role(research)
+    p = {
+      :can_create => self.can_create(role),
+      :can_read => self.can_read(role),
+      :can_update => self.can_update(role),
+      :can_audit =>  self.can_audit(role),
+      :can_delete => self.can_delete(role)
+    }
+    puts p
+    return p
+  end
+
+  def can_create(role)
+    return role.nil? ? false : role.can_create
+  end
+
+  def can_read(role)
+    return role.nil? ? false : role.can_read
+  end
+
+  def can_update(role)
+    return role.nil? ? false : role.can_update
+  end
+
+  def can_delete(role)
+    return role.nil? ? false : role.can_delete
+  end
+
+  def can_audit(role)
+    return role.nil? ? false : role.can_audit
+  end
+
+  def get_role(research)
+    ru = self.research_users.where(research_id: research.id).first
+    if !ru.blank?
+      return ru.role
+    end
+    return nil
+  end
+
 end

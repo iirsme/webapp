@@ -4,6 +4,8 @@
 
 <%= render 'shared/errors', obj: @appointment %>
 
+<% user = current_user.get_privileges(@current_research) %>
+
 <div class="row">
   <div class="col-xs-12 col-md-12">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -72,8 +74,10 @@
                     <div class="col-xs-12 col-md-12 col-lg-12">
 			    	  <div class="well well-sm well-primary">
 				        <div class="col-xs-offset-10 col-md-offset-10 col-lg-offset-10 form-well">
-				          <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
-				            <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+				          <% if user.can_update %>
+				            <%= button_tag(:class => "btn btn-primary btn-sm btn-form") do %>
+				              <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
+				            <% end %>
 				          <% end %>
   				          <% if @comesFrom == 'appointments' %>
 				            <%= link_to appointments_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
@@ -96,7 +100,7 @@
         <% end %>
       <% end%>
 
-      <% if current_user.admin? && !@appointment.new_record? %>
+      <% if user.can_audit && !@appointment.new_record? %>
         <%= render 'audits/individual_audit_form', record: @appointment %>
       <% end %>
 

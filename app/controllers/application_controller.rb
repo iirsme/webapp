@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]  
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def logged_in?
@@ -31,31 +31,31 @@ class ApplicationController < ActionController::Base
 
   def require_user
     if !logged_in?
-      flash[:danger] = "Ingrese al sistema para realizar esa acción"
+      flash[:danger] = "Ingrese al sistema para realizar esa acción."
       redirect_to login_path
     end
   end
 
   def require_admin
     if !is_admin?
-      flash[:danger] = "Acción restringida con su rol actual"
+      flash[:danger] = "Acción restringida con su rol actual."
       redirect_to root_path
     end
   end
 
   def require_admin_or_account_owner(user_account)
     if !is_admin? && user_account.id != current_user.id
-      flash[:danger] = "Acción restringida con su rol/usuario actual"
+      flash[:danger] = "Acción restringida con su rol/usuario actual."
       redirect_to root_path
     end
   end
 
   def require_owner(research)
     if is_super_admin?
-      return;
+      return
     end
     if current_user.id != research.owner.id
-      flash[:danger] = "Acción permitida solo para el propietario del Protocolo"
+      flash[:danger] = "Acción permitida solo para el propietario del Protocolo."
       redirect_to root_path
     end
   end
@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
       return;
     end
     if !is_research_user?(research)
-      flash[:danger] = "Acción permitida solo para usuarios del Protocolo"
+      flash[:danger] = "Acción permitida solo para usuarios del Protocolo."
       redirect_to root_path
     end
   end

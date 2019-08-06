@@ -2,6 +2,8 @@
   <h3 class="screen-header">Pacientes del Protocolo</h3>
   <p class="spacer-30"></p>
 
+  <% user = current_user.get_privileges(@current_research) %>
+
   <div class="col-md-12 col-md-offset-0">
     <div class="panel panel-default panel-table">
       <div class="panel-header">
@@ -10,7 +12,9 @@
             <h3 class="panel-title"></h3>
           </div>
           <div class="col col-xs-6 text-right">
-            <%= link_to "Nuevo", new_patient_path(research_id: @current_research), class: "btn btn-sm btn-primary btn-create" %>
+          	<% if user.can_create %>
+              <%= link_to "Nuevo", new_patient_path(research_id: @current_research), class: "btn btn-sm btn-primary btn-create" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -38,10 +42,18 @@
                 <td class="col col-xs-1 col-data-center"> <%= patient.candidate.cell_phone %> </td>
                 <td class="col col-xs-1 col-data-center"> <%= patient.candidate.birth_date.strftime("%d/%m/%Y") unless patient.candidate.birth_date.blank? %> </td>
                 <td align="center">
-                  <%= link_to edit_patient_path(patient, research_id: @current_research), class: "btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
-                  <%= link_to patient_path(patient, research_id: @current_research), data: {confirm: "¿Esta seguro que quiere eliminar este Paciente?"},
-                                               class: "btn-action",
-                                               method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+                  <%= link_to edit_patient_path(patient, research_id: @current_research), class: "btn-action" do %>
+                    <% if user.can_update %>
+                      <em class="glyphicon glyphicon-pencil"></em>
+                    <% else %>
+                      <em class="glyphicon glyphicon-eye-open"></em>
+                    <% end %> 
+                  <% end %>
+                  <% if user.can_delete %>
+                    <%= link_to patient_path(patient, research_id: @current_research), data: {confirm: "¿Esta seguro que quiere eliminar este Paciente?"},
+                                            class: "btn-action",
+                                            method: :delete do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

@@ -1,3 +1,5 @@
+  <% user = current_user.get_privileges(@current_research) %>
+
   <table class="table table-bordered table-hover">
     <thead>
       <tr style="width:100%">
@@ -10,7 +12,6 @@
       </tr>
 	</thead>
     <tbody>
-
       <% if !@appts.nil? %>
         <% @appts.each do |appt| %>
           <tr>
@@ -20,16 +21,25 @@
       	    <td class="text-center"><%= appt.appt_time.strftime("%I:%M %p") %></td>
       	    <td><%= appt.notes %></td>
       	    <td class="text-center">
-              <%= link_to see_evaluation_path(id: appt, research_id: @current_research, comesFrom: "patient"), class: "btn-action" do %> <em class="fa fa-clipboard"></em> <% end %>
-              <%= link_to edit_appointment_path(appt, research_id: @current_research, comesFrom: "patient"), class: "btn-action" do %> <em class="glyphicon glyphicon-pencil"></em> <% end %>
-              <%= link_to delete_patient_appointment_path(record: appt, research_id: @current_research),
-                                                          data: {confirm: "¿Esta seguro que quiere eliminar esta Visita? Esta acción tambien eliminará su Evaluación."},
-                                                          class: "btn-action",
-                                                          remote: true do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+              <%= link_to see_evaluation_path(id: appt, research_id: @current_research, comesFrom: "patient"), class: "btn-action" do %>
+                <em class="fa fa-clipboard"></em>
+              <% end %>
+              <%= link_to edit_appointment_path(appt, research_id: @current_research, comesFrom: "patient"), class: "btn-action" do %>
+                <% if user.can_update %>
+                  <em class="glyphicon glyphicon-pencil"></em>
+                <% else %>
+                  <em class="glyphicon glyphicon-eye-open"></em>
+                <% end %>
+              <% end %>
+              <% if user.can_delete %>
+                <%= link_to delete_patient_appointment_path(record: appt, research_id: @current_research),
+                                                        data: {confirm: "¿Esta seguro que quiere eliminar esta Visita? Esta acción tambien eliminará su Evaluación."},
+                                                        class: "btn-action",
+                                                        remote: true do %> <em class="glyphicon glyphicon-trash"></em> <% end %>
+              <% end %>
       	    </td>
           </tr>
         <% end %>
       <% end %>
-
 	</tbody>
   </table>
