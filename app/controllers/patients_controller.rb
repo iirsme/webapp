@@ -1,9 +1,12 @@
 class PatientsController < ApplicationController
   before_action :set_current_view
   before_action :set_current_research
-  before_action :set_patient, only: [:edit, :update, :show, :destroy]
-  before_action only: [:index, :edit, :update, :show, :destroy] do
+  before_action :set_patient, only: [:edit, :update, :destroy]
+  before_action do
     require_research_user(@current_research)
+  end
+  before_action only: [:index, :new, :create, :edit, :update, :destroy] do
+    can_user_perform_action(@current_user, @current_research, action_name)
   end
 
   def index

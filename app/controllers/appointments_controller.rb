@@ -2,11 +2,14 @@ class AppointmentsController < ApplicationController
   before_action :set_current_view
   before_action :set_current_research
   before_action :set_appointment, only: [:edit, :update, :destroy]
-  before_action only: [:index, :edit, :create, :new, :update, :destroy] do
+  before_action do
     require_research_user(@current_research)
   end
+  before_action only: [:index, :new, :create, :edit, :update, :destroy, :add_patient_appt, :delete_patient_appt] do
+    can_user_perform_action(@current_user, @current_research, action_name)
+  end
 
-  def add_patient_appointment
+  def add_patient_appt
     @appt = Appointment.new(patient_id: params[:patient_id], research_id: params[:research_id], appt_no: params[:appt_no], 
                             status: params[:status], appt_date: params[:appt_date], appt_time: params[:appt_time], notes: params[:notes])
     @appt.current_user = current_user
@@ -20,7 +23,7 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def delete_patient_appointment
+  def delete_patient_appt
     record = params[:record]
     @appt = Appointment.where(id: record).first
     @appt.current_user = current_user

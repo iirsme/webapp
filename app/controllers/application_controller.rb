@@ -29,6 +29,29 @@ class ApplicationController < ActionController::Base
     current_user.username == 'system.admin'
   end
 
+  def can_user_perform_action(user, research, action)
+    access_denied = false
+    user = user.get_privileges(research)
+    if (action == 'new' || action == 'create' || action == 'add_patient_appt') && !user.can_create
+      access_denied = true
+    elsif (action == 'update') && !user.can_update
+      access_denied = true
+    elsif (action == 'destroy' || action == 'delete_patient_appt') && !user.can_delete
+      access_denied = true
+    elsif (action == 'get_audit') && !user.can_audit
+      access_denied = true
+    end
+
+
+    puts "***** ACCESS DENIED!!" if access_denied
+    puts "***** ACTION: #{action}"
+
+    if access_denied
+      flash[:danger] = "Acción restringida con su rol actual."
+      redirect_to research_path(research)
+    end
+  end
+
   def require_user
     if !logged_in?
       flash[:danger] = "Ingrese al sistema para realizar esa acción."
@@ -38,7 +61,7 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     if !is_admin?
-      flash[:danger] = "Acción restringida con su rol actual."
+      flash[:danger] = "Acción restringida con su rol actual"
       redirect_to root_path
     end
   end

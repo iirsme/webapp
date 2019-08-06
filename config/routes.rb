@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   resources :patients
 
   resources :appointments
-  get 'add_patient_appointment', to: 'appointments#add_patient_appointment'
-  get 'delete_patient_appointment', to: 'appointments#delete_patient_appointment'
+  get 'add_patient_appointment', to: 'appointments#add_patient_appt'
+  get 'delete_patient_appointment', to: 'appointments#delete_patient_appt'
 
   get 'see_evaluation', to: 'evaluations#show'
  

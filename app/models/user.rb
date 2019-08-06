@@ -49,7 +49,6 @@ class User < ApplicationRecord
       :can_audit =>  self.can_audit(role),
       :can_delete => self.can_delete(role)
     }
-    puts p
     return p
   end
 
