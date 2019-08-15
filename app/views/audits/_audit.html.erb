@@ -16,7 +16,7 @@
                   <div class="rowlist">
                     <div class="row">
                       <div class="col-xs-1 col-md-1 text-center">
-                      	<% if audit.action == 'U' %>
+                      	<% if audit.action == 'I' || audit.action == 'U' %>
                       	  <a class="btn btn-warning btn-xs accordion-toggle fa fa-angle-double-down" data-original-title="Submenu" data-placement="top" data-toggle="collapse" data-parent="#allmenu" href="#<%= audit.id %>" onclick="changeAuditIcon(this);"></a>
                       	<% end %>
                       </div>

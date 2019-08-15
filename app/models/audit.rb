@@ -1,5 +1,10 @@
 class Audit < ApplicationRecord
+  EXCLUDED_ATTRIBUTES = ['id', 'created_at', 'updated_at']
   belongs_to :user
+
+  def self.is_excluded_att?(attribute)
+    EXCLUDED_ATTRIBUTES.include?(attribute)
+  end
 
   def get_action
     action = ""

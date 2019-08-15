@@ -41,12 +41,30 @@ class Candidate < ApplicationRecord
 
   def insert_log
     log = []
-    Audit.track_change(self.id, self.get_type, 'I', current_user.id, log.to_json)
-  end
+    Candidate.columns.each do |c|
+      att = c.name
+      if !self[att].blank? && !Audit.is_excluded_att?(att)
+        if Geoname.include?(att)
+          old_value = ""
+          new_value = Geoname.get_name(self[att])
 
-  def delete_log
-    log = []
-    Audit.track_change(self.id, self.get_type, 'D', current_user.id, log.to_json)
+        elsif [true, false].include?(self[att])
+          old_value = "No"
+          new_value = self[att] ? "Si" : "No"
+
+        elsif self[att].kind_of?(Array)
+          old_value = ""
+          new_value = Candidate.get_values_as_string(self[att])
+          next if new_value.blank?
+
+        else
+          old_value = ""
+          new_value = self[att]          
+        end
+        log << { :column => att, :old_value => old_value, :new_value => new_value }
+      end
+    end
+    Audit.track_change(self.id, self.get_type, 'I', current_user.id, log.to_json)
   end
 
   def update_log
@@ -74,6 +92,11 @@ class Candidate < ApplicationRecord
       end
     end
     Audit.track_change(self.id, self.get_type, 'U', current_user.id, log.to_json)
+  end
+
+  def delete_log
+    log = []
+    Audit.track_change(self.id, self.get_type, 'D', current_user.id, log.to_json)
   end
 
   def get_seqno

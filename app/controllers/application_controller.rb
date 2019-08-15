@@ -29,17 +29,22 @@ class ApplicationController < ActionController::Base
     current_user.username == 'system.admin'
   end
 
-  def can_user_perform_action(user, research, action)
+  def can_user_perform_action(user, research, action) 
     access_denied = false
-    user = user.get_privileges(research)
-    if (action == 'new' || action == 'create' || action == 'add_patient_appt') && !user.can_create
-      access_denied = true
-    elsif (action == 'update') && !user.can_update
-      access_denied = true
-    elsif (action == 'destroy' || action == 'delete_patient_appt') && !user.can_delete
-      access_denied = true
-    elsif (action == 'get_audit') && !user.can_audit
-      access_denied = true
+
+    if research.nil?
+      access_denied = !user.is_admin 
+    else
+      user = user.get_privileges(research)
+      if (action == 'new' || action == 'create' || action == 'add_patient_appt') && !user.can_create
+        access_denied = true
+      elsif (action == 'update') && !user.can_update
+        access_denied = true
+      elsif (action == 'destroy' || action == 'delete_patient_appt') && !user.can_delete
+        access_denied = true
+      elsif (action == 'get_audit') && !user.can_audit
+        access_denied = true
+      end
     end
 
 
@@ -48,7 +53,7 @@ class ApplicationController < ActionController::Base
 
     if access_denied
       flash[:danger] = "Acción restringida con su rol actual."
-      redirect_to research_path(research)
+      redirect_to research.nil? ? home_path : research_path(research)
     end
   end
 

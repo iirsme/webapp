@@ -14,7 +14,8 @@ class AuditsController < ApplicationController
 
   private
   def set_current_research
-    @current_research = Research.find(params[:research_id])
+    research = params[:research_id]
+    @current_research = research.blank? ? nil : Research.find(params[:research_id])
   end
   
 end
