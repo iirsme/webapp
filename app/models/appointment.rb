@@ -17,25 +17,26 @@ class Appointment < ApplicationRecord
 
   def insert_log
     log = []
+    Appointment.columns.each do |c|
+      att = c.name
+      if !self[att].blank? && !Audit.is_excluded_att?(att)
+        old_value = ""
+        new_value = self[att]
+        log << { :column => att, :old_value => old_value, :new_value => new_value }
+      end
+    end
     Audit.track_change(self.id, self.get_type, 'I', current_user.id, log.to_json)
-    Audit.track_change(self.id, self.get_eval_type, 'I', current_user.id, log.to_json)
+    Audit.track_change(self.id, self.get_eval_type, 'I', current_user.id, [].to_json)
   end
 
   def update_log
     log = []
     type = is_evaluation ? self.get_eval_type : self.get_type
-
     if is_evaluation
-      # prev_audits = Audit.find_by_type(self.id, type)
-      # if prev_audits.size == 0
-      #   insert_eval_log
-      #   return
-      # end
       log = update_eval_log
     else
       log = update_appt_log
     end
-
     Audit.track_change(self.id, type, 'U', current_user.id, log.to_json)
   end
 
@@ -76,7 +77,16 @@ class Appointment < ApplicationRecord
   end
 
   def update_appt_log
-    return []
+    log = []
+    Appointment.columns.each do |c|
+      att = c.name
+      if self.attribute_changed?(att) && !Audit.is_excluded_att?(att)
+        old_value = self.attribute_was(att)
+        new_value = self[att]
+        log << { :column => att, :old_value => old_value, :new_value => new_value }
+      end
+    end
+    return log
   end
 
   def self.all_patient_appts(patient_id)

@@ -71,7 +71,7 @@ class Candidate < ApplicationRecord
     log = []
     Candidate.columns.each do |c|
       att = c.name
-      if self.attribute_changed?(att) && att != 'updated_at'
+      if self.attribute_changed?(att) && !Audit.is_excluded_att?(att)
         if Geoname.include?(att)
           old_value = Geoname.get_name(self.attribute_was(att))
           new_value = Geoname.get_name(self[att])
