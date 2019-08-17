@@ -1,4 +1,13 @@
 es:
+  appointment:
+    # For Audit purposes
+    appt_no: 'Visita No.'
+    appt_date: 'Fecha'
+    appt_time: 'Hora'
+    status: 'Status'
+    patient_id: 'Paciente'
+    research_id: 'Protocolo'
+    
   candidate:
     # For Audit purposes
     seq_no: 'Folio'

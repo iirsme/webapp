@@ -21,10 +21,10 @@ class Audit < ApplicationRecord
     create(record_id: record_id, entity: entity, action: action, user_id: user, done_at: Time.current, log: log)
   end
 
-  def self.get_audit(record_id, record_type, from, to)
+  def self.get_audit(record_id, entity, from, to)
     from_date = (from + ' 00:00:00') unless from.blank?
     to_date = (to + ' 23:59:59') unless to.blank?
-    where(record_id: record_id, done_at: from_date..to_date).order(done_at: :asc)
+    where(record_id: record_id, entity: entity, done_at: from_date..to_date).order(done_at: :asc)
   end
 
   def self.find_by_type(record_id, entity)

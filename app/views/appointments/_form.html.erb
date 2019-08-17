@@ -85,8 +85,12 @@
             </div>
           </div>
         </div>
-      
       <% end %>
+
+      <% if user.can_audit && !@appointment.new_record? %>
+        <%= render 'audits/individual_audit_form', record: @appointment, record_type: 'appointment' %>
+      <% end %>
+
     </div>
   </div>
 </div>

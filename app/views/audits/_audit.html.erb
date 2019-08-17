@@ -11,6 +11,7 @@
                 <div class="col-xs-4 col-md-4 text-left audit-title">Valor Actual</div>
                 <div class="col-xs-4 col-md-4 text-left audit-title">Valor Antiguo</div>
               </div>
+              <% time_idx = 0 %>
               <% @audit.each_with_index do |audit, idx| %>
                 <div class="accordion-heading" id="menubody">
                   <div class="rowlist">
@@ -32,22 +33,56 @@
                       </div>
                     </div>
                     <% parsed_log = JSON.parse(audit.log) %>
+                    <% "#{parsed_log}" %>
                     <div class="accordion-body collapse" id="<%= audit.id %>">  	
                       <div class="accordion-heading">
                         <div class="accordion-body">
                           <div class="accordion-heading">
                           	<% parsed_log.each do |row| %>
+                          	  <% next if row["column"] == 'patient_id' || row["column"] == 'research_id' %>
                               <div class="rowlist">
                                 <div class="row">
                                   <div class="col-xs-1 col-md-1 text-center">&nbsp;</div>
+                                  
+                                  <!-- Field Name -->
                                   <% if audit.entity == 'candidate' %>
                                     <div class="col-xs-3 col-md-3 text-left audit-content"><%= t('candidate.' + row["column"]) %></div>
                                   <% elsif audit.entity == 'evaluation' %>
                                     <% field = Field.find_by_name(row["column"]) %>
-                                    <div class="col-xs-3 col-md-3 text-left audit-content"><%= !field.nil? ? field.label : "<Variable desconocida>" %></div>  
+                                    <div class="col-xs-3 col-md-3 text-left audit-content"><%= !field.nil? ? field.label : "<Variable desconocida>" %></div>
+                                  <% elsif audit.entity == 'appointment' %>
+                                    <div class="col-xs-3 col-md-3 text-left audit-content"><%= t('appointment.' + row["column"]) %></div>
                                   <% end %>
-                                  <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['new_value'] %></div>
-                                  <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['old_value'] %></div>
+                                  <!-- ------------ -->
+
+                                  <!-- Field Values -->
+                                  <% if row["column"] == 'appt_time' %>
+                                    <div class="col-xs-4 col-md-4 text-left audit-content audit-new-time"><%= row['new_value'] %></div>
+                                    <div class="col-xs-4 col-md-4 text-left audit-content audit-old-time"><%= row['old_value'] %></div>
+                                    <%= javascript_tag do %> debugger;
+                                      var indexx = <%= time_idx %>
+                                      var newTime = $('.audit-new-time')[indexx].innerHTML;
+                                      if (newTime !== '') {
+                                        var newT = new Date();
+                                        newT.setHours(newTime.substring(newTime.indexOf("T") + 1, newTime.indexOf(":")));
+                                        newT.setMinutes(newTime.substring(newTime.indexOf(":") + 1, newTime.lastIndexOf(":")));
+                                        $('.audit-new-time')[indexx].innerHTML = new moment(newT).format("h:mm a");
+                                      }
+                                      var oldTime = $('.audit-old-time')[indexx].innerHTML;
+                                      if (oldTime !== '') {
+                                        var oldT = new Date();
+                                        oldT.setHours(oldTime.substring(oldTime.indexOf("T") + 1, oldTime.indexOf(":")));
+                                        oldT.setMinutes(oldTime.substring(oldTime.indexOf(":") + 1, oldTime.lastIndexOf(":")));
+                                        $('.audit-old-time')[indexx].innerHTML = new moment(oldT).format("h:mm a");
+                                      }
+                                    <% end %>
+                                    <% time_idx = time_idx + 1 %>
+                                  <% else %>
+                                    <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['new_value'] %></div>
+                                    <div class="col-xs-4 col-md-4 text-left audit-content"><%= row['old_value'] %></div>
+                                  <% end %>
+                                  <!-- ------------ -->
+
                                 </div>
                               </div>
                             <% end %>

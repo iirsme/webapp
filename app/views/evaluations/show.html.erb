@@ -101,7 +101,7 @@
       <% end%>
 
       <% if user.can_audit && !@appointment.new_record? %>
-        <%= render 'audits/individual_audit_form', record: @appointment %>
+        <%= render 'audits/individual_audit_form', record: @appointment, record_type: 'evaluation' %>
       <% end %>
 
     </div>

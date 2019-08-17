@@ -371,7 +371,7 @@
       <% end %>
 
       <% if current_user.admin? && !@candidate.new_record? %>
-        <%= render 'audits/individual_audit_form', record: @candidate %>
+        <%= render 'audits/individual_audit_form', record: @candidate, record_type: 'candidate' %>
       <% end %>
 
     </div>
