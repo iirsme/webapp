@@ -1027,3 +1027,10 @@ span.round-tab:hover {
   color: black;
 }
 
+
+
+/* FIELDS VALIDATIONS */
+.variable:invalid {
+  border-color: red;
+}
+

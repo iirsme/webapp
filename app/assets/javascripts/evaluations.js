@@ -15,3 +15,16 @@ $(document).on('ready turbolinks:load', function () {
     }
   });
 });
+
+var validate_field = function (type, field) {
+  var error = false;
+  if (type === 'alpha') {
+    regexp = /^[A-Za-z]+$/;
+  } else if (type === 'alphanumeric') {
+    regexp = /^[\w\-\s]+$/;
+  } else if (type === 'numeric') {
+    regexp = /^\d+(\.\d{1,2})?$/;
+  }
+  error = !regexp.test($(field).val());
+  field.setCustomValidity(error ? 'Valor incorrecto' : '');
+};
