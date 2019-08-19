@@ -18,6 +18,11 @@ $(document).on('ready turbolinks:load', function () {
 
 var validate_field = function (type, field) {
   var error = false;
+  var value = $(field).val();
+  if (value === "" || value == null) {
+    return;
+  }
+
   if (type === 'alpha') {
     regexp = /^[A-Za-z]+$/;
   } else if (type === 'alphanumeric') {
@@ -25,6 +30,6 @@ var validate_field = function (type, field) {
   } else if (type === 'numeric') {
     regexp = /^\d+(\.\d{1,2})?$/;
   }
-  error = !regexp.test($(field).val());
+  error = !regexp.test(value);
   field.setCustomValidity(error ? 'Valor incorrecto' : '');
 };
