@@ -25,6 +25,11 @@ gem 'uglifier', '>= 1.3.0'
 # Use for getting better confirm dialogs
 gem 'twitter-bootstrap-rails-confirm'
 
+# Use for XLSX reports
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
+
 # Use Font-Awesome
 gem 'font-awesome-rails'
 # Use Datepicker from Bootstrap

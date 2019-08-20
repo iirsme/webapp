@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Candidates") do |sheet|
+  # HEAD ROW
+  sheet.add_row %w(curp name email phone)
+
+  # CONTENT ROWS
+  @records.each do |r|
+    sheet.add_row [r.curp, r.name, r.email, r.phone]
+  end
+end

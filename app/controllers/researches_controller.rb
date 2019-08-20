@@ -1,12 +1,20 @@
 class ResearchesController < ApplicationController
   before_action :require_user
-  before_action :set_research, only: [:edit, :update, :show, :destroy]
-  before_action :set_current_research, except: [:back]
+  before_action :set_research, only: [:edit, :update, :show, :destroy, :get_report]
+  before_action :set_current_research, except: [:back, :get_report]
   before_action only: [:edit, :update, :destroy] do
     require_owner(@research)
   end
   before_action only: [:show] do
     require_research_user(@research)
+  end
+
+  def get_report
+    @records = Candidate.all
+
+    respond_to do |format|
+      format.xlsx
+    end
   end
 
   def enter_research

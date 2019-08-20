@@ -94,8 +94,29 @@
     </div>
   </div>
   
-  
 </div>
+
+<div class="row">
+	
+  <div class="col-xs-6 col-md-6">
+    <div class="row setup-content">
+      <div class="col-xs-12 col-md-12">
+        <div class="col-xs-12 col-md-12 panel panel-default" id="step">
+          <div class="spacer-10"></div>
+          <h4 class="text-left"> Reporte </h4>
+          <div class="spacer-20"></div>
+          <div class="container col-xs-12">
+            <div class="row clearfix">
+              <%= link_to "Imprimir Reporte (Prueba)", get_report_path(id: @current_research, format: "xlsx"), class: "btn btn-primary" %>
+		    </div>
+	      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 </div>
 
 
