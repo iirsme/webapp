@@ -68,9 +68,10 @@ class AppointmentsController < ApplicationController
   def update
     @appointment.current_user = current_user
     @comesFrom = params[:comesFrom]
-    @appointment.is_evaluation = !appointment_params[:values].blank?
+    values = appointment_params[:values]
+    @appointment.is_evaluation = !values.blank?
     if @appointment.is_evaluation
-      if @appointment.update(appointment_params)
+      if @appointment.update(values: values.to_hash)
         flash[:success] = "Evaluación actualizada satisfactoriamente"
         redirect_to see_evaluation_path(id: @appointment, research_id: @current_research, comesFrom: @comesFrom)
       end

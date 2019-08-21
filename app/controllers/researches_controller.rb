@@ -10,7 +10,15 @@ class ResearchesController < ApplicationController
   end
 
   def get_report
-    @records = Candidate.all
+    @records = ActiveRecord::Base.connection.execute("
+      SELECT c.name, c.curp, c.age, a.values
+      FROM   appointments a
+      JOIN   patients p on p.id = a.patient_id
+      JOIN   candidates c ON c.id = p.candidate_id
+      WHERE  1 = 1
+      AND    a.status = 'Completada'
+      ORDER BY c.curp
+    ")
 
     respond_to do |format|
       format.xlsx

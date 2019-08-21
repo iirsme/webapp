@@ -1,11 +1,16 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Candidates") do |sheet|
-  # HEAD ROW
-  sheet.add_row %w(curp name email phone)
+wb.styles do |style|
+  wb.add_worksheet(name: "Reporte Horizontal") do |sheet|
+    header = style.add_style(b: true, sz: 13)
 
-  # CONTENT ROWS
-  @records.each do |r|
-    sheet.add_row [r.curp, r.name, r.email, r.phone]
+    # HEAD ROW
+    sheet.add_row %w(curp name), style: header
+
+    # CONTENT ROWS
+    @records.each do |r|
+      byebug
+      sheet.add_row [r['curp'], r['name']]
+    end
   end
 end
