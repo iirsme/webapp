@@ -12,9 +12,9 @@ class ResearchField < ApplicationRecord
     labels = []
     cols = []
 
-    fields = ResearchField.includes(:field)
-    .where("research_id = ? AND field_id IS NOT NULL", research)
-    .order(:seq_no)
+    fields = ResearchField.includes(:field, :tab)
+    .where("research_fields.research_id = ? AND field_id IS NOT NULL", research)
+    .order("tabs.seq_no, research_fields.seq_no")
 
     fields.each do |f|
       labels.push(f.field.label)
