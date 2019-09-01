@@ -1,5 +1,12 @@
 class Candidate < ApplicationRecord
   attr_accessor :current_user # For Audit purposes
+  ATTRIBUTES = ['id', 'seq_no', 'occupation', 'occupation_other',
+    'scolarship', 'birth_city', 'birth_state', 'birth_country',
+    'address_main_street', 'address_street_no1', 'address_street_no2', 
+    'address_street1', 'address_street2', 'address_region', 'address_city',
+    'address_state', 'address_country', 'created_at', 'updated_at', 
+    'other_illness', 'str_illness_other'
+  ]
 
   has_many :patients
   has_many :researches, through: :patients
@@ -153,10 +160,26 @@ class Candidate < ApplicationRecord
       {'id': '9', 'value': 'Abuelo m'}
     ]
   end
-  
+
   def self.get_map_value(id)
     option = family_map.select {|map| map[:id] == id}
     value = option.nil? ? nil : option[0].value
+  end
+
+  def self.get_research_columns
+    cols = []
+    Candidate.columns.each do |c|
+      att = c.name
+      if !Candidate.include?(att)
+        att = I18n.t('candidate.' + c.name)
+        cols.push(att)
+      end
+    end
+    return cols
+  end
+
+  def self.include?(attribute)
+    ATTRIBUTES.include?(attribute)
   end
 
   protected

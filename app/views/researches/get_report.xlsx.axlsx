@@ -2,15 +2,31 @@ wb = xlsx_package.workbook
 
 wb.styles do |style|
   wb.add_worksheet(name: "Reporte Horizontal") do |sheet|
-    header = style.add_style(b: true, sz: 13)
+    header_style = style.add_style(b: true, sz: 12)
+
+    # MASTER DATA
+    candidate_cols = Candidate.get_research_columns
+    appt_data = ResearchField.get_research_columns(@research)
 
     # HEAD ROW
-    sheet.add_row %w(curp name), style: header
+    header = candidate_cols.concat(appt_data['labels'])
+    sheet.add_row header, style: header_style
 
     # CONTENT ROWS
     @records.each do |r|
-      byebug
-      sheet.add_row [r['curp'], r['name']]
+      # sheet.add_row [r.candidate.curp, r.candidate.name, r.appointments[0].values["alcohol"], r.appointments[1].values["alcohol"] ]
+
+      #values = []
+      #Candidate.columns.each do |c|
+      #  att = c.name
+      #  values.push(r.candidate[att])
+      #end
+      #sheet.add_row(values)
+      
+      #byebug
+      #sheet.add_row [ r["entity"], r["action" ]
+      
     end
+
   end
 end

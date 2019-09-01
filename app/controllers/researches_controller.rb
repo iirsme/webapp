@@ -10,15 +10,12 @@ class ResearchesController < ApplicationController
   end
 
   def get_report
-    @records = ActiveRecord::Base.connection.execute("
-      SELECT c.name, c.curp, c.age, a.values
-      FROM   appointments a
-      JOIN   patients p on p.id = a.patient_id
-      JOIN   candidates c ON c.id = p.candidate_id
-      WHERE  1 = 1
-      AND    a.status = 'Completada'
-      ORDER BY c.curp
-    ")
+    appts = [1, 2] #params['appts']
+    #@records = ActiveRecord::Base.connection.execute("SELECT * FROM dual")
+
+    @records = Appointment.includes(patient: :candidate)
+    .where("appointments.appt_no IN (?) AND appointments.status = 'Completada'", appts)
+    .order("candidates.curp")
 
     respond_to do |format|
       format.xlsx
