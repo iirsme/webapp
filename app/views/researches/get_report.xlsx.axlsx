@@ -5,28 +5,63 @@ wb.styles do |style|
     header_style = style.add_style(b: true, sz: 12)
 
     # MASTER DATA
-    candidate_cols = Candidate.get_research_columns
+    candidate_data = Candidate.get_research_columns
     appt_data = ResearchField.get_research_columns(@research)
 
+    appts_no = @appts_no
+    records_no = @records.length
+    is_comparative = appts_no > 1
+    last_candidate_col = candidate_data['cols'].length - 1
+
     # HEAD ROW
-    header = candidate_cols.concat(appt_data['labels'])
+    # -----------------------------------------
+    header = candidate_data['labels']
+    if (!is_comparative)
+      header = header.concat(appt_data['labels'])
+    else
+      i = 0
+      j = 1
+      while i < appt_data['labels'].length do
+        while j <= appts_no do
+          label = appt_data['labels'][i] + " (#{j})"
+          header.push(label)
+          j+=1
+        end
+        i+=1
+        j=1
+      end
+    end
     sheet.add_row header, style: header_style
+    # -----------------------------------------
+
 
     # CONTENT ROWS
-    @records.each do |r|
-      # sheet.add_row [r.candidate.curp, r.candidate.name, r.appointments[0].values["alcohol"], r.appointments[1].values["alcohol"] ]
+    # -----------------------------------------
+    row = []
+    next_col = 0
+    n_patient = 0
+    @records.each_with_index do |rec, idx|
+      n_patient+=1
 
-      #values = []
-      #Candidate.columns.each do |c|
-      #  att = c.name
-      #  values.push(r.candidate[att])
-      #end
-      #sheet.add_row(values)
-      
-      #byebug
-      #sheet.add_row [ r["entity"], r["action" ]
-      
+      if (row.blank?)
+        candidate_data['cols'].each do |c|
+          row.push(rec.patient.candidate[c])
+        end
+      end
+
+      next_col = last_candidate_col + n_patient
+      appt_data['cols'].each do |v|
+        row[next_col] = rec.values[v]
+        next_col = next_col + appts_no
+      end
+
+      if ((is_comparative && idx > 0 && idx % appts_no == 0) || !is_comparative || idx == records_no - 1)
+        sheet.add_row(row)
+        row = []
+        n_patient = 0
+      end
     end
+    # -----------------------------------------
 
   end
 end

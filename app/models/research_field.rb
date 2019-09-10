@@ -11,19 +11,16 @@ class ResearchField < ApplicationRecord
     data = {}
     labels = []
     cols = []
-
     fields = ResearchField.includes(:field, :tab)
     .where("research_fields.research_id = ? AND field_id IS NOT NULL", research)
-    .order("tabs.seq_no, research_fields.seq_no")
+    .order("tabs.seq_no ASC, research_fields.seq_no ASC")
 
     fields.each do |f|
       labels.push(f.field.label)
       cols.push(f.field.name)
     end
-
     data['cols'] = cols
     data['labels'] = labels
-
     return data
   end
 

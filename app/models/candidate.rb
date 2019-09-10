@@ -6,7 +6,7 @@ class Candidate < ApplicationRecord
     'address_street1', 'address_street2', 'address_region', 'address_city',
     'address_state', 'address_country', 'created_at', 'updated_at', 
     'other_illness', 'str_illness_other'
-  ]
+  ] # For Research's Report purposes
 
   has_many :patients
   has_many :researches, through: :patients
@@ -167,15 +167,20 @@ class Candidate < ApplicationRecord
   end
 
   def self.get_research_columns
+    data = {}
+    labels = []
     cols = []
     Candidate.columns.each do |c|
       att = c.name
       if !Candidate.include?(att)
         att = I18n.t('candidate.' + c.name)
-        cols.push(att)
+        labels.push(att)
+        cols.push(c.name)
       end
     end
-    return cols
+    data['cols'] = cols
+    data['labels'] = labels
+    return data
   end
 
   def self.include?(attribute)
