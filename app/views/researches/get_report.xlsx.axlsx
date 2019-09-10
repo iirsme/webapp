@@ -45,13 +45,15 @@ wb.styles do |style|
 
       if (row.blank?)
         candidate_data['cols'].each do |c|
-          row.push(rec.patient.candidate[c])
+          val = Utility.translate_value(rec.patient.candidate[c])
+          row.push(val)
         end
       end
 
       next_col = last_candidate_col + n_patient
       appt_data['cols'].each do |v|
-        row[next_col] = rec.values[v]
+        val = Utility.translate_value(rec.values[v])
+        row[next_col] = val
         next_col = next_col + appts_no
       end
 
