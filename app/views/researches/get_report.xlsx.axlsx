@@ -60,6 +60,10 @@ wb.styles do |style|
         end
       end
 
+      while @appts[n_patient - 1].to_i < rec.appt_no.to_i
+        n_patient+=1
+      end
+
       next_col = last_candidate_col + n_patient
       appt_data['cols'].each do |v|
         val = Utility.translate_value(rec.values[v])
