@@ -8,7 +8,7 @@ wb.styles do |style|
     candidate_data = Candidate.get_research_columns
     appt_data = ResearchField.get_research_columns(@research)
 
-    appts_no = @appts_no
+    appts_no = @appts.length
     is_comparative = appts_no > 1
     last_candidate_col = candidate_data['cols'].length - 1
 
@@ -19,15 +19,15 @@ wb.styles do |style|
       header = header.concat(appt_data['labels'])
     else
       i = 0
-      j = 1
+      j = 0
       while i < appt_data['labels'].length do
-        while j <= appts_no do
-          label = appt_data['labels'][i] + " (#{j})"
+        while j < appts_no do
+          label = appt_data['labels'][i] + " (#{@appts[j]})"
           header.push(label)
           j+=1
         end
         i+=1
-        j=1
+        j=0
       end
     end
     sheet.add_row header, style: header_style
