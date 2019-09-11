@@ -39,7 +39,18 @@ wb.styles do |style|
     row = []
     next_col = 0
     n_patient = 0
+    curr_pat = nil
+    prev_pat = nil
     @records.each_with_index do |rec, idx|
+      curr_pat = rec.patient.id
+      if idx == 0
+        prev_pat = curr_pat
+      end
+      if curr_pat != prev_pat
+        sheet.add_row(row)
+        row = []
+        n_patient = 0
+      end
       n_patient+=1
 
       if (row.blank?)
@@ -56,12 +67,9 @@ wb.styles do |style|
         next_col = next_col + appts_no
       end
 
-      if (n_patient == appts_no)
-        sheet.add_row(row)
-        row = []
-        n_patient = 0
-      end
+      prev_pat = curr_pat
     end
+    sheet.add_row(row)
     # -----------------------------------------
 
   end
