@@ -20,6 +20,8 @@ $(document).on('ready turbolinks:load', function () {
       null,
       null,
       null,
+      // null,
+      null,
       null,
       null,
       null,

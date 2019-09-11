@@ -111,7 +111,7 @@
               <%= hidden_field_tag :format, :xlsx %>
               <div class="row">
                 <div class="col-xs-8">
-                  <label>Visitas a imprimir</label> (Ejemplo: 1,2,3)
+                  <label>Num. Visitas Completadas</label> (Ejemplo: 1,2,3)
                   <%= text_field_tag("appts_no", nil, class: "form-control form-style input-md validable",
                                      oninput: "this.setCustomValidity('')",
                                      oninvalid: "this.setCustomValidity('Valor incorrecto. Favor de introducir numeros separados por \",\"')",
