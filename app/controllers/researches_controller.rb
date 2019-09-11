@@ -12,7 +12,7 @@ class ResearchesController < ApplicationController
   def get_report
     @appts = params['appts_no'].split(",")
     @records = Appointment.includes(patient: :candidate)
-    .where("appointments.appt_no IN (?) AND appointments.status = 'Completada'", @appts)
+    .where("appointments.research_id = ? AND appointments.appt_no IN (?) AND appointments.status = 'Completada'", @research, @appts)
     .order("candidates.curp, appointments.appt_no ASC")
 
     respond_to do |format|
