@@ -64,5 +64,12 @@ function tabActionsLogic (idx, edit) {
   }
 }
 
-
-
+var validate_report_field = function (field) {
+  var value = $(field).val();
+  var error = false;
+  if (value === "" || value == null) {
+    return;
+  }
+  error = !(/^([0-9]*[,]?[0-9]{1})+$/).test(value);
+  field.setCustomValidity(error ? 'Error' : '');
+};

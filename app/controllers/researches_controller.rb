@@ -10,8 +10,7 @@ class ResearchesController < ApplicationController
   end
 
   def get_report
-    puts "*********** #{params}"
-    appts = [1,2] #params['appts']
+    appts = params['appts_no'].split(",")
     @appts_no = appts.length
     @records = Appointment.includes(patient: :candidate)
     .where("appointments.appt_no IN (?) AND appointments.status = 'Completada'", appts)
