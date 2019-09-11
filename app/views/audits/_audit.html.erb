@@ -58,7 +58,7 @@
                                   <% if row["column"] == 'appt_time' %>
                                     <div class="col-xs-4 col-md-4 text-left audit-content audit-new-time"><%= row['new_value'] %></div>
                                     <div class="col-xs-4 col-md-4 text-left audit-content audit-old-time"><%= row['old_value'] %></div>
-                                    <%= javascript_tag do %> debugger;
+                                    <%= javascript_tag do %>
                                       var indexx = <%= time_idx %>
                                       var newTime = $('.audit-new-time')[indexx].innerHTML;
                                       if (newTime !== '') {
