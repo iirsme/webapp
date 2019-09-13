@@ -1,0 +1,26 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr style="width:100%">
+      <th class="text-center" style="width:35%"> CURP / Registro Hospital </th>
+      <th class="text-center" style="width:45%"> Nombre </th>
+      <th class="text-center" style="width:15%"> Telefono </th>
+      <th class="text-center" style="width:5%"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !@last_patients.nil? %>
+      <% @last_patients.each do |p| %>
+      <tr>
+        <td class="text-left"><%= p.candidate.get_ide %></td>
+        <td class="text-left"><%= "#{p.candidate.name} #{p.candidate.get_last_name}" %></td>
+        <td class="text-left"><%= p.candidate.phone %></td>
+        <td class="text-center">
+          <%= link_to edit_patient_path(p, research_id: @current_research, comesFrom: "research"), class: "btn-action" do %>
+            <em class="glyphicon glyphicon-eye-open"></em>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

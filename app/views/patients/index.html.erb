@@ -24,9 +24,9 @@
           <thead>
             <tr>
               <th class="col col-xs-2 col-header">País</th>
+              <th class="col col-xs-2 col-header">CURP</th>
               <th class="col col-xs-2 col-header">Registro Hospital</th>
               <th class="col col-xs-3 col-header">Nombre</th>
-              <th class="col col-xs-2 col-header">CURP</th>
               <th class="col col-xs-1 col-header">Celular</th>
               <th class="col col-xs-1 col-header">Fecha Nacimiento</th>
               <th class="col col-xs-1 col-header"></th>
@@ -36,9 +36,9 @@
             <% @patients.each do |patient| %>
               <tr>
               	<td class="col col-xs-2 col-data-left"> <%= Geoname.get_name(patient.candidate.birth_country) %> </td>
+              	<td class="col col-xs-2 col-data-left"> <%= patient.candidate.curp %> </td>
               	<td class="col col-xs-2 col-data-left"> <%= patient.candidate.hospital_record %> </td>
                 <td class="col col-xs-3 col-data-left"> <%= "#{patient.candidate.name} #{patient.candidate.get_last_name}" %> </td>
-                <td class="col col-xs-2 col-data-left"> <%= patient.candidate.curp %> </td>
                 <td class="col col-xs-1 col-data-center"> <%= patient.candidate.cell_phone %> </td>
                 <td class="col col-xs-1 col-data-center"> <%= patient.candidate.birth_date.strftime("%d/%m/%Y") unless patient.candidate.birth_date.blank? %> </td>
                 <td align="center">

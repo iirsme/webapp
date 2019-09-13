@@ -34,8 +34,14 @@
                           <em class="glyphicon glyphicon-floppy-disk"></em> Guardar 
                         <% end %>
                       <% end %>
-                      <%= link_to patients_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
-                        <em class="fa fa-undo"></em> Atrás 
+                      <% if @comesFrom == 'research' %>
+                        <%= link_to research_path(id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+                          <em class="fa fa-undo"></em> Atrás 
+                        <% end %>
+                      <% else %>
+                        <%= link_to patients_path(research_id: @current_research), class: "btn btn-primary btn-sm btn-form" do %>
+                          <em class="fa fa-undo"></em> Atrás 
+                        <% end %>
                       <% end %>
                     </div>
                   </div>

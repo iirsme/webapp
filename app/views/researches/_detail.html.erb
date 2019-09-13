@@ -31,25 +31,9 @@
           <div class="container col-xs-12">
             <div class="row clearfix">
               <div class="col-md-12 column">
-<!--
-              <div id="research-users">
-                <%#= render 'research_users/users' %> TODO: Replace for last patients partial
-              </div>
--->
-			    <table class="table table-bordered table-hover">
-  			      <thead>
-	  		        <tr style="width:100%">
-			          <th class="text-center" style="width:30%"> CURP </th>
-			          <th class="text-center" style="width:45%"> Nombre </th>
-			          <th class="text-center" style="width:10%"> Telefono </th>
-			          <th class="text-center" style="width:10%"> Celular </th>
-				      <th class="text-center" style="width:5%"> </th>
-			        </tr>
-				  </thead>
-			      <tbody>
-			      </tbody>
-			    </table>
-
+                <div id="last_patients">
+                  <%= render 'patients/last_patients' %>
+                </div>
   			  </div>
 		    </div>
 	      </div>
@@ -62,32 +46,16 @@
     <div class="col-xs-12 col-md-12">
       <div class="col-xs-12 col-md-12 panel panel-default" id="step">
       	<div class="spacer-10"></div>
-      	<h4 class="text-left"> Próximas visitas </h4>
-        <div class="spacer-20"></div>
-        <div class="container col-xs-12">
-          <div class="row clearfix">
-            <div class="col-md-12 column">
-<!--
-              <div id="research-users">
-                <%#= render 'research_users/users' %> TODO: Replace next visits partial
-              </div>
--->
-			  <table class="table table-bordered table-hover">
-			    <thead>
-			      <tr style="width:100%">
-			        <th class="text-center" style="width:30%"> CURP </th>
-			        <th class="text-center" style="width:25%"> Status </th>
-			        <th class="text-center" style="width:20%"> Fecha </th>
-			        <th class="text-center" style="width:20%"> Hora </th>
-				    <th class="text-center" style="width:5%"> </th>
-			      </tr>
-				</thead>
-			    <tbody>
-			    </tbody>
-			  </table>
-			  
-			</div>
-		    </div>
+      	  <h4 class="text-left"> Próximas visitas </h4>
+          <div class="spacer-20"></div>
+          <div class="container col-xs-12">
+            <div class="row clearfix">
+              <div class="col-md-12 column">
+                <div id="next_appts">
+                  <%= render 'appointments/next_appts' %>
+                </div>
+			  </div>
+            </div>
 	      </div>
         </div>
       </div>
