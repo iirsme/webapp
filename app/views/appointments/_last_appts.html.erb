@@ -1,0 +1,30 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr style="width:100%">
+      <th class="text-center" style="width:5%"> No. </th>
+      <th class="text-center" style="width:20%"> Status </th>
+      <th class="text-center" style="width:15%"> Fecha </th>
+      <th class="text-center" style="width:15%"> Hora </th>
+      <th class="text-center" style="width:40%"> Paciente </th>
+	  <th class="text-center" style="width:5%"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !@last_appts.nil? %>
+      <% @last_appts.each do |appt| %>
+        <tr>
+      	  <td class="text-center"><%= appt.appt_no.blank? ? "" : appt.appt_no.to_i %></td>
+      	  <td class="text-center"><%= appt.status %></td>
+      	  <td class="text-center"><%= appt.appt_date.strftime("%d/%m/%Y") %></td>
+      	  <td class="text-center"><%= appt.appt_time.strftime("%I:%M %p") %></td>
+      	  <td class="text-left"><%= "#{appt.patient.candidate.name} #{appt.patient.candidate.get_last_name}" %></td>
+          <td class="text-center">
+            <%= link_to edit_appointment_path(appt, research_id: @current_research, comesFrom: "research"), class: "btn-action" do %>
+              <em class="glyphicon glyphicon-eye-open"></em>
+            <% end %>
+          </td>
+      	</tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -71,6 +71,7 @@ class ResearchesController < ApplicationController
 
   def show
     @last_patients = Patient.get_last_added_patients_by_research(@research, 5)
+    @last_appts = Appointment.get_last_added_appts_by_research(@research, 10)
   end
 
   def new

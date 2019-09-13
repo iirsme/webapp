@@ -93,6 +93,13 @@ class Appointment < ApplicationRecord
     appts = self.where(patient: patient_id).order(appt_date: :asc, appt_time: :asc )
   end
 
+  def self.get_last_added_appts_by_research(research_id, limit)
+    self.includes(patient: :candidate)
+    .where(research_id: research_id)
+    .order("appointments.created_at DESC")
+    .limit(limit)
+  end
+
   def get_type
     return self.class.name.downcase
   end

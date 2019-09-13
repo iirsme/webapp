@@ -17,11 +17,11 @@ class Patient < ApplicationRecord
     .order("candidates.curp ASC, candidates.hospital_record ASC")
   end
 
-  def self.get_last_added_patients_by_research(research_id, qty)
+  def self.get_last_added_patients_by_research(research_id, limit)
     self.includes(:candidate)
     .where(research_id: research_id)
     .order("patients.created_at DESC")
-    .limit(10)
+    .limit(limit)
   end
 
 end
