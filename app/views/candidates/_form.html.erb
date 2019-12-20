@@ -37,6 +37,20 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+              <span class="fa fa-exclamation-triangle panel-form-icon"></span>Datos Obligatorios
+            </a>
+          </h4>
+        </div>
+        <div id="collapseZero" class="panel-collapse collapse in" role="tabpanel">
+          <div class="panel-body">
             <div class="row">
               <div class="col-xs-4 col-md-4">
                 <label>Nombre</label>
@@ -57,20 +71,32 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-              <span class="fa fa-medkit panel-form-icon"></span>Datos de Evaluación
-            </a>
-          </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel">
-          <div class="panel-body">
+          	<div class="row">
+              <div class="col-xs-3 col-md-3">
+                <label>Fecha de Nacimiento</label>
+                <div class='input-group date' id='datepicker2'>
+                  <%= el.text_field :birth_date, class: "form-control form-style", 
+                                                 value: (@candidate.birth_date.strftime("%d/%m/%Y") unless @candidate.birth_date.blank?) %>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="col-xs-2 col-md-2">
+                <label>Sexo</label>
+                <%= el.select :gender, ['Hombre', 'Mujer'], {:include_blank => true}, {:class =>'form-control form-style'} %>
+              </div>
+              <div class="col-xs-3 col-md-3">
+                <label>Fecha de Evaluación</label>
+                <div class='input-group date' id='datepicker1'>
+                  <%= el.text_field :evaluation_date, class: "form-control form-style", 
+                                                      value: (@candidate.evaluation_date.strftime("%d/%m/%Y") unless @candidate.evaluation_date.blank?) %>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>              
+            </div>
             <div class="row">
               <div class="col-xs-3 col-md-3">
     	        <label>Fecha de Diagnóstico</label>
@@ -101,36 +127,10 @@
         </div>
         <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel">
           <div class="panel-body">
-          	<div class="row">
-              <div class="col-xs-3 col-md-3">
-                <label>Fecha de Evaluación</label>
-                <div class='input-group date' id='datepicker1'>
-                  <%= el.text_field :evaluation_date, class: "form-control form-style", 
-                                                      value: (@candidate.evaluation_date.strftime("%d/%m/%Y") unless @candidate.evaluation_date.blank?) %>
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-                </div>
-              </div>
-          	</div>
             <div class="row">
-              <div class="col-xs-3 col-md-3">
-                <label>Fecha de Nacimiento</label>
-                <div class='input-group date' id='datepicker2'>
-                  <%= el.text_field :birth_date, class: "form-control form-style", 
-                                                 value: (@candidate.birth_date.strftime("%d/%m/%Y") unless @candidate.birth_date.blank?) %>
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-                </div>
-              </div>
               <div class="col-xs-2 col-md-2">
                 <label>Edad</label>
                 <%= el.number_field :age, class: "form-control form-style" %>
-              </div>
-              <div class="col-xs-2 col-md-2">
-                <label>Sexo</label>
-                <%= el.select :gender, ['Hombre', 'Mujer'], {:include_blank => true}, {:class =>'form-control form-style'} %>
               </div>
             </div>
 
