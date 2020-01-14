@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_13_194842) do
+ActiveRecord::Schema.define(version: 2020_01_14_161712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2019_09_13_194842) do
     t.boolean "miopatia", default: false
     t.boolean "other_illness", default: false
     t.string "str_illness_other"
+    t.integer "years_of_residence"
   end
 
   create_table "fields", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

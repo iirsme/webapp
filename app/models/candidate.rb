@@ -5,7 +5,7 @@ class Candidate < ApplicationRecord
     'address_main_street', 'address_street_no1', 'address_street_no2', 
     'address_street1', 'address_street2', 'address_region', 'address_city',
     'address_state', 'address_country', 'created_at', 'updated_at', 
-    'other_illness', 'str_illness_other'
+    'other_illness', 'str_illness_other', 'years_of_residence'
   ] # For Research's Report purposes
 
   has_many :patients

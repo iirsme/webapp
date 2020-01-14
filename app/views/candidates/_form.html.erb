@@ -248,6 +248,10 @@
               	<%= hidden_field_tag :candidate_address_city_name %>
                 <%= el.select :address_city, [], {:include_blank => true}, class: 'form-control' %>
               </div>
+              <div class="col-xs-3 col-md-3">
+                <label>Años de Residencia</label>
+                <%= el.number_field :years_of_residence, class: "form-control form-style" %>            	
+              </div>
             </div>
           </div>
         </div>
