@@ -68,8 +68,8 @@
         <li class="<%= current_view === 'candidates' ? 'active' : '' %> menu-item"><%= link_to candidates_path do %> <span class="fa fa-users"></span> Candidatos <% end %></li>
         <% if is_admin? %>
           <li class="<%= current_view === 'fields' ? 'active' : '' %> menu-item"><%= link_to fields_path do %> <span class="fa fa-th-list"></span> Variables <% end %></li>
+          <li class="<%= current_view === 'database_report' ? 'active' : '' %> menu-item"><%= link_to database_report_path do %> <span class="fa fa-database"></span> Base de Datos <% end %></li>
         <% end %>
-        <li class="menu-item"><a href="#"><span class="fa fa-database"></span> Base de Datos </a></li>
       </ul>
 
       <% if @current_research %>

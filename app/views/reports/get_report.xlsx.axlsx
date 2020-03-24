@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  wb.add_worksheet(name: "Reporte Base de Datos") do |sheet|
+  end
+end

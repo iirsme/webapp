@@ -35,6 +35,14 @@ class Research < ApplicationRecord
     self.seq_no.to_i
   end
 
+  def full_name
+    return "#{code}".strip + " - " + "#{name}".strip
+  end
+
+  def self.all_researches
+    users = self.all.order(code: :asc)
+  end
+
   # TODO
   def authorized_user?(user)
     true

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'logout', to: 'sessions#logout'
 
+  get 'database_report', to: 'reports#index'
+  get 'get_database_report', to: 'reports#get_report'
+
   resources :roles
 
   resources :users

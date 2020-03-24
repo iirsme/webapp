@@ -1,0 +1,49 @@
+<div class="">
+  <h3 class="screen-header">Reporte de Base de Datos</h3>
+  <p class="spacer-30"></p>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="none" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+                <span class="fa fa-filter panel-form-icon"></span>Filtros
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+            <div class="panel-body">
+              <div class="spacer-10"></div>
+
+              <%= form_tag get_database_report_path(format: "xlsx"), method: :get, class: "form-horizontal" do %>
+                <%= hidden_field_tag :format, :xlsx %>
+                <div class="row">
+                  <div class="col-xs-6 col-md-6">
+                    <label>Protocolo</label>
+                    <%= select_tag(:research_id, options_from_collection_for_select(Research.all_researches, :id, "#{:full_name}"), { multiple: true, include_blank: false, class: 'form-control multi_select'} ) %> 
+                  </div>
+                  <div class="col-xs-3 col-md-3">
+                    <label>Status Visitas</label>
+                    <%= select_tag(:status, options_for_select(['Pendiente', 'Agendada', 'Completada', 'Cancelada']), { multiple: true, include_blank: false, class: 'form-control multi_select'} ) %> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="spacer-5"></div>
+                    <div class="spacer-20"></div>
+                    <%= button_tag(type: :submit, class: "btn btn-md btn-primary") do %>
+                      <i class="fa fa-print"></i> Imprimir
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
