@@ -7,8 +7,11 @@ class ReportsController < ApplicationController
     end
 
     def get_report
-      @researches = params['research_id'].split(",")
-      @status = params['status'].split(",")
+      @researches = params['research_id']
+      @status = params['status']
+      @records = Appointment.includes(:research, patient: :candidate)
+      .where("appointments.research_id IN (?) AND appointments.status IN (?)", @researches, @status)
+      .order("candidates.name, candidates.last_name1, researches.code, appointments.appt_no ASC")
 
       respond_to do |format|
         format.xlsx

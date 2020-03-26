@@ -2,5 +2,36 @@ wb = xlsx_package.workbook
 
 wb.styles do |style|
   wb.add_worksheet(name: "Reporte Base de Datos") do |sheet|
+    header_style = style.add_style(b: true, sz: 11)
+    row_style = style.add_style(b: false, sz: 10)
+
+    # MASTER DATA
+    fields_data = Field.get_all_fields
+
+    # HEAD ROW
+    # -----------------------------------------
+    header = ['Nombre', 'CURP', 'Protocolo', 'Visita No.', 'Fecha']
+    fields_data.each do |f|
+      header.push(f.label)
+    end
+    sheet.add_row header, style: header_style
+    # -----------------------------------------
+
+
+    # CONTENT ROWS
+    # -----------------------------------------
+    row = []
+    @records.each_with_index do |rec, idx|
+      row.push(rec.patient.candidate.get_fullname)
+      row.push(rec.patient.candidate.curp)
+      row.push(rec.research.code)
+      row.push(rec.appt_no)
+      row.push(rec.appt_date.to_s)
+
+      sheet.add_row row, style: row_style
+      row = []
+    end
+    # -----------------------------------------
+
   end
 end

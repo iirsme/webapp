@@ -86,6 +86,10 @@ class Field < ApplicationRecord
     ]
   end
 
+  def self.get_all_fields
+    self.all.order(label: :asc)
+  end
+
   protected
   def evaluate_name
     if name =~ /^([a-z]+[_]?[a-z]+)+$/

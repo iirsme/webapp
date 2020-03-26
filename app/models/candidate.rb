@@ -112,6 +112,10 @@ class Candidate < ApplicationRecord
     self.seq_no.to_i
   end
 
+  def get_fullname
+    identifier = self.name + ' ' + get_last_name
+  end
+
   def get_last_name
     lastname = self.last_name1 + ' ' + self.last_name2 unless self.last_name2.nil?
   end
