@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
     def get_report
       @researches = params['research_id']
       @status = params['status']
+      @add_status_column = !@status.nil? && @status.length > 1
       @records = Appointment.includes(:research, patient: :candidate)
       .where("appointments.research_id IN (?) AND appointments.status IN (?)", @researches, @status)
       .order("candidates.name, candidates.last_name1, researches.code, appointments.appt_no ASC")

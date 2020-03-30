@@ -10,7 +10,10 @@ wb.styles do |style|
 
     # HEAD ROW
     # -----------------------------------------
-    header = ['Nombre', 'CURP', 'Protocolo', 'Visita No.', 'Fecha']
+    header = ['Nombre', 'CURP', 'Protocolo', 'No. Visita', 'Fecha Visita']
+    if @add_status_column
+      header.push('Status Visita')
+    end
     fields_data.each do |f|
       header.push(f.label)
     end
@@ -21,12 +24,20 @@ wb.styles do |style|
     # CONTENT ROWS
     # -----------------------------------------
     row = []
-    @records.each_with_index do |rec, idx|
+    @records.each do |rec|
       row.push(rec.patient.candidate.get_fullname)
       row.push(rec.patient.candidate.curp)
       row.push(rec.research.code)
       row.push(rec.appt_no)
       row.push(rec.appt_date.to_s)
+      if @add_status_column
+        row.push(rec.status)
+      end
+
+      fields_data.each do |f|
+        val = Utility.translate_value(rec.values[f.name])
+        row.push(val)
+      end
 
       sheet.add_row row, style: row_style
       row = []
