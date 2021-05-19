@@ -10,7 +10,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails_12factor'
 # Use Puma as the app server
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3'
 # Use JQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
